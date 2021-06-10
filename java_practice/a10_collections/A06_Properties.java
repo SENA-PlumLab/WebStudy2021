@@ -18,6 +18,19 @@ import java.util.Properties;
 		해당 파일 로딩 처리
 	.getProperty(): key로 설정한 값을 가져온다.
 
+# Properties 객체 활용
+1. 특정한 파일에 key=value 형식으로 데이터 저장
+2. FileReader객체를 통해 해당 파일의 텍스트로 된 정보를 읽어온다.
+3. .load()를 통해 해당 정보를 Properties객체에 할당, key/value 구조를 인식시킴
+4. getProperty("key")를 통해 매칭되어있는 value 값을 가져온다.
+
+# 필수 예외 처리
+1. IO가 일어나는 경우 반드시 예외처리 해야함.
+	- file 관련 IO: FileNotFoundException
+	- 기본 Stream처리 IO: IOException
+2. encoding 처리 시 지정한 encoding을 설정할 수 없을 때
+	- UnsuppportedEncodingExcepition
+
 
  */
 
