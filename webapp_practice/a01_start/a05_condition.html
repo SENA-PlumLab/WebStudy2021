@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div style="width:400px; height:800px; background-color:#CF0" id="exp"></div>
+	<table width="200" border></table>
+	
+</body>
+<script>
+	//반복문..
+	
+	//1. 위 body안에있는 태그를 객체로 지정하는 부분
+	var tab = document.querySelector("table");
+	var show="";
+	for(var cnt=1; cnt<=10; cnt++){
+		//tr=table row
+		//td=table data(컬럼)
+		show+="<tr><td>"+cnt+"</td><tr>"
+	}
+	//.innerHTML: 태그로 추가 처리
+	tab.innerHTML = show;
+	
+	//ex) 위 div 지정, h1 카운트번호
+	//var ex = document.querySelector("div"); //객체로 찾기
+	var ex = document.getElementById("exp"); //ID로 찾기..
+	var str="";
+	for(var cnt=1; cnt<=10; cnt++){
+		str+="<h"+cnt+"> h"+cnt+" </h"+cnt+">"
+		//str+="<h1> "+cnt+" </h1>"
+	}
+	ex.innerHTML = str;
+
+</script>
+</html>

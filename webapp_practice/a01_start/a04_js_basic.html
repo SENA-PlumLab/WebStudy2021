@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script type = "text/javascript">
+
+	//1. js 변수선언: type의 선언부터 처리 되지 않음. 할당하는 순간 type 설정 됨.
+	//2. js 데이터 유형 종류
+	var num01 = 25;
+	// 출력
+	document.write("출력:"+num01);
+	document.write("<h2>출력:"+num01+"</h2>");
+	var msg = prompt("인사말을 입력하세요!", "여기에");
+	document.write("<h3>출력할 인사말: "+msg+"</h3>");
+	
+	//ex1: 과일명 입력, 과일 출력
+	var fruit = prompt("과일도 입력하세요", "사과");
+	document.write("<h4> 입력한 과일: "+fruit+"</h4>");
+	
+	//ex2: 이름, 국영수 점수 입력 후 평균까지 출력
+	var name = prompt("이름입력", "이름");
+	var kor = Number(prompt("국어 점수 입력",""));
+	var eng = Number(prompt("영어 점수 입력",""));
+	var math = Number(prompt("수학 점수 입력",""));
+	document.write("<h2>이름: "+name+"</h2>");
+	document.write("국어: "+kor);
+	document.write(" 영어: "+eng);
+	document.write(" 수학: "+math);
+	var average = (kor+eng+math)/3;
+	document.write(" 평균: "+average);
+	
+	//parseInt(): 정수 숫자형 변환 Number()
+	
+</script>
+</html>
