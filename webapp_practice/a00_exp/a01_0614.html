@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>h2는 여기입니다.</h2>
+	<br>
+	<h3 onclick="changeBG(this)" align="center">RED</h3>
+	<br>
+	<h4 align="center"> Here is H4 ! </h4>
+</body>
+<script type="text/javascript">
+//ex1.
+	var h2Obj = document.querySelector("h2");
+	h2Obj.innerHTML="시작합니다!";
+
+//ex2. js의 데이터 유형 5가지
+	//1. 숫자형 데이터 (정수, 실수)
+	var num01 = 10;
+	var num02 = 30;
+	//2. 문자열 데이터
+	var str = "홍길동";
+	//3. 함수형 데이터
+	var plus = function(num01, num02){
+		console.log("입력값1:"+num01+", 입력값2:"+num02+"<br>");
+		return num01+num02;
+	}
+	//4. boolean형 데이터
+	var isPass = num01>30;
+	//5. object형 데이터
+	var person = {name:"홍길동", age:25, loc:"서울신림동"};
+	
+//ex3. 
+	//변수에 객체 선언
+	var prod1 = {name:"마라탕", price:24000, cnt:1,
+			show:function(){
+				document.write("물건명:"+this.name+"<br>");
+				document.write("가격:"+this.price+"<br>");
+				document.write("갯수:"+this.cnt+"<br>");
+			}}
+	//생성자형 선언
+	function Product(name, price, cnt){
+		this.name=name;
+		this.price=price;
+		this.cnt=cnt;
+		this.show = function(){
+			document.write("물건명:"+this.name+"<br>");
+			document.write("가격:"+this.price+"<br>");
+			document.write("갯수:"+this.cnt+"<br>");
+		}
+	}
+	var prod2 = new Product("짜장면", 8000, 5);
+//ex4.
+	var colors =  ['red','orange','yellow','green','blue','indigo', 'purple']
+	var cnt = 0;
+	function changeBG(obj){
+		obj.style.backgroundColor=colors[cnt];
+		obj.innerHTML=colors[cnt]
+		if(cnt==2){obj.style.color="black";}
+		else{obj.style.color="white";}
+		cnt++
+		if (cnt>=7) {cnt = 0;}
+	}
+//ex5.
+	//DOM은 태그를 객체화해서 메소드 처리하고
+	//BOM은 브라우저 전체화면 처리
+//ex6.
+	//1. 대상 객체 지정
+	var h4Obj = document.querySelector("h4");
+	//2. 이벤트 속성 지정
+	h4Obj.onmouseover = mouseOver;
+	h4Obj.onmouseout = mouseOut;
+	//3. 함수 선언
+	function mouseOver(){
+		this.innerHTML = "Cursor is here!";
+		this.style.backgroundColor="pink";
+		this.style.color="white";
+	}
+	function mouseOut(){
+		this.innerHTML = "Cursor is out!";
+		this.style.backgroundColor="indigo";
+		this.style.color="yellow";
+	}
+			
+</script>
+</html>
