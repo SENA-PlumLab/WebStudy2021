@@ -23,6 +23,15 @@ SELECT ename "이름", hiredate "입사일", hiredate+120 "인턴기간", hireda
 		round(sysdate-hiredate) "근무일수"
 FROM emp;
 
+/*
+# 날짜함수
+1. sysdate: 오라클에서 서버시스템의 현재 날짜와 시간
+2. months_between(날짜1, 날짜2): 날짜 사이의 개월을 월단위로 계산.
+	기준단위 1 ==> 1개월, 0.5 ==> 15일,
+	1달을 기준으로 일/시/분/초 단위로 소숫점 계산
+3. 소숫점 이하에 대한 처리는 trunc, floor를 이용해서 절삭
+	1.5개월을 개월차로 ceil, 개월수는 trunc, floor
+ */
 
 
 SELECT ename, hiredate, sysdate,
@@ -33,6 +42,13 @@ FROM emp;
 --ex1: dual로 오늘부터 100일 후 개월 수 출력
 SELECT sysdate, trunc(MONTHS_BETWEEN(sysdate+100, sysdate))
 FROM dual;
+/*
+개월수: trunc(MONTHS_BETWEEN(sysdate+1000, sysdate))
+연도: trunc(MONTHS_BETWEEN(sysdate+1000, sysdate)/12)
+연도를 뺀 개월수: 나머지값(mod)
+두 날짜 사이의 @@년 @@개월 차이: MONTHS_BETWEEN, MOD 활용
+ */
+
 --ex2: 오늘부터 1000일후의 연한, 개월수. mod 함수 활용
 SELECT sysdate, sysdate+1000 "1000일 후",
 	trunc(MONTHS_BETWEEN(sysdate+1000, sysdate)/12)||'년 '
