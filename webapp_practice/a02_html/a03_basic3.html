@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+	<h2> 반가워용 </h2>
+	<br>
+	<h3 align="center"> 과일 </h3>
+	
+	<h4 align="center">눌러보세용</h4>
+	<h4>1</h4>
+	<h4>2</h4>
+	<h4>3</h4>
+	<h4>4</h4>
+	<h4>5</h4>
+	<h4>6</h4>
+	<h4>7</h4>
+</body>
+<script type="text/javascript">
+	//DOM객체로 중앙정렬, Glad meet you!
+	var h2Obj = document.querySelector("h2");
+	h2Obj.align="center";
+	h2Obj.innerHTML="glad meet you!";
+	h2Obj.onclick = function(){
+		this.align="left";
+	};
+	
+	//ex) h3 과일명 입력하고 중앙정렬. 클릭시 과일명 변경 왼쪽 정렬.
+	var fruits = ['사과', '오렌지', '바나나', '라임', '블루베리', '포도', '자두']
+	var colors =  ['red','orange','yellow','green','blue','indigo', 'purple']
+	var cnt = 0;
+	var h3Obj = document.querySelector("h3");
+	h3Obj.onclick = function(){
+		this.align="center";
+		this.style.backgroundColor=colors[cnt];
+		this.innerHTML=fruits[cnt]
+		if(cnt==2){this.style.color="black";}
+		else{this.style.color="white";}
+		cnt++
+		if (cnt>=7) {cnt = 0;}
+	};
+	
+	//다수개가 있을 떄는 배열로 선언해서 가져와야 한다.
+	var h4Arry = document.querySelectorAll("h4");
+	var cnt2=0;
+	h4Arry[0].onclick = function(){
+		h4Arry[cnt2+1].align="center";
+		h4Arry[cnt2+1].style.backgroundColor=colors[cnt2];
+		h4Arry[cnt2+1].innerHTML=fruits[cnt2]
+		if(cnt2==2){h4Arry[cnt2+1].style.color="black";}
+		else{h4Arry[cnt2+1].style.color="white";}
+		cnt2++
+		if (cnt2>=7) {cnt2 = 0;}
+	};
+	
+	for(var i=0; i<7; i++){
+		h4Arry[i+1].innerHTML="과일...";
+		h4Arry[i+1].onmouseover = h4reset;
+	}	
+	/*
+	h4Arry[1].onmouseover = h4reset;
+	h4Arry[2].onmouseover = h4reset;
+	h4Arry[3].onmouseover = h4reset;
+	h4Arry[4].onmouseover = h4reset;
+	h4Arry[5].onmouseover = h4reset;
+	h4Arry[6].onmouseover = h4reset;
+	h4Arry[7].onmouseover = h4reset;
+	*/
+	
+	function h4reset(){
+		this.align="left";
+		this.style.backgroundColor=null;
+		this.style.color="black";
+		this.innerHTML="과일...";
+	}
+
+
+</script>
+
+
+</html>

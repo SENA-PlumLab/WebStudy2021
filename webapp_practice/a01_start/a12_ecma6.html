@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+# ecma6
+- 2015년도 발표하고 2017년부터 전세계에 javascript 표준방식으로 적용되어가고 있는
+	javascript 버전 중 하나이다.
+1. js의 var 변수 선언은 전역변수와 지역변수에 대한 구분의 문제가 발생하고 있다.
+	전역변수/지역변수를 구분하여 사용하지 못하고 있다.
+2. js에서 지역변수와 전역변수의 구분을 위해 나타난 변수 선언 방식인 let 변수를 사용함
+
+ */
+
+	var num01 = 25;
+	function call01() {
+		// 전역변수가 있더라도 동일한 이름의 지역변수를 사용하고 있다.
+		var num01 = 30;
+		console.log(num01); //출력결과 30
+	}
+	call01();
+	console.log(num01); //출력결과 25
+	
+	
+//let 사용
+	let num02 = 30;
+	function call02(){
+		let num02 = 40;
+		console.log(num02); //출력결과 40
+	}
+	call02();
+	console.log(num02); //출력결과 30
+	
+	var hello = "first hello";
+	var hello = "second hello"; 
+	console.log(hello); //출력결과 second hello
+	let hello1 = "first hello";
+	let hello1 = "second hello"; //에러: 'hello1' has already been declared
+	console.log(hello1);
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

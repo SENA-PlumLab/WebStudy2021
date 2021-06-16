@@ -3,9 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function callHandler(obj){
+		//받은 매개값을 통해 배경 색상 변경
+		obj.style.backgroundColor="yellow";
+	}
+	function callHandlerH4(obj){
+		obj.innerHTML="안녕하세용"
+	}
+/*
+ex1) h4 클릭 시 hello==>안녕하세요 변경 (인라인 속성)
+ex2) h5 클릭 시 배경색상 변령: DOM객체 선언과 객체이벤트 속성 할당
+ */
+
+</script>
 </head>
 <body>
 	<h2> Mouse Over </h2>
+	<!-- 
+	태그 이벤트속성="처리할함수(매개값)"
+	 -->
+	<h3 onclick="callHandler(this)"> 인라인 이벤트 </h3>
+	<h4 onclick="callHandlerH4(this)">  HELLO^^ </h4>
+	<h5> 여기는 H5입니다 </h5>
 </body>
 <script type="text/javascript">
 	//1. 대상 객체 지정
@@ -23,6 +43,18 @@
 		this.style.backgroundColor="yellow";
 	}
 	
+	var h5Obj = document.querySelector("h5");	
+	var colors =  ['red','orange','yellow','green','blue','indigo', 'purple']
+	var cnt = 0;
+	h5Obj.onclick = changeBG;
+	function changeBG(){
+		this.style.backgroundColor=colors[cnt];
+		this.innerHTML=colors[cnt]
+		if(cnt==2){this.style.color="black";}
+		else{this.style.color="white";}
+		cnt++
+		if (cnt>=7) {cnt = 0;}
+	}
 
 </script>
 </html>

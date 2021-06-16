@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	id: <input type="text" id="id01" value="입력할내용"><br>
+	<input type="button" onclick="ckValid()" value="유효성 check"/>
+</body>
+<script type="text/javascript">
+	function ckValid(){
+		//위 input창에 입력된 id값 가져오기
+		//DOM의 속성이 id일 때, #아이디명으로 선택하여 가져올 수 있다.
+		var idObj = document.querySelector("#id01");
+		//해당 idObj의 속성 value를 통해서 입력한 값을 가져올 수 있다.
+		alert("입력된 id: "+idObj.value);
+		var inputData = /idObj.value/; //정규표현식 체크를 위해 슬래시/ 추가
+		var compareData = 'himan goodman higirl';
+		//해당 문자열이 포함되는지 여부를 .test() 메소드를 통해 확인
+		alert(inputData.test(compareData));
+		
+		var regExp=/v/;
+		var str = 'Javascript jQuery Ajax';
+		var output = regExp.text();
+		aleart(output);
+		
+		/*
+		# replace(): 정규표현식 기로에 의해서 변경을 처리해주는 부분
+		1. 정규표현식 기호
+			$&: 일피하는 문자열을 찾아서 해당 문자로 만환
+		2. 정규표현식 옵션
+			1) g: 전역 비교를 수행 (global)
+			2) i: 대소문자 가리지 않고 비교 (ignore case)
+		*/
+		var regExp2 = /a/;
+		var str2 = "Javascript JQuery Ajax";
+		alert(str2.replace(regExp, '+$&+'));
+		
+	}
+	
+
+</script>
+
+</html>
