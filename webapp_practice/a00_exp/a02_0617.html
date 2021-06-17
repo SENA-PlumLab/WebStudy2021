@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Insert title here</title>
+</head>
+	<h2> h2입니다 </h2>
+	<h3 align='right' onclick='getCenter(this)'> 오른쪽 정렬입니다. </h3>
+	<h4></h4>
+	<h4></h4>
+	<h4></h4>
+	<h5 align='center'> 1 </h5>
+	<h5 align='center'> 2 </h5>
+	<h5 align='center'> 3 </h5>
+	<h5 align='center'> 4 </h5>
+	<h5 align='center'> 5 </h5>
+	<h5 align='center'> 6 </h5>
+	<h5 align='center'> 7 </h5>
+<body>
+
+</body>
+<script type='text/javascript'>
+	
+	//ex1) 익명함수란? h2 클릭시 글자색, 배경색 변경
+	//		익명함수는 함수의 이름이 따로 없이 선언된 함수
+	var h2Obj = document.querySelector('h2');
+	h2Obj.onclick = function(){
+		this.style.color = 'white';
+		this.style.backgroundColor = 'pink';
+	}
+	
+	//ex2) html의 기본 구성 요소
+	//		태그, 키, 속성=속성값, 변수
+	
+	//ex3) html과 js의 주석
+	//		html의 주석은 <!-- -->
+	//		js의 주석은 //혹은 /* */ 사용
+	
+	//ex4) h3 오른쪽 정렬료 출력, 클릭시 중앙정렬
+	function getCenter(obj){
+		obj.align='center';
+		obj.innerHTML='중앙정렬입니다.'
+	}
+	
+	//ex5) 태그에 배열형과 단일형 선택할 때 코드의 차이
+	// var h2Obj = document.querySelector('h2'); ==> 하나의 <h2> 객체를 가져옴
+	// var h2Obj = document.querySelectorAll('h2'); ==> 존재하는 모든 <h2> 객체를 객체형으로 가져옴
+	
+	//ex6) h5 7개 출력, 클릭시 각각 색상을 배경색으로 출력
+	var colors = ['PowderBlue', 'LemonChiffon', 'LightPink', 'LightSteelBlue', 'PaleGreen', 'LightGray', 'Plum'];
+	var cnt = 0;
+	var h5Arry = document.querySelectorAll("h5");
+	/*
+	for(var idx=0; idx<h5Arry.length; idx++){
+		h5Arry[idx].onclick=function(){
+			var i=this.innerHTML-1;
+			this.innerHTML=colors[i];
+			this.style.backgroundColor=colors[i];
+		}
+	}
+	*/
+	
+	
+	h5Arry[0].onclick = function(){
+		this.innerText=colors[0];
+		this.style.backgroundColor=colors[0];
+	}
+	h5Arry[1].onclick = function(){
+		this.innerText=colors[1];
+		this.style.backgroundColor=colors[1];
+	}
+	h5Arry[2].onclick = function(){
+		this.innerText=colors[2];
+		this.style.backgroundColor=colors[2];
+	}
+	h5Arry[3].onclick = function(){
+		this.innerText=colors[3];
+		this.style.backgroundColor=colors[3];
+	}
+	h5Arry[4].onclick = function(){
+		this.innerText=colors[4];
+		this.style.backgroundColor=colors[4];
+	}
+	h5Arry[5].onclick = function(){
+		this.innerText=colors[5];
+		this.style.backgroundColor=colors[5];
+	}
+	h5Arry[6].onclick = function(){
+		this.innerText=colors[6];
+		this.style.backgroundColor=colors[6];
+	}
+	
+</script>
+
+</html>
