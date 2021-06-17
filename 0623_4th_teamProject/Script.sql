@@ -21,3 +21,10 @@ FROM MEMBERPROFILE;
 //-----------------------------------------
 	
 DROP TABLE MEMBERPROFILE;
+
+SELECT shopName, shopImageURL, shopIntro, 
+		trunc(sysdate)-trunc(OPENDATE) "countOfOpenDate",
+		countVisit, countSell, countShipping, isCertified
+FROM memberProfile
+WHERE memberNum = 'M0002154';
+
