@@ -1,6 +1,5 @@
 package javaexp.a00_exp.teamP_04;
 
-import java.awt.Image;
 
 public class ShopProfile {
 	private String memberNum; //고객번호
@@ -8,6 +7,7 @@ public class ShopProfile {
 	private int countOfOpenDate, countVisit, countSell, countShipping;
 	private boolean certified; //본인인증
 	private String shopImageURL; //프로필 사진 url
+	private int starRate;
 	
 	public ShopProfile(String memberNum, String shopName, String shopIntro, int countOfOpenDate, int countVisit,
 			int countSell, int countShipping, boolean certified) {
@@ -20,8 +20,13 @@ public class ShopProfile {
 		this.countSell = countSell;
 		this.countShipping = countShipping;
 		this.certified = certified;
+		this.shopImageURL="이미지 없음";
+		this.starRate = 5;
 	}
-
+	
+	public void setStarRate(int starRate) {
+		this.starRate = starRate;
+	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
@@ -32,6 +37,11 @@ public class ShopProfile {
 
 	public void setShopImage(String shopImageURL) {
 		this.shopImageURL = shopImageURL;
+	}
+	
+	
+	public int getStarRate() {
+		return starRate;
 	}
 
 	public String getMemberNum() {

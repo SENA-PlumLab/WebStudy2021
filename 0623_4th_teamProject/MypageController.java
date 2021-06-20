@@ -19,42 +19,36 @@ public class MypageController {
 		return "회원정보 요약 출력";
 	}
 	
-	public String editShopName(ShopProfile sp, Model d) {
+	public String editShopName(ShopProfile sp, String newName, Model d) {
 		d.addAttribute("회원정보 요약", myService.summaryInfo(sp));	
 
 		//임의로 출력하면...
 		System.out.println("--------------------");
-		Scanner sc1 = new Scanner(System.in);
-		System.out.print("**새 상점이름 입력: ");
-		myService.editShopName(sp, sc1.nextLine());
+		myService.editShopName(sp, newName);
 		System.out.println("상점이름 변경 완료!");
 		System.out.println("--------------------");
 
 		return "호출화면";
 	}
 	
-	public String editShopImageURL(ShopProfile sp, Model d) {
+	public String editShopImageURL(ShopProfile sp, String newImageUrl, Model d) {
 		d.addAttribute("회원정보 요약", myService.summaryInfo(sp));	
 
 		//임의로 출력하면...
 		System.out.println("--------------------");
-		Scanner sc1 = new Scanner(System.in);
-		System.out.print("**새 상점 이미지 URL 입력: ");
-		myService.editShopImageURL(sp, sc1.nextLine());
+		myService.editShopImageURL(sp, newImageUrl);
 		System.out.println("상점 이미지 변경 완료!");
 		System.out.println("--------------------");
 
 		return "호출화면";
 	}
 	
-	public String editShopIntro(ShopProfile sp, Model d) {
+	public String editShopIntro(ShopProfile sp, String newShopIntro, Model d) {
 		d.addAttribute("회원정보 요약", myService.summaryInfo(sp));	
 
 		//임의로 출력하면...
 		System.out.println("--------------------");
-		Scanner sc1 = new Scanner(System.in);
-		System.out.print("**새 상점 소개 입력: ");
-		myService.editShopIntro(sp, sc1.nextLine());
+		myService.editShopIntro(sp, newShopIntro);
 		System.out.println("상점 소개 변경 완료!");
 		System.out.println("--------------------");
 
