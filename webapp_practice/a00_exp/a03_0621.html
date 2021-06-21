@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+1. html 태그
+	<h1></h1> 열고 닫는 태그가 페어로 필요한 경우와,
+	<br><hr> 하나의 태그로 온전히 사용할 수 있는 경우가 있음.
+*/
+	var pdNum=0;
+	var likeNum=0;
+	function addProduct(){
+		var product = document.querySelector("#product");
+		product.innerHTML += "<tr id=\"e"+pdNum+"\"><td>물건</td></tr>"
+		pdNum++;
+	}
+	function addLike(){
+		var product = document.querySelector("#e"+likeNum);
+		product.innerHTML += "<td>좋아요</td>"
+		likeNum++;
+		
+	}
+	function upperWidthMango(){
+		var mangoImg = document.querySelector("#mangoImg");
+		mangoImg.width += 30;
+	}
+	function upperHeightMango(){
+		var mangoImg = document.querySelector("#mangoImg");
+		mangoImg.height += 30;
+	}
+
+
+</script>
+</head>
+<body>
+	<button onclick=addProduct()> 물건추가 </button>
+	<button onclick=addLike()> 좋아요 </button>
+	<table id="product" border="1" width="400px">
+		<caption>물건 테이블</caption>
+	</table>
+	<br>
+	<br>
+	<br>
+	<button onclick=upperWidthMango()> 옆으로 커져라 </button>
+	<button onclick=upperHeightMango()> 위아래로 커져라 </button>
+	<img src="images/mango.jpg" width="300px" height="300px" id="mangoImg">
+</body>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</html>

@@ -27,8 +27,6 @@ WHERE mgr = (SELECT empno FROM emp WHERE ename = 'KING');
 SELECT *
 FROM EMP e2 
 WHERE to_char(hiredate, 'MM') = (SELECT to_char(hiredate, 'MM') FROM emp WHERE ename='JAMES');
-				
-
 /*
 
 #서브쿼리 종류
@@ -70,6 +68,11 @@ FROM EMP e2
 WHERE job IN (SELECT DISTINCT job
 				FROM EMP e 
 				WHERE sal BETWEEN 1000 AND 2000);
+--ex) 부서별 연봉이 가장 높은 사원의 사원정보				
+SELECT *
+FROM emp
+WHERE (deptno, sal) IN (SELECT deptno, max(sal) FROM emp GROUP BY deptno);
+
 
 /*
 SELECT *
@@ -110,10 +113,16 @@ WHERE (sal, to_char(hiredate, 'Q')) IN (SELECT max(sal), to_char(hiredate, 'Q') 
 ORDER BY 분기;
 
 
--- exists
+/*
+# exists, not exists
+1. 서브쿼리에서 검색된 결과가 하나라도 존재하거나 존재하지 않을 때,
+	메인쿼리의 조건을 참/거짓으로 처리 함
+2. 서브쿼리의 데이터 조최 결과가 있기만 하면 아무런 연관관계 없이 메인쿼리를 수행 함.
+
+ */
 SELECT *
 FROM EMP e 
-WHERE EXISTS (SELECT * FROM emp WHERE comm=2422);
+WHERE EXISTS (SELECT * FROM emp WHERE comm=500);
 
 SELECT *
 FROM EMP e 

@@ -16,19 +16,19 @@ public class TabMenuDao {
 		inboundList.add(new Comment("M0002154", comment1, "님 농담곰 인형은 없나요", 8, 0));
 		inboundList.add(new Comment("M0002154", comment1, "님님 잠만보 인형은 있어요???", 3, 0));
 	
-		pdList.add(new Product("M0002154", "P0101524", "images/product_1524.jpg", "커피머신", 50000, 80, "서울시 양천구"));
-		pdList.add(new Product("M0002154", "P0101851", "images/product_1851.jpg", "모니터", 80000, 62, "서울시 양천구"));
-		pdList.add(new Product("M0002154", "P0102345", "images/product_2345.jpg", "인형4개", 8000, 15, "서울시 양천구"));
-		pdList.add(new Product("M0002154", "P0103720", "images/product_3720.jpg", "텀블러", 12000, 10, "서울시 양천구"));
-		pdList.add(new Product("M0002154", "P0104520", "images/product_4520.jpg", "젤네일 스티커", 3000, 5, "서울시 양천구"));
+		pdList.add(new Product("M0002154", "P0101524", "images/product_1524.jpg", "커피머신", 50000, 81, "서울시 양천구"));
+		pdList.add(new Product("M0002154", "P0101851", "images/product_1851.jpg", "모니터", 80000, 63, "서울시 양천구"));
+		pdList.add(new Product("M0002154", "P0102345", "images/product_2345.jpg", "인형4개", 8000, 16, "서울시 양천구"));
+		pdList.add(new Product("M0002154", "P0103720", "images/product_3720.jpg", "텀블러", 12000, 11, "서울시 양천구"));
+		pdList.add(new Product("M0002154", "P0104520", "images/product_4520.jpg", "젤네일 스티커", 3000, 6, "서울시 양천구"));
 		pdList.get(0).setSoldout(true);
 		pdList.get(1).setSoldout(true);
 		pdList.get(2).setSoldout(true);
 		
 		
-		bookmarkPdList.add(new Product("M0001484", "P0103756", "images/product_3756.jpg", "2G 휴대폰", 50000, 10, "서울시 송파구"));
-		bookmarkPdList.add(new Product("M0002388", "P0104888", "images/product_4888.jpg", "2DS 본체+놀동숲", 60000, 3, "경기 부천시"));
-		bookmarkPdList.add(new Product("M0002751", "P0104554", "images/product_4554.jpg", "어쿠스틱 기타", 40000, 5, "서울 강남구"));
+		bookmarkPdList.add(new Product("M0001484", "P0103756", "images/product_3756.jpg", "2G 휴대폰", 50000, 11, "서울시 송파구"));
+		bookmarkPdList.add(new Product("M0002388", "P0104888", "images/product_4888.jpg", "2DS 본체+놀동숲", 60000, 4, "경기 부천시"));
+		bookmarkPdList.add(new Product("M0002751", "P0104554", "images/product_4554.jpg", "어쿠스틱 기타", 40000, 6, "서울 강남구"));
 		
 		ShopProfile review1 = new ShopProfile("M0000606", "동그리동동", "동그라미가..좋다!", 606, 825, 450, 402, true);
 		ShopProfile review2 = new ShopProfile("M0001122", "별과음악", "눈동자에 Cheers...★", 1122, 600, 212, 150, true);
@@ -36,9 +36,9 @@ public class TabMenuDao {
 		review1.setShopImage("images/profile_M0000606.jpg");
 		review2.setShopImage("images/profile_M0001122.jpg");
 		review3.setShopImage("images/profile_M0000323.jpg");
-		rvList.add(new ShopReview(review1, "M0002154", "잘 받았어요^^", pdList.get(0), 70, 3));
-		rvList.add(new ShopReview(review2, "M0002154", "잘쓰겠읍니다.. 건강하세요,,~! ", pdList.get(1), 45, 4));
-		rvList.add(new ShopReview(review3, "M0002154", "귀 엽 다 . . . !", pdList.get(2), 13, 5));
+		rvList.add(new ShopReview(review1, "M0002154", "잘 받았어요^^", pdList.get(0), 85, 3));
+		rvList.add(new ShopReview(review2, "M0002154", "잘쓰겠읍니다.. 건강하세요,,~! ", pdList.get(1), 67, 4));
+		rvList.add(new ShopReview(review3, "M0002154", "귀 엽 다 . . . !", pdList.get(2), 14, 5));
 		
 		ShopProfile following1 = new ShopProfile("M0001589", "왕싸게팔음", "마참내! 드디어! 왕 싸다!", 186, 230, 82, 78, true);
 		ShopProfile following2 = new ShopProfile("M0001522", "훠궈먹자", "일주일에 4번 훠궈 먹는 사람", 122, 522, 128, 115, true);

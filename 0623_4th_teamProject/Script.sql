@@ -49,15 +49,22 @@ INSERT INTO productList values('M0002154', 'P0101851', 'images/product_1851.jpg'
 INSERT INTO productList values('M0002154', 'P0102345', 'images/product_2345.jpg', '인형4개', 8000, '2021-06-05', '서울시 양천구', 'true');
 INSERT INTO productList values('M0002154', 'P0103720', 'images/product_3720.jpg', '텀블러', 12000, '2021-06-10', '서울시 양천구', 'false');
 INSERT INTO productList values('M0002154', 'P0104520', 'images/product_4520.jpg', '젤네일 스티커', 3000, '2021-06-15', '서울시 양천구', 'false');
+INSERT INTO productList values('M0001484', 'P0103756', 'images/product_3756.jpg', '2G 휴대폰', 50000, '2021-06-10', '서울시 송파구', 'false');
+INSERT INTO productList values('M0002388', 'P0104888', 'images/product_4888.jpg', '2DS 본체+놀동숲', 60000, '2021-06-17', '경기 부천시', 'false');
+INSERT INTO productList values('M0002751', 'P0104554', 'images/product_4554.jpg', '어쿠스틱 기타', 40000, '2021-06-15', '서울 강남구', 'false');
+
+
 
 SELECT *
-FROM PRODUCTLIST;
+FROM PRODUCTLIST
+ORDER BY PRODUCTNUM ;
 
 SELECT imageURL, productName, price,
 		trunc(sysdate)-trunc(uploadDate) "countOfUploadedDay",
 		region, isSoldout
 FROM PRODUCTLIST 
-WHERE memberNum = 'M0002154';
+WHERE memberNum = 'M0002154'
+ORDER BY UPLOADDATE DESC , ISSOLDOUT ;
 -----------------------------------------------
 
 CREATE TABLE inboundList(
@@ -81,27 +88,24 @@ FROM inboundList a, MEMBERPROFILE b
 WHERE b.MEMBERNUM = a.FROMMEMBERNUM ;
 -----------------------------------------------
 
-CREATE TABLE bookmarkPdList(
-	memberNum char(8),
+CREATE TABLE bookmarkList(
+	byMemberNum char(8),
 	productNum char(8),
-	imageURL varchar2(100),
-	productName varchar2(100),
-	price NUMBER,
-	uploadDate DATE,
-	region varchar2(100),
-	isSoldOut varchar2(20)
+	addedDate DATE
 );
-INSERT INTO bookmarkPdList values('M0001484', 'P0103756', 'images/product_3756.jpg', '2G 휴대폰', 50000, '2021-06-10', '서울시 송파구', 'false');
-INSERT INTO bookmarkPdList values('M0002388', 'P0104888', 'images/product_4888.jpg', '2DS 본체+놀동숲', 60000, '2021-06-17', '경기 부천시', 'false');
-INSERT INTO bookmarkPdList values('M0002751', 'P0104554', 'images/product_4554.jpg', '어쿠스틱 기타', 40000, '2021-06-15', '서울 강남구', 'false');
+INSERT INTO bookmarkList values('M0002154', 'P0103756', '2021-05-01');
+INSERT INTO bookmarkList values('M0002154', 'P0104888', '2021-06-03');
+INSERT INTO bookmarkList values('M0002154', 'P0104554', '2021-06-21');
 		
 SELECT *
-FROM bookmarkPdList;
+FROM bookmarkList;
 
-SELECT imageURL, productName, price,
-		trunc(sysdate)-trunc(uploadDate) "countOfUploadedDay",
-		region, isSoldout
-FROM BOOKMARKPDLIST;
+SELECT b.imageURL, b.productName, b.price,
+		trunc(sysdate)-trunc(b.uploadDate) "countOfUploadedDay",
+		b.region, b.isSoldout
+FROM PRODUCTLIST b, BOOKMARKLIST c
+WHERE c.PRODUCTNUM = b.PRODUCTNUM AND c.byMemberNum = 'M0002154'
+ORDER BY addedDate DESC, b.ISSOLDOUT;
 ----------------------------------------------
 CREATE TABLE shopReview(
 	ToMemberNum char(8),
@@ -122,7 +126,8 @@ SELECT a.SHOPIMAGEURL, a.SHOPNAME, b.IMAGEURL, b.PRODUCTNAME, c.comm,
 			trunc(sysdate)-trunc(c.UPLOADDATE) "countOfUploadedDay",
 			c.starRate
 FROM MEMBERPROFILE a, PRODUCTLIST b, shopReview c
-WHERE a.MEMBERNUM = c.fromMemberNum AND b.PRODUCTNUM =c.productNum;
+WHERE a.MEMBERNUM = c.fromMemberNum AND b.PRODUCTNUM = c.productNum
+ORDER BY c.uploadDate desc;
 
 ------------------------------------------------
 CREATE TABLE followList(
@@ -159,6 +164,7 @@ WHERE b.fromMembernum = a.MEMBERNUM
 DROP TABLE MEMBERPROFILE;
 DROP TABLE INBOUNDLIST;
 DROP TABLE PRODUCTLIST;
+DROP TABLE BOOKMARKPDLIST;
 DROP TABLE SHOPREVIEW;
 DROP TABLE FOLLOWLIST;
 
