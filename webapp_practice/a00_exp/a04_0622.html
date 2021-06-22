@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+1. 테이블의 기본 속성과 tr, td의 의미를 기술하세요.
+==> tr: table row 행 추가 / td: table data 셀 추가
+
+2. 2X2테이블을 만들고, 각 td를 클릭시, 연결되어 있는 과일명 4가지 중에 하나를
+    출력처리하세요.
+    
+3. innerHTML과 innerText의 차이를 기본예제를 통하여 기술하세요.
+==> innerHTML: 태그를 렌더링 함
+==> innerText: 태그가 있건말건 입력된 내용을 전부 텍스트화 한다
+
+4. setInterval 함수의 사용 방법을 기술하세요.
+==> setInterval(기능, 1000); 일정 시간 간격으로 기능을 실쟁함
+==> clearInterval(기능); 기능 실행 멈춤
+==> ex) setInterval(이미지연속출력, 1000); 
+==> 	setTimeout(이미지연속출력, 1000); 1초마다 쉬고 새로 출력
+==>		clearInterval(이미지연속출력); 멈춤
+
+5. 숫자형 문자열을 숫자로 변경하는 js 함수를 기술하세요.
+==> .String(값 입력) , 숫자형변수.toString()
+==> parseInt(), parseFloat(), Number()
+
+6. 1X1테이블에서 [컬럼추가][행추가] 클릭시, 처리되게 하세요 [응용]
+    - table 선택 및 innerHTML을 활용하여 html로 tr td로 테이블 구성을 만드세요
+*/
+	
+	var rowNum=1;
+	function addRow(){
+		var table01 = document.querySelector("#table01");
+		table01.height+=100;
+		table01.innerHTML += "<tr id=\"row"+(rowNum+1)+"\" height=\"100\"><td>행 추가</td></tr>"
+		rowNum++;
+	}
+	function addCol(){
+		var table01 = document.querySelector("#table01");
+		var firstRowTds = document.querySelectorAll("#row1 td");
+		var lastRowTds = document.querySelectorAll("#row"+rowNum+" td");
+		var MaxCol = firstRowTds.length;
+		var minCol = lastRowTds.length;
+		
+		//한번만 실행되어야 하므로 
+		if(minCol==MaxCol){
+			table01.width = parseInt(table01.width)+100;
+		}
+		
+		for(var i=0; i<rowNum; i++){
+			if(minCol==MaxCol){
+				
+				var tr = document.querySelector("#row"+(i+1));
+				tr.innerHTML += "<td width=\"100\">컬럼 추가</td>";
+			}else{
+				var tds = document.querySelectorAll("#row"+(i+1)+" td");
+				if(tds.length < MaxCol){
+					//table01.width = parseInt(table01.width)+100;
+					var tr = document.querySelector("#row"+(i+1));
+					tr.innerHTML += "<td width=\"100\">컬럼 추가</td>";
+				}
+			}
+		}
+		
+		
+	}
+	
+
+</script>
+</head>
+<body>
+	<table width="200px" height="200px" border="1">
+		<tr>
+			<td id="fruit1" width=50%> 1 </td>
+			<td id="fruit2"> 2 </td>
+		</tr>
+		<tr>
+			<td id="fruit3"> 3 </td>
+			<td id="fruit4"> 4 </td>
+		</tr>
+	</table>
+	<button onclick=addCol()> 컬럼추가 </button>
+	<button onclick=addRow()> 행 추가 </button>	
+	<table id="table01" width="100px" height="100px" border="1">
+		<tr id="row1" height="100px">
+			<td width="100px"> ^^ </td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<table id="gameTable" width="600px" height="200px" border="1">
+	<caption> 클릭해보세요^^ </caption>
+		<tr>
+			<td id="game01" width="200px" align="center">
+				^0^
+			</td>
+			<td id="game02" width="200px"  align="center">
+				^_^
+			</td>
+			<td id="game03" width="200px"  align="center">
+				^▽^
+			</td>
+		</tr>
+	</table>
+	
+</body>
+<script type="text/javascript">
+	f1Obj = document.querySelector("#fruit1");
+	f2Obj = document.querySelector("#fruit2");
+	f3Obj = document.querySelector("#fruit3");
+	f4Obj = document.querySelector("#fruit4");
+	f1Obj.onclick = function(){
+		this.innerText="사과";
+	}
+	f2Obj.onclick = function(){
+		this.innerText="오렌지";
+	}
+	f3Obj.onclick = function(){
+		this.innerText="바나나";
+	}
+	f4Obj.onclick = function(){
+		this.innerText="딸기";
+	}
+
+
+	var idx = parseInt(Math.random()*3);
+	var games = ["rock", "sissors", "paper"];	
+	var g01Obj = document.querySelector("#game01");
+	var g02Obj = document.querySelector("#game02");
+	var g03Obj = document.querySelector("#game03");
+	g01Obj.onclick = function(){
+		this.innerHTML="<img src=\"images\\"+games[idx]+".png\" width=\"200px\">";
+	}
+	g02Obj.onclick = function(){
+		this.innerHTML="<img src=\"images\\"+games[(idx+1)%3]+".png\" width=\"200px\">";
+	}
+	g03Obj.onclick = function(){
+		this.innerHTML="<img src=\"images\\"+games[(idx+2)%3]+".png\" width=\"200px\">";
+	}
+
+</script>
+</html>
