@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+	<h2> 안녕 (태그 하나)</h2>
+	<h2> 안녕 (태그 하나)</h2>
+	<h2> 안녕 (태그 하나)</h2>
+	<h3 class="cls01"> 클래스 하나 </h3>
+	<h3 class="cls01"> 클래스 하나 </h3>
+	<h3 class="cls01"> 클래스 하나 </h3>
+	<h3 class="cls01"> 클래스 하나 </h3>
+	<h4> 모두 다 적용 </h4>
+	<h4> 모두 다 적용 </h4>
+	<h4> 모두 다 적용 </h4>
+	<h4> 모두 다 적용 </h4>
+	<h5> 특정 클래스 다 적용 </h5>
+	<h5> 특정 클래스 다 적용 </h5>
+	<h5 class="cls02"> 특정 클래스 다 적용 </h5>
+	<h5 class="cls02"> 특정 클래스 다 적용 </h5>
+	<h5 class="cls02"> 특정 클래스 다 적용 </h5>
+	<input type="text" class="cls02"/> <br>
+	<input type="text"/> <br>
+	<input type="text" class="cls02"/> <br>
+</body>
+<script type="text/javascript">
+	var h2Obj = document.querySelector("h2");
+	var ch01 = document.querySelector("#ch01");
+	var cls01 = document.querySelector(".cls01");
+	h2Obj.style.backgroundColor="pink";
+	ch01.style.backgroundColor="pink";
+	cls01.style.backgroundColor="pink";
+	
+	var h4Arry = document.querySelectorAll("h4");
+	var cls02Arry = document.querySelectorAll(".cls02");
+	for(var idx=0; idx<h4Arry.length; idx++){
+		hrArry[idx].style.color="blue";
+	}
+	for(var idx=0; idx<cls02Arry.length; idx++){
+		cls02Arry[idx].style.backgroundColor="yellow";
+	}
+	
+	
+</script>
+</html>

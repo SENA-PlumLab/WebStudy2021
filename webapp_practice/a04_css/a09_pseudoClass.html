@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+input:focus{
+	background-color:yellow;
+}
+table{
+    width:500px;
+    margin:0 auto;
+    border:none;
+    border-top:2px solid #000;
+    border-bottom:1px solid #000;
+    border-collapse:collapse;
+}
+table caption{
+    display:none;
+}
+table th,
+table td{
+    text-align:center;
+}
+table th{
+    font-weight:normal;
+    padding:5px 0 2px;
+    border-bottom:1px solid #888;
+    background:#F5F5F5;
+}
+table th.on{
+    background:#E9E9E9;
+}
+table td{
+    font-family:tahoma,sans-serif,arial,verdana;
+    color:#333;
+    border:solid #CCC;
+    border-width:1px 0;
+    background:#FFF;
+}
+table td:active{
+    background:#F5F5F5;
+}
+</style>
+</head>
+<body>
+	아이디: <input type="text" /><br>
+	패스워드: <input type="password" /><br>
+	이름: <input type="text" name="name" /><br>
+	<br>
+	<br>
+	<table id="tab01">
+		<caption>물건 리스트</caption>
+	    <colgroup>
+	        <col style="width:30%">
+	        <col style="width:30%">
+	        <col style="width:30%">
+	    </colgroup>
+		<tr><th>물품</th><th>가격</th><th>갯수</th></tr>
+		<tr><td>모니터</td><td>200000</td><td>5</td></tr>
+		<tr><td>마우스</td><td>8000</td><td>3</td></tr>
+		<tr><td>키보드</td><td>15000</td><td>2</td></tr>
+		<tr><td>스피커</td><td>30000</td><td>1</td></tr>
+	</table>
+	
+	
+</body>
+<script type="text/javascript">
+	var nameObj = document.querySelector("[name=name]");
+	nameObj.onfocus=function(){
+		this.style.color="blue";
+		this.value="";
+		
+	};
+	
+	var t01Obj = document.querySelector("#tab01");
+	t01Obj.onfocus=function(){
+		this.style.color="blue";
+	}
+	
+</script>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+# Table
+1. 데이터를 2차원 구성요소로 저장
+2. 구성요소
+	1) 속성: width, height, border
+	2) 하위요소
+		tr(table row): 행단위 데이터 처리
+		td(table data): 행 안에있는 열로 실제 데이터 처리
+
+
+
+*/
+
+
+</script>
+</head>
+<body>
+	<table width="300" height="300" border>
+		<tr>
+			<td>사과</td>
+		</tr>
+	</table>
+	<table width="300" height="300" border>
+		<tr>
+			<td>사과</td>
+			<td>열 추가</td>
+		</tr>
+	</table>
+	<table width="300" height="300" border>
+		<tr>
+			<td>사과</td>
+			<td>열 추가</td>
+		</tr>
+		<tr>
+			<td>행 추가</td>
+			<td>행 추가</td>
+		</tr>
+	</table>
+	
+<!-- 
+	ex1) 1x3, 3x2, 2x4, 3x3 테이블 생성
+ -->
+ 	<br>
+ 	<br>
+ 	<h2> 연습 </h2>
+ 	<br>
+	<table width="300" height="300" border>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+			<td> 셋 </td>
+		</tr>
+	</table>
+	<br>
+	<table width="300" height="300" border>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+	</table>
+	<br>
+	<table width="300" height="300" border="1">
+		<tr>
+			<td width=25%> 하나 </td>
+			<td width=25%> 둘 </td>
+			<td width=25%> 셋 </td>
+			<td width=25%> 넷 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+			<td> 셋 </td>
+			<td> 넷 </td>
+		</tr>
+	</table>
+	<br>
+	<table width="300" height="300" border="1" noshade id="tab01">
+		<tr>
+			<td width=33%> 하나 </td>
+			<td width=33%> 둘 </td>
+			<td width=33%> 셋 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+			<td> 셋 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+			<td> 셋 </td>
+		</tr>
+	</table>
+	<br>
+	<!-- 
+	ex2) 3x2 테이블에 번호 1~6까지 js로 입력
+	 -->
+	<table width="300" height="300" border id="tab02">
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+		<tr>
+			<td> 하나 </td>
+			<td> 둘 </td>
+		</tr>
+	</table>
+	
+</body>
+<script type="text/javascript">
+/*
+
+*/
+
+	var tab01 = document.querySelector("#tab01");
+	// #tab01 td ==> tab01 하위에 있는 모든 td 선택.
+	var tab01Tds = document.querySelectorAll("#tab01 td");
+	for(var idx=0; idx<tab01Tds.length; idx++){
+		tab01Tds[idx].innerText=idx+1+"번째";
+	}
+	
+	var tab02 = document.querySelector("#tab02");
+	var tab02Tds = document.querySelectorAll("#tab02 td");
+	var randBomb = parseInt(Math.random()*tab02Tds.lengths);
+	
+	tab02.onclick = function(){
+		for(var td in tab02Tds){
+			var randColorCode ="";
+			// randColorCode 생성
+			for(var idx=0; idx<6; idx++){
+				var rand = parseInt(Math.random()*16);
+				randColorCode += rand.toString(16); 
+			}
+			tab02Tds[td].style.backgroundColor="#"+randColorCode.toString();
+			//tab02Tds[td].innerText=randColorCode;
+		}
+	};
+	
+	for(var td in tab02Tds){
+		tab02Tds[td].innerText=parseInt(td)+1+"번";
+		tab02Tds[td].id=td;
+	}
+	
+	tab02Tds[0].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	tab02Tds[1].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	tab02Tds[2].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	tab02Tds[3].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	tab02Tds[4].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	tab02Tds[5].onclick=function(){
+		if(this.id==randBomb){
+			this.innerHTML="<strong>꽝!</strong>";
+			this.style.backgroundColor="Blue";
+			this.style.Color="white";
+			tab02.onclick = null;
+		}
+	}
+	
+	
+	function isThisBomb(id){
+		if(id==randBomb){
+			
+		}
+		
+	};
+	
+	
+	
+	/*
+	tab02Tds[randBomb].onclick = function(){
+		for(var td in tab02Tds){
+			tab02Tds[td].style.backgroundColor="#000000";
+		}
+		this.style.backgroundColor="Blue";
+		this.style.Color="white";
+		this.innerHTML="<strong>꽝</strong>!"
+		tab02.onclick = null;
+	}
+	*/
+	
+	
+	
+	
+</script>
+</html>

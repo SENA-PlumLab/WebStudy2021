@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+<style type="text/css">
+#tab01 tr:nth-child(2n){
+	background-Color:"yellow";
+}
+#tab02 td:nth-child(2n){
+	background-Color:"pink";
+}
+
+</style>
+</head>
+<body>
+	<table width=400px height=400px id="tab01" border=1>
+		<col width=25%>
+		<col width=25%>
+		<col width=25%>
+		<col width=25%>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td></tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<table width=300px height=300px id="tab02" border=1>
+		<col width=33%>
+		<col width=33%>
+		<col width=33%>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>
+	</table>
+	<br>
+	<br>
+	<h2> 여기는 h2 입니다~~ </h2>
+</body>
+<script type="text/javascript">
+	var tab01 = document.querySelectorAll("#tab01 td");
+	for(var i=0; i<tab01.length; i++){
+		tab01[i].innerText=i+1;
+	}
+
+	var tab02 = document.querySelectorAll("#tab02 td");
+	var rand = Math.floor(Math.random()*tab02.length)+1;
+	
+	
+	for(var i=0; i<tab02.length; i++){
+		tab02[i].innerText=i+1;
+		tab02[i].onclick=function(){
+			this.style.backgroundColor="yellow";
+		}
+	}
+	tab02[rand].onclick=function(){
+		this.innerText="빙고";
+		this.style.backgroundColor="yellow";
+	}
+
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+h{
+	font-weight:900;
+	font-style:oblique;
+	font-size:20px;
+}
+
+</style>
+</head>
+<body>
+	<h2> H2 </h2>
+	<hr>
+	<h3> 안녕하세요 </h3>
+	<select onchange="chFamily(this)">
+		<option value="X">글자체 변경</option>
+		<option value="Gulim">굴림체</option>
+		<option vlaue="Gungsuh">궁서체</option>
+	</select>
+	<select onchange="chSize(this)">
+		<option value="X">사이즈 변경</option>
+		<option value="10">10pt</option>
+		<option vlaue="40">40pt</option>
+	</select>
+	<select onchange="chStyle(this)">
+		<option value="X">스타일 변경</option>
+		<option value="italic">italic</option>
+		<option vlaue="oblique">oblique</option>
+	</select>
+</body>
+<script type="text/javascript">
+var h3obj = document.querySelector("h3");
+function chFamily(obj){
+	h3obj.style.fontFamily=obj.value;
+}
+function chSize(obj){
+	h3obj.style.fontSize=obj.value;
+}
+function chStyle(obj){
+	h3obj.style.fontStyle=obj.value;
+}
+
+</script>
+</html>

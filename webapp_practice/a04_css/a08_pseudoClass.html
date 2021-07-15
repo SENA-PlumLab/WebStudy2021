@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/*
+@@ 가상 선택자 @@
+# 반응 선택자
+1. 사용자의 반응으로 생성되는 특정한 상태를 선택하는 것.
+2. 사용자가 특정 태그 위에 마우스 커서를 올리면 hover 상태
+3. 특정 태그를 마우스 클릭하면 active 상태
+4. 기본코드 ==> :active :hover
+# 상태 선택자
+1. 상태 변경에 따른 css 처리 변셩
+2. 기본코드
+	:checked - 해당 선택자가 checked일때 처리할 내용. 주로 radio에 사용됨
+	:focus - 해당 선택자에 focus를 위치시켰을 때 처리할 내용. form 하위 입력때 사용
+	:enabled - 해당 선택자의 요소객체가 활성화 되었을 때 처리할 css 속성.
+
+*/
+h2:active{background-color:orange;} /* 클릭 하고있을 때만 반영됨. */
+h3:hover{color:blue;} /* 마우스 올라가있을 때만 반영 됨 */
+tr:hover{background-color:yellow;}
+td:active{font-size:32px; color:green;}
+/* input 요소객체의 type속성이 checkbox인 것이 checked가 된 경우.
+	+ 요소객체(바로 옆에 있는 객체에 대해 속성 설정) */
+input[type=checkbox]:checked+span{background-color:pink;}
+div input[type=checkbox]:checked+span,
+div input[type=radio]:checked+span{
+	background-color:yellow;
+}
+</style>
+</head>
+<body>
+	<input type="checkbox"/><span>선택1</span>
+	<input type="checkbox"/><span>선택2</span>
+	<input type="checkbox"/><span>선택3</span>
+	<hr>
+	<br>
+	<br>
+	<div>
+	<h4>성별</h4>
+	<input type="radio" name="gender" value="남자"/><span>남자</span>
+	<input type="radio" name="gender" value="여자"/><span>여자</span>
+	<br>
+	<h4>취미</h4>
+	<input type="checkbox" name="hobby" value="낚시"/><span>낚시</span>
+	<input type="checkbox" name="hobby" value="당구"/><span>당구</span>
+	<input type="checkbox" name="hobby" value="자전거"/><span>자전거</span>
+	</div>	
+	<hr>
+	<div id="div01">선택결과: </div>
+	<br>
+	<h2>안녕하세요~ (active)</h2>
+	<h3>졸립니다.. (hover)</h3>
+	<table width=400px height=600px>
+		<tr><th width=50%>물건 리스트</th><th>가격</th></tr>
+		<tr><td>모니터</td><td>200000</td></tr>
+		<tr><td>키보드</td><td>70000</td></tr>
+		<tr><td>마우스</td><td>8000</td></tr>
+		<tr><td>스피커</td><td>40000</td></tr>
+	</table>
+	
+	
+	
+	
+</body>
+<script type="text/javascript">
+	// 1.대상 객체
+	// 2.이벤트 처리
+	//		1) 이벤트 처리시 선택된 객체 지정
+	//		2) 해당 객체의 label 내용 가져오기
+	//		3) 출력 객체에 lable 내용 처리..
+		
+	var divObj = document.querySelector("#div01");
+	var inputObj = document.querySelectorAll("div input[type=radio], div input[type=checkbox]");
+	var target = document.querySelectorAll("div input[type=checkbox]:checked+span",
+											"div input[type=radio]:checked+span");
+	var show="";
+	
+	for(var i=0; i<inputObj.length; i++){
+		inputObj[i].onclick=function(){
+			if(this.checked){
+				show = this.value;
+			}else{
+				show ="";
+			}
+
+		}
+	}
+	
+	for(var j=0; j<target.length; j++){
+		show+=target[j].innerText+",";
+	}
+	divObj.innerText = show;
+	
+	
+	
+</script>
+</html>

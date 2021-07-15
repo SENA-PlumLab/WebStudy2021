@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+	<h2> 회원정보 </h2>
+	<table id="tab" border>
+	</table>
+	<div id="showRainbow"></div>
+	<hr>
+	<br>
+	<div id="showArray"></div>
+</body>
+<script type="text/javascript">
+	var p01={name:"홍길동", age:25, loc:"서울신림동"};
+	//# js 추가속성의 두가지 형식
+ 	//객체몀ㅇ.속성명=속성값;
+	p01.isMale=true;
+	//객체명['속성명']=속성값;
+	p01['isStudent']=true;
+	
+	var tabObj=document.querySelector("#tab");
+	for(var pro in p01){
+		console.log(pro+": "+p01[pro]);
+		tab.innerHTML+=("<td>"+pro+": "+p01[pro]+"</td>");
+	}
+	/* ex */
+	var rainbow =[];
+	rainbow[0]= {bgColor:"red", fontColor:"white"};
+	rainbow[1]= {bgColor:"orange", fontColor:"white"};
+	rainbow[2]= {bgColor:"yellow", fontColor:"black"};
+	rainbow[3]= {bgColor:"green", fontColor:"white"};
+	rainbow[4]= {bgColor:"blue", fontColor:"white"};
+	rainbow[5]= {bgColor:"navy", fontColor:"white"};
+	rainbow[6]= {bgColor:"purple", fontColor:"white"};
+	var rbDiv = document.querySelector("#showRainbow");
+	for(var i=0; i<rainbow.length; i++){
+		rbDiv.innerHTML +='<h3 id="'+rainbow[i].bgColor+'">'+rainbow[i].bgColor+'</h3>'
+		document.querySelector('#'+rainbow[i].bgColor ).style.backgroundColor=rainbow[i].bgColor;
+		document.querySelector('#'+rainbow[i].bgColor ).style.color=rainbow[i].fontColor;
+		//console.log(rainbow[i].bgColor+", "+rainbow[i].fontColor);
+	}
+	/* 더 짧은 객체속성 */
+	rbDiv.innerHTML += "<hr><br>";
+	var rainbow2 = {red:'white', orange:'white', yellow:'black', green:'white', blue:'white', navy:'white', purple:'white'};
+	for(var pro in rainbow2){
+		rbDiv.innerHTML +='<h3 id="'+pro+'2">'+pro+'</h3>'
+		document.querySelector('#'+pro+'2' ).style.backgroundColor=pro;
+		document.querySelector('#'+pro+'2' ).style.color=rainbow2[pro];
+		//console.log(pro+", "+rainbow2[pro]);
+	}
+	
+	
+	/* 배열!!!! */
+	var arrDiv=document.querySelector("#showArray");
+	var array = [3000, 20.25, '하이', {name:'사과', price:3000}, function(){return '함수리턴';}];
+	for(var idx in array){
+		arrDiv.innerHTML+=(idx+1)+"("+typeof(idx)+"): "+array[idx]+"("+typeof(array[idx])+")<br>";
+	}
+</script>
+</html>

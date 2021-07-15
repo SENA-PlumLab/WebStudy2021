@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+document.write("<h1>화면에 출력!</h1>");
+var name="홍길동";
+document.write(`<h1>${name}화면에 출력합니다</h1>`);
+
+var tot=0;
+for(var cnt=0; cnt<10; cnt++){
+	tot+=cnt;
+	document.write(`<h3>번호:${cnt} - 합산:${tot}</h3>`);
+}
+
+/*
+# js에서 ''홋따옴표 ""쌍따옴표
+1. js에서는 '', "" 구분 없이 문자열 데이터 표현에 사용
+2. 변수나 매개변수로 쓸 대 주로 활용 됨.
+	1) 포함관계로 구분하여 사용할 수 있으나
+	2) 겹쳐서 사용은 에러가 발생함.
+
+ */
+document.write("<h2 align='center'>안녕</h2>");
+document.write("<h2 onclick='call()'>클릭하세요</h2>");
+function call(){
+	alert('이벤트 호출');
+}
+console.log('This is "String".');
+console.log("This is 'String'.");
+//console.log("This is 'String".'); // 포함관계가 아닌 겹쳐서 사용은 에러가 발생함.
+
+
+var name=prompt("이름을 입력하세요","이름 입력");
+console.log("취소시:"+name);
+console.log("취소시:"+typeof(name));
+if(name!='null'){
+	document.write(`<h2>${name}</h2>`);
+}else{
+	document.write(`<h2>이름 등록 실패~</h2>`);
+}
+
+
+</script>
+</html>

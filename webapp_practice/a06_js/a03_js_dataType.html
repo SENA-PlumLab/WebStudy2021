@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+*/
+
+
+</script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+/*
+# js 데이터 유형
+
+1. 함수로 확인: typeof(변수명)
+2. 문자열(String) var strVar='홍길동';
+3. 숫자형(number) var numvar=25;
+4. 논리형(boolean) var isOver= numVar>=60;
+5. 함수형(function) var funVar=function(){};
+6. 객체형(object): var objVar={name:'홍길동'};
+				var arrVar=[7000, 8000, 9000];
+
+*/
+var strVar='홍길동';
+var numVar=25;
+var isOver= numVar>=60;
+var funVar=function(){ return '함수 결과값';};
+var objVar={name:'홍길동'};
+var arrVar=[7000, 8000, 9000];
+document.write(`<h2>데이터:${strVar}, 데이터유형:${typeof(strVar)}</h2>`);
+document.write(`<h2>데이터:${numVar}, 데이터유형:${typeof(numVar)}</h2>`);
+document.write(`<h2>데이터:${isOver}, 데이터유형:${typeof(isOver)}</h2>`);
+document.write(`<h2>데이터:${funVar}, 데이터유형:${typeof(funVar)}</h2>`);
+document.write(`<h2>데이터:${objVar}, 데이터유형:${typeof(objVar)}</h2>`);
+document.write(`<h2>데이터:${arrVar}, 데이터유형:${typeof(arrVar)}</h2>`);
+document.write("<hr><br>");
+var obj01={
+	pname:"바나나",
+	price:4500,
+	isOver:false,
+	fun01:function(price){
+		return price*0.9;
+	}
+};
+obj01.isOver= obj01.price>=2000;
+document.write(`<h2>데이터:${obj01.pname}, 데이터유형:${typeof(obj01.pname)}</h2>`);
+document.write(`<h2>데이터:${obj01.price}, 데이터유형:${typeof(obj01.price)}</h2>`);
+document.write(`<h2>데이터:${obj01.isOver}, 데이터유형:${typeof(obj01.isOver)}</h2>`);
+document.write(`<h2>데이터:${obj01.fun01(obj01.price)}, 데이터유형:${typeof(obj01.fun01(obj01.price))}</h2>`);
+
+document.write("<hr><br>");
+
+var balance=prompt("잔액 입력","100000");
+var comObj={
+	company:'삼성',
+	price:25000,
+	isSamsung:false,
+	buy01:function(bal, cnt){
+		bal-=(this.price*cnt);
+		return bal;
+	}
+		
+};
+comObj.isSamsung=comObj.company=='삼성'; //내부할당 불가능.
+document.write(`<h2>제조사:${comObj.company}, 데이터유형:${typeof(comObj.company)}</h2>`);
+document.write(`<h2>가격:${comObj.price}, 데이터유형:${typeof(comObj.price)}</h2>`);
+document.write(`<h2>삼성 여부:${comObj.isSamsung}, 데이터유형:${typeof(comObj.isSamsung)}</h2>`);
+document.write(`<h2>잔액:${balance}, 데이터유형:${typeof(balance)}</h2>`);
+document.write(`<h2>구매 후:${comObj.buy01(Number.parseInt(balance),1)}, 데이터유형:${typeof(comObj.buy01(Number.parseInt(balance),1))}</h2>`);
+
+
+
+</script>
+</html>

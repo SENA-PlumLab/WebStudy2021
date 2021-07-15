@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+<!-- 선택자(태그, 아이디, 클래스) 속성 선언, 하단에서 DOM객체 호출하여 속성변경 -->
+	<h2 align=right > H2입니다 </h2>
+	<h3 id="h3001"> H3입니다. </h3>
+	<h4 class="getH4"> h4입니다.</h4>
+</body>
+<script type="text/javascript">
+	var h2Obj = document.querySelector("h2");
+	h2Obj.onclick = function(){
+		this.align="center";
+	}
+	var h3Obj = document.querySelector("#h3001");
+	h3Obj.onclick = function(){
+		this.style.color="brown";
+	}
+	var h4Obj = document.querySelector(".getH4");
+	h4Obj.onclick = function(){
+		this.style.background="yellow";
+	}
+	
+
+</script>
+</html>

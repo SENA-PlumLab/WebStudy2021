@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+	<h2>Q. 변수를 뜻하는 영어단어는?</h2><br>
+	<input type="radio" name="answer" value="1" onclick="getAnswer(event)"/> 1. car <br>
+	<input type="radio" name="answer" value="2" onclick="getAnswer(event)"/> 2. tga <br>
+	<input type="radio" name="answer" value="3" onclick="getAnswer(event)"/> 3. variable <br>
+	<input type="radio" name="answer" value="4" onclick="getAnswer(event)"/> 4. jar <br>
+	<br>
+	<h3>결과: <span id="result"></span></h3>
+	<hr>
+	<br>
+</body>
+<script type="text/javascript">
+/*
+var input = Number(prompt('숫자 입력하세용', '1'));
+
+switch(input%2){
+	case 0:
+		document.write(`${input}은 짝수!`);
+		break;
+	case 1:
+		document.write(`${input}은 홀수!`);
+		break;
+	default:
+		document.write(`${input}는 숫자가 아닙니다`);
+		break;
+}
+document.write('<hr><br>');
+*/
+var result = document.getElementById('result');
+function getAnswer(event){
+	var answer=Number(event.target.value);
+	switch(answer){
+		case 3:
+			result.innerText = "정답입니다^^";
+			break;
+		case 1:
+		case 2:
+		case 4:
+			result.innerText = "오답입니다ㅠㅠ";
+			break;
+		default:
+			result.innerText+="";
+			break;
+	}
+
+}
+
+
+</script>
+</html>
