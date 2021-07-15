@@ -1,0 +1,69 @@
+# 데이터베이스
+
+1. 설치
+	1) 다운로드: 
+		oracle xe 11g
+		setup.exe
+		관리자비밀:1111
+	2) plug in 프로그램 설치: 
+		eclipse Marketplace - DBeaver 21.0.5
+		설치 후 우측상단 open perspective 눌러서 DBeaver 보이면 정상 설치 완료
+	3) 기본 접속 필요 정보
+		jdbc 드라이버 :
+			DB서버에 접솔할 때, 필요한 프로그램 모듈을 자바로 만들어서 처리한 CLASS들의 압축판
+		계정: scott
+		비밀번호: tiger
+		ip: localhost
+		sid: xe
+		port: 1521
+
+C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin 에서
+	scott.sql 복사해서
+	C:\Users\89163(계정이름) 에 붙여넣기.
+
+C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib 에서
+	ojdbc6.jar 복사
+	프로젝트 폴더 - \src\main\webapp\WEB-INF\lib에 붙여넣기
+	
+	
+		 * 1. Oracle xe 11g를 설치한다. 중간 비밀번호 설정은 1111로 기억하기 쉽게 설정.
+		 * 2. Eclipse의 Marketplace에서 DBeaver 21.0.5를 설치한다.
+		 * 3. C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin 에서
+				scott.sql 복사해서
+				C:\Users\(계정이름) 에 붙여넣기.
+				TIGER로 쓰여진 것을 tiger로 수정하고 저장한다. (총 2곳)
+		 * 4. C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib 에서
+				ojdbc6.jar 복사
+				(프로젝트 폴더)\src\main\webapp\WEB-INF\lib에 붙여넣기
+		 * 5. perspective를 DBeaver로 설정한 뒤, Connect to a Database 클릭.
+		 		0) 데이터베이스-드라이버 관리자 - Oracle - edit도 가능!
+		 		1) Database: xe,
+		 			Username: scott,
+		 			Password: tiger,
+		 			edit driver - Database:xe, user:scott 
+		 		2) Libraries 탭 - 기본내역 전부 삭제 후, C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6.jar 추가
+		 			이후, Driver class에서 Find Class 버튼 누른 후 
+		 			oracle.jdbc.driver.OracleDriver 설정.
+		 		3) 위 순서 완료한 뒤 Test Connection으로 연결 여부 확인.
+		 		
+	
+	
+	
+	
+
+
+2. 기본 sample 데이터와 계정 생성하기
+	sqlplus
+	system//1111
+	@scott.sql
+	
+
+# jdbc 드라이버
+	db 서버에 접속할 때, 필요한 프로그램 모듈을 자바로 만들어서 처리한 class의 압축판.
+	각 DB 서버회사에서는 이러판 프로그램을 지원한다. @@.jar (압축 풀어보면 class파일있음)
+	1) 활용
+		client 툴: dbeaver, sql developer
+		프로그래밍에 설정 (반드시***)
+		ex: ojdbc6.jar를 WEB-INF\lib에 넣은 것 처럼..
+		
+	
