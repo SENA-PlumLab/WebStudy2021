@@ -1,0 +1,165 @@
+
+- 클라이언트 PC 이클립스에서 새로운 DB연결 (원격접속).
+
+oracle
+
+Host:106.10.104.82
+
+Database:orcl
+
+port:1521
+
+username: test1
+
+password:tiger
+
+role:normal
+
+
+
+
+
+// ----- 이하 잡다한 기록 ------ //
+
+2021-07-22 
+
+서버PC는 윈도우10이고... 항상 켜져있는 데스크탑입니댕.
+
+이 PC에 DB서버를 만들어서 팀 과제할 때 쓸 예정.
+
+일단 오라클만 배웠으니까 오라클로 진행 함.
+
+​
+
+1차시도. 실패..!!
+
+​
+
+<Oracle database 11g 설치>
+
+- SYS password 임의로 설정하고 설치 진행.... 잊어버리면 안됨!
+
+​
+
+**오류: get_started 클릭 시 '127.0.0.1:%HTTPPORT% 어쩌구를 찾을 수 없습니다.'
+
+-> 환경변수 입력(HTTPPORT:8080) or 직접 파일 링크에 %HTTPPORT%대신 8080입력
+
+     ==> 실패!
+
+-> cmd > sqlplus > 로그인(system, 비밀번호) > 
+
+    select dbms_xdb.gethttpport from dual; 으로 포트 확인
+
+    결과: 8081
+
+-> 파일 링크 127.0.0.1:8081 ... 로 수정 
+
+     ==> 접속 성공~~
+
+​
+
+<scott 계정 활성화>
+
+cmd > sqlplus > system로그인 > @....scott.sql >
+
+alter user scott identified by tiger; (scott 유저 활성화) >
+
+conn scott/tiger (scott으로 접속..성공) > show user; 하면 [USER is "SCOTT"] 출력 됨. >
+
+select * from tab; 테스트도 성공.
+
+결과: 11g XE 삭제하고 Enterprise version으로 재설치
+
+**
+
+1차시도 실패인 이유...
+
+Enterprise가 아닌 XE로 설치해버린 것이었음...
+
+서버PC-서비스에서 Oracle 관련한 실행 다 중지 확인하고 uninstall 진행 함.
+
+**
+
+2차시도. 성공..!
+
+<oracle database 19c (Enterprise Edition 중요!)>
+
+​
+
+설치.. 서버 클래스 선택. 기본 제공 옵션으로 설치.
+
+포트나 데이터베이스 이름은 기본으로 냅두고 잘 적어두기.
+
+비밀번호는 임의로 설정하되  잊어버리면 안됨요~~!!
+
+비밀번호 규칙 어쩌구 경고창은 냅둬도 됨.
+
+-> 서버PC 서비스 확인. 방화벽 다 중지. 인바운드 규칙 설정
+
+  (기본 port 1521으로 들어올 수 있게만 해주면 됨. 인바운드 규칙 이름은 자유)
+
+​
+
+​
+
+** 처음 이클립스에서 sysdba로 로그온하려 했을 때, 인증 프로토콜 오류 있음
+
+==> 구글링해서 oracle version 차이 때문인 것 확인.
+
+==> ...\WINDOWS.X64_193000_db_home\network\admin\sqlnet.ora 파일에
+
+SQLNET.ALLOWED_LOGON_VERSION_SERVER=9
+SQLNET.ALLOWED_LOGON_VERSION_SERVER=9
+내용 추가 입력 후 해결됨.~~!!
+
+​
+
+​
+
+**db유저 추가
+
+sqlplus > /as sysdba : 관리자로 시작
+
+   ==> 이대로 진행하다가 '연결되지 않았습니다' 뜨면 
+
+   ==> conn system/(비밀번호) 으로 다시 로그인 해주면 됨
+
+sql>alter session set "_ORACLE_SCRIPT"=true;
+
+sql> create user test1 udentified by asdf;
+
+sql> grant connect, resource, dba to test1;
+   ==> test1/asdf로 로그인 할 수 있는 DB유저 생성. 권한도 부여 함.
+
+   ==> alter session set "_ORACLE_SCRIPT"=true; 
+
+         이거는 모 버전부터 id 앞에 c##이었는지 뭔지를 붙여야하는 규칙이 생겨서.. 
+
+         그거 무시하고 기존 문법대로 구문 쓰기 위한 명령이라고 함.. (실제로 저거 안쓰면 오류 났음)
+
+** scott를 사용하지 않은 이유: 
+
+서버PC의 sqlplus에서 @~~/scott.sql 넣고 show user;해도 user가 안보였음.
+
+알고보니까 12c버전부터였나?... scott를 sample schema로 제공하지 않는다고 했음..
+
+그래서 그냥 임의로 유저 만들고 권한 주는걸로 함!
+
+​
+
+​
+
+**클라이언트 PC 이클립스에서 새로운 DB연결 (원격접속).
+
+oracle 선택, Host:서버PC IP, Database:orcl, port:1521
+
+username: test1, password:asdf, role:normal
+
+   ==> 이클립스에서 원격 접속 성공
+
+   ==> 2대의 Client PC에서 insert 진행.. 각 PC에서 정상 실행 됨. 서버PC에서도 확인 잘 됨.
+
+
+
+
