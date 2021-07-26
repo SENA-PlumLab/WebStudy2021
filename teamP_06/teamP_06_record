@@ -1,0 +1,44 @@
+<2021.07.26>
+**sql MEMBERS 테이블 내용 수정
+1. joinDate 컬럼 추가
+2. Constraints 내용 추가/삭제/변경
+3. memnum 컬럼 사이즈 변경 (varchar2(8) -> varchar2(9))
+	* default 작업에서 이유 모를.... 사이즈 오버 에러가 나서 부득이하게 변경했습니다.ㅠㅠ
+4. default값 추가 (memNum(pk), memID, joinDate, point)
+
+
+
+
+** insert 입력 순서대로 값이 입력되지 않음.
+==> 관련 질문 답변
+[오라클 DB가 원래 그럽니다.
+
+오라클에서 입력 순서를 보장하려면 IOT 를 쓰면 되나, 딱 순서 조회만 이점이 있고 다른 부분은 오히려 부하가 많아 추천 드리지 않습니다.
+
+오라클에서 순서를 보장하여 조회하는 기술이 데이타가 적을 때는 큰 문제가 없는데 데이타가 많은 대용량 테이블일 경우 순서를 보장하여 부분 처리 할 경우 많은 경험적 지식이 필요합니다.
+
+관련 강좌 : http://www.gurubee.net/lecture/2287 ]
+출처: http://www.gurubee.net/article/63678
+
+
+
+
+** INSERT 후 PK를 자동반환하는 방법
+pstmt = con.prepareStatement(SQL,  Statement.RETURN_GENERATED_KEYS);
+(중략)
+ResultSet rs = pstmt.getGeneratedKeys();
+rs.next();
+keyholder=rs.getString(1);
+==> 값이 나오긴 나오는데... 내가 쓸 값은 아닌 듯.. ㅎㅎㅎ;;
+
+==> memNum을 분명하게 지정하면?
+pstmt = con.prepareStatement(SQL, new String[]{"memNum"});
+-> 'mem-0061'으로 잘 나온다!
+https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-return-generated-keys
+
+
+
+
+** jsp에서 input 값 null 체크 주의사항.
+==> !=null 뿐만 아니라 !=""으로 빈칸 체크도 해야 함.
+	보통 parameter값이 잘못되면 null이 들어가지만, input text 등의 것에서 입력이 없는 상태로 넘어올 경우, null이 아닌 빈칸("")으로 값을 받기 때문.
