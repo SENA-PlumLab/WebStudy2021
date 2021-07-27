@@ -7,8 +7,6 @@
 4. default값 추가 (memNum(pk), memID, joinDate, point)
 
 
-
-
 ** insert 입력 순서대로 값이 입력되지 않음.
 ==> 관련 질문 답변
 [오라클 DB가 원래 그럽니다.
@@ -19,7 +17,6 @@
 
 관련 강좌 : http://www.gurubee.net/lecture/2287 ]
 출처: http://www.gurubee.net/article/63678
-
 
 
 
@@ -42,3 +39,14 @@ https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-ret
 ** jsp에서 input 값 null 체크 주의사항.
 ==> !=null 뿐만 아니라 !=""으로 빈칸 체크도 해야 함.
 	보통 parameter값이 잘못되면 null이 들어가지만, input text 등의 것에서 입력이 없는 상태로 넘어올 경우, null이 아닌 빈칸("")으로 값을 받기 때문.
+
+
+
+-----------------------------------------------------------
+<2021.07.27>
+- logIn/signUp page 아이디어 출처 ==> https://codepen.io/shayanea/pen/eVMMgO
+  전체적인 css와 js(slide-up class에 담기/빼기) 아이디어 차용.
+- 사이트 메인 컬러 사용
+- signUp 필수입력/기타입력 html, css 수정
+- signUp 이메일 입력에 select option과 js 추가
+- 유효성 검사 js추가
