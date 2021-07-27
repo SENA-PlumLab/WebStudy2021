@@ -50,3 +50,14 @@ https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-ret
 - signUp 필수입력/기타입력 html, css 수정
 - signUp 이메일 입력에 select option과 js 추가
 - 유효성 검사 js추가
+
+- find 페이지 추가... 전체적인 css는 login/signup에서 따 옴
+- java단에도 코드 추가/수정 (email로 id반환, eamil+id로 password반환 .. 등등.)
+- window.open()에서 resizable=no << 이 옵션이 적용 안된다.. 왜징..ㅠㅠ
+
+** logIn/signUp -> join_animation.js
+	페이지에서 각 버튼 클릭했을 때..  
+	양 쪽 다 접힘(slide-up) 상태가 되면 input이 아무것도 표시되지 않음.
+	==> 뭔가 제한을 둬야 하는데.. 그럴 시간이 없어..ㅠㅠ
+	
+-----------------------------------------------------------
