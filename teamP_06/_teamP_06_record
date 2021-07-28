@@ -65,10 +65,16 @@ https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-ret
 -----------------------------------------------------------
 <2021.07.28>
 - 게시글 작성에 스마트에디터(네이버) 적용 (http://naver.github.io/smarteditor2/)
-	**source 파일만 받아서 적용하려니 에러가 났음..!
+	**이슈1) source 파일만 받아서 적용하려니 에러가 났음..!
 	==> [ 깃헙저장소에는 소스코드만 들어있습니다. 빌드되어 배포된 파일을 받아 사용하시면 됩니다.
 	  smarteditor2-2.10.0.tgz 파일을 다운받아 압축 풀면 /dist/ 폴더에 있는 파일 사용하시면 됩니다.]
 	  tgz파일로 다시 적용하니 에러 나지 않음.
 	  https://github.com/naver/smarteditor2/issues/216
-	** tgz 압축해제 깨짐 이슈는 반디집으로 해결함..
+	**이슈2) tgz 압축해제 깨짐 이슈는 반디집으로 해결함..
+	**이슈3) 글 입력창 (iframe) 부분 배경색이 투명이라 배경색에 영향받음..
+	==> se2/css/ko_KR/smart_editor2.css에서 /* EDITINGAREA */ 부분 찾고 (지금 버전에서는 line 25) 
+	    속성에 background-color:#ffffff; 추가 함
+	    https://sir.kr/g5_skin/8052?sfl=mb_id%2C1&stx=fm25
+	
+		 
 -----------------------------------------------------------
