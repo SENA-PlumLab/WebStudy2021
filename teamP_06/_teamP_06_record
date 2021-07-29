@@ -95,6 +95,7 @@ WHERE NUM BETWEEN 7 AND 12;
 	
 - eclipse에서 azure tool 을 써서 jsp 프로젝트를 배포하려구 했음.
 	dpgjdoj헤매어헴ㅇㅎㅁㅇㅎㅁㅇㅎ 여기서 골치아픈 에러 나옴 ㅠ
+	(참고: https://bperhaps.tistory.com/25)
 	Main has been compiled by a more recent version of the Java Runtime (class file version 59.0), this version of the Java Runtime only recognizes class file versions up to 52.0
 	==> java class version(ref. docs.oracle.com/javase/specs/jvms/se15/html/jvms-4.html)에서 보면 
 	    59.0은 java 15, 55.0은 java 11, 52.0은 java8 이라고 한다.
