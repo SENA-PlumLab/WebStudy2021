@@ -75,10 +75,10 @@ https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-ret
 	==> se2/css/ko_KR/smart_editor2.css에서 /* EDITINGAREA */ 부분 찾고 (지금 버전에서는 line 25) 
 	    속성에 background-color:#ffffff; 추가 함
 	    https://sir.kr/g5_skin/8052?sfl=mb_id%2C1&stx=fm25
-	
+-----------------------------------------------------------	
 		 
 -----------------------------------------------------------
-
+<2021.07.29>
 - 게시글 목록 페이징 SQL을 정렬하고 범위로 뽑는 방법.. 
   내 테이블에는 글번호가 없고 pk로 쓰는 문자열만 있어서 정렬을 작성일자(bbsDate)로 했다..
 SELECT *
@@ -91,3 +91,21 @@ WHERE NUM BETWEEN 7 AND 12;
 	https://gent.tistory.com/254
 
 - 스마트 에디터 쓰는 write 페이지에서 유효성 검사를 어떻게 하지..? ㅠㅠ
+	submit 버튼이 아니고 input type=button 이라서 애매하넴... form에서 onsubmit=..() 이것도 안먹음 흑흑
+	
+- eclipse에서 azure tool 을 써서 jsp 프로젝트를 배포하려구 했음.
+	dpgjdoj헤매어헴ㅇㅎㅁㅇㅎㅁㅇㅎ 여기서 골치아픈 에러 나옴 ㅠ
+	Main has been compiled by a more recent version of the Java Runtime (class file version 59.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	==> java class version(ref. docs.oracle.com/javase/specs/jvms/se15/html/jvms-4.html)에서 보면 
+	    59.0은 java 15, 55.0은 java 11, 52.0은 java8 이라고 한다.
+	    cmd에서 java -version을 찍어보니 내 java는 15 버전.........
+	    그리고 azure에서 지원하는 web app 설정은 java 8 아니면 java 11이다... 그래서 자꾸 저런 에러가 떴나보다..!
+	==> 그럼 java 버전을 낮춰서 재설치하면 되나.?...
+	    내가 이클립스에서 tomcat server을 10.0을 쓰고 있는데, 이 친구도 보니까 java 8 and more? 이렇게..써져있음
+	    결론: java 11으로 재설치하고 다시 시도해보기.
+	    근데 이클립스 깔려있어서 괜히 자바 지웠다 깔면 오류날 것 같은데 괜찮나 ㅠㅠ
+	==> 팀플 SVN도 Java 15인데...ㅜㅜ 무서워 오류나면 어떡햐..
+		adogjpdㅐㅓㅎㅇㅎ에ㅐ허ㅔㅎ그냥 노트북은 java 15로 두고 데스크탑을 java11로 깔아서 다시 시도해볼까.. 
+	
+
+-----------------------------------------------------------
