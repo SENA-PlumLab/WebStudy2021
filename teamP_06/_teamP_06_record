@@ -108,5 +108,18 @@ WHERE NUM BETWEEN 7 AND 12;
 	==> 팀플 SVN도 Java 15인데...ㅜㅜ 무서워 오류나면 어떡햐..
 		adogjpdㅐㅓㅎㅇㅎ에ㅐ허ㅔㅎ그냥 노트북은 java 15로 두고 데스크탑을 java11로 깔아서 다시 시도해볼까.. 
 	
-
+- 게시글 입력할 때 에러 (ORA-01461: can bind a LONG value only for insert into a LONG column)	
+	알아보니 이게 ... 입력값이 데이터타입보다 큰 경우에 생긴다고 한다. Long 데이터타입이 없어서 띠용하긴 했음 ㅋ ㅠㅠ 
+	==> 게시글 DB에서 본문(contents) 컬럼 데이터 타입 변경
+-- 새 CLOB 컬럼을 추가합니다. 
+ALTER TABLE bbs ADD (TMP_CONTENTS CLOB); 
+-- 데이터를 복사합니다. 
+UPDATE bbs SET TMP_CONTENTS = CONTENTS; 
+UPDATE bbs SET CONTENTS = NULL; 
+COMMIT; 
+-- 기존 컬럼을 삭제합니다. 
+ALTER TABLE bbs DROP COLUMN CONTENTS; 
+-- 새로 추가한 임시 컬럼의 이름을 변경합니다. 
+ALTER TABLE bbs RENAME COLUMN TMP_CONTENTS TO CONTENTS;
+	[출처:https://offbyone.tistory.com/331]
 -----------------------------------------------------------
