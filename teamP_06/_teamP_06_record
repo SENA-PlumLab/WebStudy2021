@@ -89,3 +89,5 @@ FROM (
 	ORDER BY bbsdate DESC)
 WHERE NUM BETWEEN 7 AND 12;
 	https://gent.tistory.com/254
+
+- 스마트 에디터 쓰는 write 페이지에서 유효성 검사를 어떻게 하지..? ㅠㅠ
