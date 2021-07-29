@@ -78,3 +78,14 @@ https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-ret
 	
 		 
 -----------------------------------------------------------
+
+- 게시글 목록 페이징 SQL을 정렬하고 범위로 뽑는 방법.. 
+  내 테이블에는 글번호가 없고 pk로 쓰는 문자열만 있어서 정렬을 작성일자(bbsDate)로 했다..
+SELECT *
+FROM (
+	SELECT ROW_NUMBER() OVER (ORDER BY bbsdate desc) NUM, substr(bbsnum, -4) bbsnum, BBSTITLE, SUBTITLE, bbsAvailable, BBSDATE, hit, MEMNICK
+	FROM MEMBERS m , BBS b
+	where m.memnum=b.memNUM AND bbsAvailable=1
+	ORDER BY bbsdate DESC)
+WHERE NUM BETWEEN 7 AND 12;
+	https://gent.tistory.com/254
