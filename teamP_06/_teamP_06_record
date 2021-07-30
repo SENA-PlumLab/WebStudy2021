@@ -133,7 +133,9 @@ ALTER TABLE bbs RENAME COLUMN TMP_CONTENTS TO CONTENTS;
 	프로젝트의 Java version을 11로 변경하고 다시 Azure Web App deploy 시도... 
 ==> Azure로 웹앱 배포 성공!
 	https://teamp06.azurewebsites.net/teamP_06/join/joinMember.jsp
-	https://teamp06.azurewebsites.net/teamP_06/bbs/bbs_list.jsp
+	https://teamp06.azurewebsites.net/teamP_06/bbs/bbs_list.jsp	
+==> Eclipse에서 localHost로 tomcat에서 Run on Server 하려는데 "tomcat project facet java version 15 is not supported" 에러가 떴다.
+	프로젝트 우클릭 - properties - Project Facet - Java 에서 버전이 15로 설정되어잇었다. 냉큼 11로 바꾸고 다시 Run on Server하니 잘 된다.
 	
 - 오늘 시연하는 날인데 갑자기 서버PC가 먹통이 되었다.
 	사용하던 ip로 ping을 찍어보니 TTL 만료라고 뜨고, tracert로 확인해보니 특정 ip에서 무한loop를 돌고있었다.
