@@ -1,0 +1,152 @@
+<2021.07.26>
+**sql MEMBERS 테이블 내용 수정
+1. joinDate 컬럼 추가
+2. Constraints 내용 추가/삭제/변경
+3. memnum 컬럼 사이즈 변경 (varchar2(8) -> varchar2(9))
+	* default 작업에서 이유 모를.... 사이즈 오버 에러가 나서 부득이하게 변경했습니다.ㅠㅠ
+4. default값 추가 (memNum(pk), memID, joinDate, point)
+
+
+** insert 입력 순서대로 값이 입력되지 않음.
+==> 관련 질문 답변
+[오라클 DB가 원래 그럽니다.
+
+오라클에서 입력 순서를 보장하려면 IOT 를 쓰면 되나, 딱 순서 조회만 이점이 있고 다른 부분은 오히려 부하가 많아 추천 드리지 않습니다.
+
+오라클에서 순서를 보장하여 조회하는 기술이 데이타가 적을 때는 큰 문제가 없는데 데이타가 많은 대용량 테이블일 경우 순서를 보장하여 부분 처리 할 경우 많은 경험적 지식이 필요합니다.
+
+관련 강좌 : http://www.gurubee.net/lecture/2287 ]
+출처: http://www.gurubee.net/article/63678
+
+
+
+** INSERT 후 PK를 자동반환하는 방법
+pstmt = con.prepareStatement(SQL,  Statement.RETURN_GENERATED_KEYS);
+(중략)
+ResultSet rs = pstmt.getGeneratedKeys();
+rs.next();
+keyholder=rs.getString(1);
+==> 값이 나오긴 나오는데... 내가 쓸 값은 아닌 듯.. ㅎㅎㅎ;;
+
+==> memNum을 분명하게 지정하면?
+pstmt = con.prepareStatement(SQL, new String[]{"memNum"});
+-> 'mem-0061'으로 잘 나온다!
+https://stackoverflow.com/questions/4224228/preparedstatement-with-statement-return-generated-keys
+
+
+
+
+** jsp에서 input 값 null 체크 주의사항.
+==> !=null 뿐만 아니라 !=""으로 빈칸 체크도 해야 함.
+	보통 parameter값이 잘못되면 null이 들어가지만, input text 등의 것에서 입력이 없는 상태로 넘어올 경우, null이 아닌 빈칸("")으로 값을 받기 때문.
+
+
+
+-----------------------------------------------------------
+<2021.07.27>
+- logIn/signUp page 아이디어 출처 ==> https://codepen.io/shayanea/pen/eVMMgO
+  전체적인 css와 js(slide-up class에 담기/빼기) 아이디어 차용.
+- 사이트 메인 컬러 사용
+- signUp 필수입력/기타입력 html, css 수정
+- signUp 이메일 입력에 select option과 js 추가
+- 유효성 검사 js추가
+
+- find 페이지 추가... 전체적인 css는 login/signup에서 따 옴
+- java단에도 코드 추가/수정 (email로 id반환, eamil+id로 password반환 .. 등등.)
+- window.open()에서 resizable=no << 이 옵션이 적용 안된다.. 왜징..ㅠㅠ
+
+** logIn/signUp -> join_animation.js
+	페이지에서 각 버튼 클릭했을 때..  
+	양 쪽 다 접힘(slide-up) 상태가 되면 input이 아무것도 표시되지 않음.
+	==> 뭔가 제한을 둬야 하는데.. 그럴 시간이 없어..ㅠㅠ
+	
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+<2021.07.28>
+- 게시글 작성에 스마트에디터(네이버) 적용 (http://naver.github.io/smarteditor2/)
+	**이슈1) source 파일만 받아서 적용하려니 에러가 났음..!
+	==> [ 깃헙저장소에는 소스코드만 들어있습니다. 빌드되어 배포된 파일을 받아 사용하시면 됩니다.
+	  smarteditor2-2.10.0.tgz 파일을 다운받아 압축 풀면 /dist/ 폴더에 있는 파일 사용하시면 됩니다.]
+	  tgz파일로 다시 적용하니 에러 나지 않음.
+	  https://github.com/naver/smarteditor2/issues/216
+	**이슈2) tgz 압축해제 깨짐 이슈는 반디집으로 해결함..
+	**이슈3) 글 입력창 (iframe) 부분 배경색이 투명이라 배경색에 영향받음..
+	==> se2/css/ko_KR/smart_editor2.css에서 /* EDITINGAREA */ 부분 찾고 (지금 버전에서는 line 25) 
+	    속성에 background-color:#ffffff; 추가 함
+	    https://sir.kr/g5_skin/8052?sfl=mb_id%2C1&stx=fm25
+-----------------------------------------------------------	
+		 
+-----------------------------------------------------------
+<2021.07.29>
+- 게시글 목록 페이징 SQL을 정렬하고 범위로 뽑는 방법.. 
+  내 테이블에는 글번호가 없고 pk로 쓰는 문자열만 있어서 정렬을 작성일자(bbsDate)로 했다..
+SELECT *
+FROM (
+	SELECT ROW_NUMBER() OVER (ORDER BY bbsdate desc) NUM, substr(bbsnum, -4) bbsnum, BBSTITLE, SUBTITLE, bbsAvailable, BBSDATE, hit, MEMNICK
+	FROM MEMBERS m , BBS b
+	where m.memnum=b.memNUM AND bbsAvailable=1
+	ORDER BY bbsdate DESC)
+WHERE NUM BETWEEN 7 AND 12;
+	https://gent.tistory.com/254
+
+- 스마트 에디터 쓰는 write 페이지에서 유효성 검사를 어떻게 하지..? ㅠㅠ
+	submit 버튼이 아니고 input type=button 이라서 애매하넴... form에서 onsubmit=..() 이것도 안먹음 흑흑
+	
+- eclipse에서 azure tool 을 써서 jsp 프로젝트를 배포하려구 했음.
+	dpgjdoj헤매어헴ㅇㅎㅁㅇㅎㅁㅇㅎ 여기서 골치아픈 에러 나옴 ㅠ
+	(참고: https://bperhaps.tistory.com/25)
+	Main has been compiled by a more recent version of the Java Runtime (class file version 59.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	==> java class version(ref. docs.oracle.com/javase/specs/jvms/se15/html/jvms-4.html)에서 보면 
+	    59.0은 java 15, 55.0은 java 11, 52.0은 java8 이라고 한다.
+	    cmd에서 java -version을 찍어보니 내 java는 15 버전.........
+	    그리고 azure에서 지원하는 web app 설정은 java 8 아니면 java 11이다... 그래서 자꾸 저런 에러가 떴나보다..!
+	==> 그럼 java 버전을 낮춰서 재설치하면 되나.?...
+	    내가 이클립스에서 tomcat server을 10.0을 쓰고 있는데, 이 친구도 보니까 java 8 and more? 이렇게..써져있음
+	    결론: java 11으로 재설치하고 다시 시도해보기.
+	    근데 이클립스 깔려있어서 괜히 자바 지웠다 깔면 오류날 것 같은데 괜찮나 ㅠㅠ
+	==> 팀플 SVN도 Java 15인데...ㅜㅜ 무서워 오류나면 어떡햐..
+		adogjpdㅐㅓㅎㅇㅎ에ㅐ허ㅔㅎ그냥 노트북은 java 15로 두고 데스크탑을 java11로 깔아서 다시 시도해볼까.. 
+	
+- 게시글 입력할 때 에러 (ORA-01461: can bind a LONG value only for insert into a LONG column)	
+	알아보니 이게 ... 입력값이 데이터타입보다 큰 경우에 생긴다고 한다. Long 데이터타입이 없어서 띠용하긴 했음 ㅋ ㅠㅠ 
+	==> 게시글 DB에서 본문(contents) 컬럼 데이터 타입 변경
+-- 새 CLOB 컬럼을 추가합니다. 
+ALTER TABLE bbs ADD (TMP_CONTENTS CLOB); 
+-- 데이터를 복사합니다. 
+UPDATE bbs SET TMP_CONTENTS = CONTENTS; 
+UPDATE bbs SET CONTENTS = NULL; 
+COMMIT; 
+-- 기존 컬럼을 삭제합니다. 
+ALTER TABLE bbs DROP COLUMN CONTENTS; 
+-- 새로 추가한 임시 컬럼의 이름을 변경합니다. 
+ALTER TABLE bbs RENAME COLUMN TMP_CONTENTS TO CONTENTS;
+	[출처:https://offbyone.tistory.com/331]
+-----------------------------------------------------------
+
+-----------------------------------------------------------
+<2021.07.30>
+- Java 11 설치
+	검색해보니 PC에 Java를 여러버전 깔아두고 프로젝트마다 버전을 다르게 하기도 한다는.. 이야기가 있었다.
+	그래서 나도 기존 사용중이던 Java15를 그대로 두로 Java11을 새로 설치하였다.
+	설치 후에는 Java11을 기본으로 사용하기 위해서 환경변수와 이클립스 내 JRE를 수정했다. [참조: https://kim-hoya.tistory.com/41]
+	프로젝트의 Java version을 11로 변경하고 다시 Azure Web App deploy 시도... 
+==> Azure로 웹앱 배포 성공!
+	https://teamp06.azurewebsites.net/teamP_06/join/joinMember.jsp
+	https://teamp06.azurewebsites.net/teamP_06/bbs/bbs_list.jsp	
+==> Eclipse에서 localHost로 tomcat에서 Run on Server 하려는데 "tomcat project facet java version 15 is not supported" 에러가 떴다.
+	프로젝트 우클릭 - properties - Project Facet - Java 에서 버전이 15로 설정되어잇었다. 냉큼 11로 바꾸고 다시 Run on Server하니 잘 된다.
+	[참조: https://java117.tistory.com/24]
+	
+- 오늘 시연하는 날인데 갑자기 서버PC가 먹통이 되었다.
+	사용하던 ip로 ping을 찍어보니 TTL 만료라고 뜨고, tracert로 확인해보니 특정 ip에서 무한loop를 돌고있었다.
+	기존 사용하던 팀뷰로 서버PC상태를 확인하려니 인터넷 연결이 안된다면서 접속할 수 없었다.
+	서버PC를 물리적으로 확인한결과 윈도우10 자체에 사용자 암호가 걸려있었다.
+	비밀번호가.........변경되어있었다....
+	어찌저찌 비밀번호 해제하고 들어가니 PC는 마치 재부팅한 것 처럼 모든 프로그램이 종료된 상태였다.
+==> 고정ip를 다시 연결하고 확인하니. 서버가 다시 잘 작동했다.
+	이유를 생각해봤는데 다른 팀에서도 한번 해킹을 당했었기 때문에, 우리 팀 이 문제도 해킹으로 생각하고 있다.
+	듣기로는 포트를 열자마자 외부에서 막 들어온다고..ㅎㅎ 하기도 하고..
+	열어둔 포트가 아마 7080, 1521(오라클DB서버) 인 것 같은데.. 방화벽도 꺼두고 ㅠ
+	이거 앞으로 어떻게 보안 강화할 지 생각해봐야 할 것 같다...
+-----------------------------------------------------------
