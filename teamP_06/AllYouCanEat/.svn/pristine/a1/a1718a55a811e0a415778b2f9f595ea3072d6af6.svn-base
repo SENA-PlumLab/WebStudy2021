@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head lang="ko">
+        <meta charset="utf-8">
+        <title>All You Can Eat</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div class="wrap">
+                <div class="header_nav">
+                    <h1 class="logo">
+                    <a href="/AllYouCanEat/main/index_login.html"><img src="../image/FOODlogo.png"></a>
+                    </h1>
+                    <div class="search_bar">
+                        <input type="text" class="search_text" placeholder="검색어를 입력해주세요.">
+                        <button>검색</button>
+                    </div>
+                    <ul>
+                        <li><a href="/AllYouCanEat/mypage/profile/profile.jsp">프로필</a></li>
+                        <li><a href="/AllYouCanEat/bbs/bbs_list.jsp">맛집기행문</a></li>
+                        <li><a href="../rest_review/delList/delList.html">맛집리스트</a></li>
+                        <li><a href="/AllYouCanEat/ChefDeal/ChefDealList.jsp">쉐프딜</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 메인 하단 삭제 -->
+                <div class="header_tag">
+                    <button class=""># 전체</button>
+                    <button class="cancle_btn"># 피자</button>
+                    <button class="cancle_btn"># 햄버거</button>
+                    <button class="cancle_btn"># 초밥</button>
+                </div>
+                <!-- 메인 하단 삭제 -->
+                
+            </div>
+        </header>
+        <section>
+            <div class="wrap">
+                <article>
+                    <div onclick="location.href='##'">
+                        <div class="img"> 
+                            <img src="../image/foods1.jpg">
+                        </div>
+                        <div class="text">
+                            <h2>전체 베스트 맛집 TOP 10</h2>
+                            <p>"살면서 한 번쯤은 가봐야 되지 않겠어?!"</p>
+                        </div>
+                    </div>
+                    <div onclick="location.href='../delList_de/deList_de.html'">
+                        <div class="img">
+                            <img src="../image/burger.jpg">
+                        </div>
+                        <div class="text">
+                            <h2>서울 TOP 3 맛집</h2>
+                            <p>"서울 수제 버거 베스트 TOP 15 추천!"</p>
+                            <!-- 길어지면 넘어감 -->
+                        </div>
+                    </div>
+                    <div onclick="location.href='##'">
+                        <div class="img">
+                            <img src="../image/madforgarlic.jpg">
+                        </div>
+                        <div class="text">
+                            <h2>패밀리 레스토랑 체인점 TOP 3</h2>
+                            <p>"좋은 분위기, 좋은 음식이 제공되는 패밀리 레스토랑은?"</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <footer>
+            <div class="wrap">
+                <h5>회사정보</h5>
+            </div>
+        </footer>
+    </body>
+    <script>
+    
+        // 1. tag 클릭시 한개만 색상 구현
+        // 2. 더보기 구현
+        
+    </script>
+</html>

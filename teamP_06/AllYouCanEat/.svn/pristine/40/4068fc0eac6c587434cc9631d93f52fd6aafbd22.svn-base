@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head lang="ko">
+        <meta charset="utf-8">
+        <title>All You Can Eat</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div class="wrap">
+                <div class="header_nav">
+                    <h1 class="logo">
+                        <a href="index.html"><img src="../image/FOODlogo.png"></a>
+                    </h1>
+                    <ul>
+                        <li><a href="#">로그인/프로필</a></li>
+                        <li><a href="#">맛집커뮤니티</a></li>
+                        <li><a href="#">맛집추천</a></li>
+                        <li><a href="#">쉐프딜</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="wrap">
+                <article> <!-- article에 man-writh:1100px; -->
+                    <h2>여기에 꾸며주세요</h2>
+                </article>
+            </div>
+        </section>
+        <footer>
+            <div class="wrap">
+                <h5>회사정보</h5>
+            </div>
+        </footer>
+    </body>
+</html>

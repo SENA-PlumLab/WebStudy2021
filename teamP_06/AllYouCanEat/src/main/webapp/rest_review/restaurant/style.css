@@ -1,0 +1,319 @@
+ * {margin: 0; padding: 0; box-sizing: border-box;}
+a {text-decoration: none; color: #000000;}
+ul, li {list-style: none;}
+.wrap {min-width: 1100px; margin: 0 auto;}
+/*
+    메인컬러 : #FEE200 
+    메인 서브 컬러 : #FFB10A
+    섹션 배경 컬러 : #FFFFC8
+    회색, 하단 : #7F7F7F
+*/
+
+
+button {
+    background-color: #FFB10A;
+    border: none;
+    padding: 15px;
+    border-radius : 30px;
+    font-size : 20px;
+    color: #ffffff;
+}
+button:hover{
+    cursor: pointer;
+}
+
+
+/*  헤더 영역 */
+
+
+/* 헤더 네비 */
+header {
+    width: 100%;
+    background-color: #FEE200;
+}
+header .header_nav {
+    width: 100%;
+    height: 75px;
+    background-color: #FEE200;
+    display: inline-block;
+}  
+header .header_nav .logo {
+    padding: 10px 25px;
+    display: inline-block;
+}
+
+header .header_nav .logo a img {
+    width: 130px;
+}
+
+header .header_nav ul{
+    overflow: hidden;
+    display: inline;
+}
+header .header_nav ul li {
+    float: right;
+    padding: 25px;
+}
+header .header_nav ul li a{
+    color: #ffffff;
+}
+
+/* 헤더 메인 */
+header .header_main {
+    height: 250px;
+    background-color: #ffffff;
+    background-image: url();
+    text-align: center;
+}
+header .header_main .main_title{
+    padding: 30px;
+    padding-top: 70px;
+}
+header .header_main .main_title .logo_you{
+    color: #FFB10A;
+}
+header .header_main .main_title .logo_can{
+    color: #C2142D;
+}
+header .header_main .search_bar{
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    border: 2px solid #FEE200;
+    border-radius: 25px;
+    position: relative;
+}
+header .header_main .search_bar .search_text{
+    width: 250px;
+    padding: 10px;
+    position: absolute;
+    left: 20px;
+    top : 6px;
+    border: none;
+
+}
+header .header_main .search_bar button{
+    position: absolute;
+    right: -1px;
+    top: -2px;
+    padding: 15px 40px;
+    color: #ffffff;
+    background-color: #FEE200;
+    border: 0.5px solid #FEE200;
+    border-radius: 25px;
+}
+
+
+
+/* 검색창*/
+
+.search_bar{
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+    position: relative;
+    background-color: #ffffff;
+    position: absolute;
+    top : 10px;
+    left : 200px;
+}
+.search_bar .search_text{
+    width: 250px;
+    padding: 10px;
+    position: absolute;
+    left: 20px;
+    top : 6px;
+    border: none;
+
+}
+.search_bar button{
+    position: absolute;
+    right: -5px;
+    top: -3.5px;
+    padding: 10px 40px;
+    color: #ffffff;
+    background-color: #FEE200;
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+
+/* 섹션 */
+section {
+    background-color: #FFFFC8;
+    width: 100%;
+}
+section .wrap {
+    background-color: #FFFFC8;
+}
+section .wrap > article {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 1100px;
+    overflow: hidden;
+    background-color: #ffffff;
+    
+}
+section .wrap article:first-child img {
+    width: 250px;
+    height: 200px;
+    object-fit:cover;
+}
+
+section .wrap article:nth-child(2){
+    width: 100%;
+}
+
+
+section .wrap article div .rest_title {
+    padding-bottom: 50px;
+    position: relative;
+}
+section .wrap article div .rest_title > div{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    text-align: right;
+}
+section .wrap article div .rest_title > div button{
+    margin-right: 10px; 
+}
+
+section .wrap article:nth-child(2) div{
+    display: inline-block;
+    
+}
+
+section .wrap article:nth-child(2) > div:first-child {
+    width: 69%;
+    height: 100%;
+}
+section .wrap article:nth-child(2) div:first-child > div{
+    display: block;
+    width: 100%;
+    padding: 30px 0px;
+    
+}
+section .wrap article:nth-child(2) div:first-child div > table{
+    width: 100%;
+}
+
+section .wrap article .rest_tab{
+    border-bottom: 2px solid #7f7f7f;
+}
+
+section .wrap article .rest_tab .main_tab th{
+    padding: 5px;
+    text-align: left;
+    color : #7f7f7f;
+    font-size: 15px;
+}
+
+section .wrap article .rest_tab .main_tab td{
+    padding: 5px;
+    text-align: left;
+    color : #797979;
+    font-size: 13px;
+}
+section .wrap article .rest_tab .main_tab .menu_tab{
+    width: 50%;
+}
+section .wrap article .rest_tab .main_tab .menu_tab td{
+    padding: 0px;
+    text-align: left;
+    color : #797979;
+    font-size: 13px;
+}
+section .wrap article .rest_tab .main_tab .menu_tab tr td:last-child{
+    text-align: right;
+}
+
+section .wrap article .rest_review {
+    width: 100%;
+    padding: 25px 0px;
+    position: relative;
+}
+section .wrap article .rest_review .rest_review_title h2 {
+    padding: 25px 0px;
+}
+section .wrap article .rest_review .rest_review_title ul{
+    float: right;
+    position: absolute;
+    top: 53px;
+    right: 0px;
+}
+section .wrap article .rest_review .rest_review_title ul li{
+    float: left;
+    padding: 0px 10px;
+}
+
+section .wrap article .rest_review .rest_review_title ul li > button{
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+}
+
+section .wrap article .rest_review .rest_review_con {
+    width: 100%;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+}
+section .wrap article .rest_review .rest_review_con div{
+    float: left;
+    text-align: center;
+    padding: 20px;
+    height: 150px;
+}
+section .wrap article .rest_review .rest_review_con div > img {
+    width: 50px;
+    height: 50px;
+    object-fit:cover;
+    border-radius: 25px;
+}
+/* con 안 div 비율 */
+.rest_review .rest_review_con .user_img{ 
+    width: 15%;
+}
+.rest_review .rest_review_con .user_review {
+    width: 70%;
+    text-align: left;
+}
+.rest_review .rest_review_con .user_review p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+     /*
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    */
+}
+.rest_review .rest_review_con .user_point{ 
+    width: 15%;
+}
+/* 어사이드 영역 */
+section .wrap article:nth-child(2) > div:last-child {
+    width: 29%;
+    height: 100%;
+    
+}
+
+
+/* 풋터 */
+footer {
+    background-color: #7f7f7f;
+    text-align: center;
+    color: #ffffff;
+}
+footer .wrap{
+    background-color: #7f7f7f;
+}
+footer h5 {
+    padding: 30px;
+}

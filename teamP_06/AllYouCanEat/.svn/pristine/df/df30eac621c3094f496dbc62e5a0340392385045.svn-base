@@ -1,0 +1,194 @@
+ * {margin: 0; padding: 0; box-sizing: border-box;}
+a {text-decoration: none; color: #000000;}
+ul, li {list-style: none;}
+.wrap {min-width: 1100px; margin: 0 auto;}
+
+
+
+
+button {
+    background-color: #FFB10A;
+    border: none;
+    padding: 15px;
+    border-radius : 30px;
+    font-size : 20px;
+    color: #ffffff;
+}
+button:hover{
+    cursor: pointer;
+}
+.cancle_btn{
+    background-color: #d1d1d1;
+    border: none;
+    padding: 15px;
+    border-radius : 30px;
+    font-size : 20px;
+    color: #ffffff;
+}
+
+/*
+    硫붿씤而щ윭 : #FEE200 
+    硫붿씤 �꽌釉� 而щ윭 : #FFB10A
+    �꽮�뀡 諛곌꼍 而щ윭 : #FFFFC8
+    �쉶�깋, �븯�떒 : #7F7F7F
+*/
+
+
+/*  �뿤�뜑 �쁺�뿭 */
+
+
+/* �뿤�뜑 �꽕鍮� */
+header {
+    width: 100%;
+    background-color: #FEE200;
+}
+header .header_nav {
+    width: 100%;
+    height: 75px;
+    background-color: #FEE200;
+    display: inline-block;
+}  
+header .header_nav .logo {
+    padding: 10px 25px;
+    display: inline-block;
+}
+
+header .header_nav .logo a img {
+    width: 130px;
+}
+
+header .header_nav ul{
+    overflow: hidden;
+    display: inline;
+}
+header .header_nav ul li {
+    float: right;
+    padding: 25px;
+}
+header .header_nav ul li a{
+    color: #ffffff;
+}
+
+/* �뿤�뜑 硫붿씤 */
+header .header_main {
+    height: 250px;
+    background-color: #ffffff;
+    background-image: url();
+    text-align: center;
+}
+header .header_main .main_title{
+    padding: 30px;
+    padding-top: 70px;
+}
+header .header_main .main_title .logo_you{
+    color: #FFB10A;
+}
+header .header_main .main_title .logo_can{
+    color: #C2142D;
+}
+header .header_main .search_bar{
+    width: 400px;
+    height: 50px;
+    margin: 0 auto;
+    border: 2px solid #FEE200;
+    border-radius: 25px;
+    position: relative;
+}
+header .header_main .search_bar .search_text{
+    width: 250px;
+    padding: 10px;
+    position: absolute;
+    left: 20px;
+    top : 6px;
+    border: none;
+
+}
+header .header_main .search_bar button{
+    position: absolute;
+    right: -1px;
+    top: -2px;
+    padding: 15px 40px;
+    color: #ffffff;
+    background-color: #FEE200;
+    border: 0.5px solid #FEE200;
+    border-radius: 25px;
+}
+
+/* �꽮�뀡 */
+section {
+    background-color: #FFFFC8;
+    width: 100%;
+}
+section .wrap {
+    background-color: #FFFFC8;
+}
+section .wrap > article {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 1100px;
+    overflow: hidden;
+}
+
+
+/* �뭼�꽣 */
+footer {
+    background-color: #7f7f7f;
+    text-align: center;
+    color: #ffffff;
+}
+footer .wrap{
+    background-color: #7f7f7f;
+}
+footer h5 {
+    padding: 30px;
+}
+
+
+
+
+/* reivew css */
+
+
+/*section*/
+section .wrap article {
+    background-color: #ffffff;
+}
+.review_title {
+    padding: 20px;
+}
+.review_main .review_point {
+    border: 1px solid #7f7f7f;
+    border-radius : 25px 25px 0px 0px;
+    border-bottom: none;
+    overflow: hidden;
+}
+.review_main .review_point ul li{
+    padding: 20px 20px 20px 40px;
+    float: left;
+}
+.review_main .review_text {
+    padding: 20px;
+    border: 1px solid #7f7f7f;
+    border-top: none;
+    border-radius: 0px 0px 25px 25px;
+}
+.review_main .review_text > input{
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    border: none;
+}
+
+.review_file_upload {
+    border: 1px solid #d1d1d1;
+    border-left : none;
+    border-right : none;
+}
+.review_btns {
+    padding: 20px;
+    text-align: right;
+}
+.review_btns button {
+    margin-left : 20px;
+    width: 150px;
+}
