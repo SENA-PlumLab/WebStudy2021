@@ -1,0 +1,20 @@
+
+<2021. 08. 04>
+mvc servlet 강의 시작.
+
+- create new servlet 했는데 import javax.servlet.... 부분부터 전부 다 오류 뜸.
+오류: this import cannot be resolved... 
+=> tomcat v10을 쓰고있는데, 이 버전부터는 javax 대신 jakarta를 써야 한다고 함.
+[참조:https://okky.kr/article/893699?note=2274354]
+[참조:https://stackoverflow.com/questions/66109748/javax-servlet-http-httpservlet-was-not-found-on-the-java-build-path]
+==> 해결 안됨 ㅜㅜ
+
+=>프로젝트 - properties - java build path - libraries <<여기 설정이 잘못 되어 있었다.
+tomcat 라이브러리(server runtime)의 위치가 Modulepath가 아닌, Classpath에 들어있어야 했다.
+기존 Modulpath에 추가되어있던 라이브러리를 삭제하고,
+Classpath누른 후 add Library해서 server runtime으로 tomcat 라이브러리 추가.
+==> import jakarta.servlet ... 관련 빨간 줄 다 없어짐! 성공~~
+
+=> 혹시 몰라서 tomcat v9도 새로 설치하고 포트 정리하고.. 
+프로젝트 build path에 v10지우고 v9를 추가했다. 당연히 jakarta.servlet을 javax.servlet으로 다시 바꿨다.
+==> 빨간줄 안뜨고 잘 된다.
