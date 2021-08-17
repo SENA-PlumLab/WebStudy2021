@@ -1,5 +1,9 @@
+<%@page import="teamP_07.Member"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="teamP_07.MemberDao" %>   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +36,11 @@
   session.setAttribute("dept",dept); 
   session.setAttribute("name",name); 
   session.setAttribute("date",date); 
+  
+  
+  MemberDao mDao = new MemberDao();
+
+	ArrayList<Member> mList = mDao.getmemberDTO();
 
   %>
 <body id="page-top">
@@ -57,31 +66,36 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">전체 회원 조회</h1>
+                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
                     </div>
 
 						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 
-						<h2>Section title</h2>
+						<h2>전체 회원 조회</h2>
 						<div class="table-responsive">
 							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
+										<th scope="col">MemNum</th>
+										<th scope="col">ID</th>
+										<th scope="col">Name</th>
+										<th scope="col">Join Date</th>
+										<th scope="col">Grade</th>
+										<th scope="col">Report</th>
 									</tr>
 								</thead>
 								<tbody>
+								<%	for (Member m : mList) { %>
 									<tr>
-										<td>1,001</td>
-										<td>random</td>
-										<td>data</td>
-										<td>placeholder</td>
-										<td>text</td>
+										<td><%=m.getMemNum() %></td>
+										<td><%=m.getmID() %></td>
+										<td><%=m.getmName() %></td>
+										<td><%=m.getJoinDate() %></td>
+										<td><%=m.getMemgrade() %></td>										
+										<td><%=m.getReport() %></td>										
 									</tr>
+								<%} %>
+								
 									</tbody>
 									</table>
 									<!-- Content Row -->
