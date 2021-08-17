@@ -12,13 +12,15 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,900;1,100&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+  
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/05c8c4d672.js" crossorigin="anonymous"></script>
 
   <!-- Bootstrap Scripts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- css -->
-  <link rel="stylesheet" href="css/style.css?ver=2">
+  <link rel="stylesheet" href="common/style.css?ver=5">
 
 <%
 
@@ -29,21 +31,31 @@
     <!-- Page Wrapper -->
     <div class="container-fluid" id="wrapper">
 	  <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-dark topbar static-top">
+                <nav class="navbar navbar-expand navbar-dark static-top">
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        
-						 <a class="navbar-brand" href="#">Navbar</a>
-                        
-						<div class="topbar-divider d-none d-sm-block"></div>
-						<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <div class="navbar-collapse collapse w-30 order-1 order-md-0 dual-collapse2">
+       					 <ul class="navbar-nav me-auto">
+						 <a class="navbar-brand" href="admin_index.jsp">
+							<img src="common/img/logo.png"></a>
+                        </ul>
+                    </div>
+          
+					<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      					<ul class="navbar-nav ms-auto" id="topbar-item">
+        						<li class="nav-item" id="topbar-greeting">
+         					 		콘텐츠팀 김염병님, 환영합니다!<br>
+         					 		<span>(로그인: 2021-08-17 23:22:39)</span>
+         					 	</li>
+       						     <li class="nav-item">
+									<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-outline-light shadow-sm" id="btn_logout">
                                 	<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 	Log out
-                                </a>
-                                
-                    </ul>
+                               		</a>
+                               	</li>
+                            </ul>
+                    </div>       
+                    
 
                 </nav>
                 <!-- End of Topbar -->
@@ -52,10 +64,10 @@
     	
     
     
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="sidebar">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 mx-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline" id="sidebar-title">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -65,53 +77,62 @@
                     </li>
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">회원 관리</span> </a>
+                        <ul class="collapse show nav flex-column" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">크리에이터 등업</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">전체 조회</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">가등록 상품 검토</span></a>
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">신고 관리</span></a>
+                        <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">새로운 신고 확인</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">보류 신고</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <span class="ms-1 d-none d-sm-inline">제조사 관리</span></a>
+                        <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">제조사 관리</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">제조사 등록</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">로그</span></a>
+                            <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">회원 로그</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">게시물 관리 로그</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">신고 관리 로그</span></a>
+                            </li>                       
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">직원 로그</span> </a>
                     </li>
                 </ul>
             </div>
@@ -145,8 +166,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                               등업 신청</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">336</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -163,8 +184,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                가등록 상품 검토</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -180,16 +201,16 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">목표달성 펀딩 비율
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">30%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: 50%" aria-valuenow="30" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
@@ -210,8 +231,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                신고 관리</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">218</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -307,13 +328,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
+            
             <!-- End of Footer -->
 
         </div>
@@ -322,35 +337,12 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
  </div>   
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  <script type="text/javascript" src="js/script.js" charset="utf-8"></script>
+  <script type="text/javascript" src="member/entire.js" charset="utf-8"></script>
   
 </body>
 </html>
