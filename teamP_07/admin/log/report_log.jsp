@@ -1,8 +1,9 @@
-<%@page import="teamP_07.Member"%>
+
+<%@page import="teamP_07.Report"%>
+<%@page import="teamP_07.ReportDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="teamP_07.MemberDao" %>   
     
 <!DOCTYPE html>
 <html>
@@ -30,16 +31,17 @@
   
   
   <%
-  MemberDao mDao = new MemberDao();
 
-	ArrayList<Member> mList = mDao.getmemberDTO();
+  ReportDao rDao = new ReportDao();
+
+	ArrayList<Report> rList = rDao.getReportDTO_entire();
+
+boolean isLoggedIn = true;
+// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
+if (session.getAttribute("eeenum")==null) {
 	
-	boolean isLoggedIn = true;
-	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
-	    isLoggedIn=false; //==>js에서 redirect
-	}
+    isLoggedIn=false; //==>js에서 redirect
+}
 
 
   %>
@@ -61,34 +63,32 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <!--  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
-                    </div>
-
-						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
- -->
-						<h2>전체 회원 조회</h2>
+						<h2>컨텐츠 활동 로그</h2>
 						<div class="table-responsive">
-							<table class="table table-striped table-sm">
+							<table class="table table-hover table-sm">
 								<thead>
 									<tr>
-										<th scope="col">MemNum</th>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Join Date</th>
-										<th scope="col">Grade</th>
 										<th scope="col">Report</th>
+										<th scope="col">Member</th>
+										<th scope="col">Contents</th>
+										<th scope="col">Income</th>
+										<th scope="col">Edit</th>
+										<th scope="col">Status</th>
+										<th scope="col">Name</th>
+										<th scope="col">Position</th>
 									</tr>
 								</thead>
 								<tbody>
-								<%	for (Member m : mList) { %>
+								<%	for (Report r : rList) { %>
 									<tr>
-										<td><%=m.getMemNum() %></td>
-										<td><%=m.getmID() %></td>
-										<td><%=m.getmName() %></td>
-										<td><%=m.getJoinDate() %></td>
-										<td><%=m.getMemgrade() %></td>										
-										<td><%=m.getReport() %></td>										
+										<td><%=r.getRptNum() %></td>
+										<td><%=r.getMemNum2() %></td>
+										<td><a href="" target="_blank"><%=r.getCttnum() %></a></td>
+										<td><%=r.getIncome() %></td>										
+										<td><%=r.getEdit_date() %></td>										
+										<td><%=r.getStatusNum() %></td>										
+										<td><%=r.getEmp_name() %></td>										
+										<td><%=r.getEmp_pos() %></td>										
 									</tr>
 								<%} %>
 								
@@ -97,7 +97,7 @@
 									<!-- Content Row -->
 						</div>
 						<!-- /.container-fluid -->
-
+				
             </div>
             <!-- End of Main Content -->
 
@@ -115,19 +115,19 @@
  </div>   
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script type="text/javascript">
+
+  <script type="text/javascript" src="entire.js" charset="utf-8"></script>
+  <script type="text/javascript">
 //세션검사, 로그아웃 버튼
-if(<%=isLoggedIn%>==false){
+  if(<%=isLoggedIn%>==false){
 	  alert('로그인 정보가 없습니다!');
 	  document.location.href="../login/login.jsp";
-}
+  }
 $("#btn_logout").click(function(){
 	  
 	  document.location.href="../login/logout.jsp";
 	  
-})
-</script>
-  
-  
+  })
+  </script>
 </body>
 </html>

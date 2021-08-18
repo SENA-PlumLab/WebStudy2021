@@ -1,9 +1,9 @@
-<%@page import="teamP_07.Member"%>
+<%@page import="teamP_07.Report"%>
+<%@page import="teamP_07.ReportDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="teamP_07.MemberDao" %>   
-    
+    pageEncoding="UTF-8"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +27,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <!-- css -->
   <link rel="stylesheet" href="../common/style.css?ver=5">
+  <link rel="stylesheet" href="check_report.css">
   
   
   <%
-  MemberDao mDao = new MemberDao();
+	ReportDao rDao = new ReportDao();
 
-	ArrayList<Member> mList = mDao.getmemberDTO();
+	ArrayList<Report> rList = rDao.getReportDTO_hold();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
@@ -61,48 +62,50 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <!--  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">신고 관리 (보류 내역)</h1>
                     </div>
-
-						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
- -->
-						<h2>전체 회원 조회</h2>
 						<div class="table-responsive">
+							<form method="post" action="update_report.jsp">
 							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
-										<th scope="col">MemNum</th>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Join Date</th>
-										<th scope="col">Grade</th>
-										<th scope="col">Report</th>
+										<th scope="col">Report Number</th>
+										<th scope="col">Member Number</th>
+										<th scope="col">Content Number</th>
+										<th scope="col">Status</th>
+										<th scope="col">Check</th>
 									</tr>
 								</thead>
 								<tbody>
-								<%	for (Member m : mList) { %>
+								<%	for (Report r : rList) { %>
 									<tr>
-										<td><%=m.getMemNum() %></td>
-										<td><%=m.getmID() %></td>
-										<td><%=m.getmName() %></td>
-										<td><%=m.getJoinDate() %></td>
-										<td><%=m.getMemgrade() %></td>										
-										<td><%=m.getReport() %></td>										
+										<td><%=r.getRptNum() %></td>
+										<td><%=r.getMemNum2() %></td>
+										<td><a href="" target="_blank"><%=r.getCttnum() %></a></td>
+										<td><%=r.getStatusNum() %></td>										
+										<td> <input class='check'  type='checkbox' value='<%=r.getRptNum() %>' name='update' /></td>
 									</tr>
 								<%} %>
-								
-									</tbody>
-									</table>
+								</tbody>
+							</table>
+							
+							</div>
+							<div>
+							<select name="status">
+								<option value=1>정상 신고 확인</option>
+								<option value=0>혐의 없음</option>														
+							</select>
+							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
+							</form>
 									<!-- Content Row -->
-						</div>
+						
 						<!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            
+            <!-- Footer -->            
             <!-- End of Footer -->
 
         </div>
@@ -112,10 +115,36 @@
     <!-- End of Page Wrapper -->
 
     
- </div>   
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+
+$(".check").click(function(){ 
+    var checkBtn = $(this);
+//checkBtn.parent() : checkBtn의 부모는 <td>이다.
+// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+var tr = checkBtn.parent().parent();
+var td = tr.children();
+
+//console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+//console.log("0 : "+td.eq(0).text());
+//console.log("1 : "+td.eq(1).text());
+//console.log("2 : "+td.eq(2).text());
+//$('#'+td.eq(0).text()).val(td.eq(1).text());
+
+td.eq(1).append("<input type='hidden' value='"+td.eq(1).text()+"' name='memnum2'>");
+
+
+/* var rptnum = td.eq(0).text();
+var memnum = td.eq(1).text();
+var cttnum = td.eq(2).text();
+var count = td.eq(3).text(); */
+});
+
+
+
+
 //세션검사, 로그아웃 버튼
 if(<%=isLoggedIn%>==false){
 	  alert('로그인 정보가 없습니다!');
@@ -126,8 +155,8 @@ $("#btn_logout").click(function(){
 	  document.location.href="../login/logout.jsp";
 	  
 })
+
 </script>
-  
   
 </body>
 </html>

@@ -34,16 +34,19 @@
 	MemberDao mDao = new MemberDao();
 
 	ArrayList<Member> mList = mDao.getmemberDTO_gradeCheck();
+	
+	boolean isLoggedIn = true;
+	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
+	if (session.getAttribute("eeenum")==null) {
+		
+	    isLoggedIn=false; //==>js에서 redirect
+	}
+
   %>
 <body id="page-top">
 
 <!-- navbar import -->
-<jsp:include page="../common/navbar.jsp">
-<jsp:param name="dept" value='<%=session.getAttribute("dept")%>' />
-<jsp:param name="name" value='<%=session.getAttribute("name")%>' />
-<jsp:param name="date" value='<%=session.getAttribute("date")%>' />
-</jsp:include>
-
+<%@ include file="../common/navbar.jsp" %>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="col py-3">
@@ -86,7 +89,7 @@
 							</table>
 							
 							</div>
-							<div><input type="submit" class="btn-outline-primary" value="선택 확인"></div>
+							<div><input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
 							</form>
 									<!-- Content Row -->
 						
@@ -108,7 +111,7 @@
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript">
-var checked = new Array();
+/* var checked = new Array();
 var update = function(){
 	var elems = document.querySelectorAll('input');
     for (var i = 0; i < elems.length; i++) {
@@ -123,8 +126,20 @@ var update = function(){
 	}
 	console.log(param);
     //location.href="update_grade.jsp?list="+param;
-}
+} */
 
+
+
+//세션검사, 로그아웃 버튼
+if(<%=isLoggedIn%>==false){
+	  alert('로그인 정보가 없습니다!');
+	  document.location.href="../login/login.jsp";
+}
+$("#btn_logout").click(function(){
+	  
+	  document.location.href="../login/logout.jsp";
+	  
+})
 </script>
   
 </body>

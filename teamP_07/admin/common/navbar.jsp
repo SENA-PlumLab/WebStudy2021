@@ -3,15 +3,15 @@
 
 
 <!DOCTYPE html>
-
-<meta charset="UTF-8">
 <%
-String dept = request.getParameter("dept");
-String name = request.getParameter("name");
-String date = request.getParameter("date");
+String dept = (String)session.getAttribute("dept");
+String name = (String)session.getAttribute("name");
+String date = (String)session.getAttribute("date");
 
 
 %>
+<meta charset="UTF-8">
+
     <!-- Page Wrapper -->
     <div class="container-fluid" id="wrapper">
 	  <!-- Topbar -->
@@ -20,7 +20,7 @@ String date = request.getParameter("date");
                     <!-- Topbar Navbar -->
                     <div class="navbar-collapse collapse w-30 order-1 order-md-0 dual-collapse2">
        					 <ul class="navbar-nav me-auto">
-						 <a class="navbar-brand" href="../admin_index.jsp">
+						 <a class="navbar-brand" href="../index/admin_index.jsp">
 							<img src="../common/img/logo.png"></a>
                         </ul>
                     </div>
@@ -80,14 +80,14 @@ String date = request.getParameter("date");
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">신고 관리</span></a>
                         <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">새로운 신고 확인</span></a>
+                                <a href="../report/check_report.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">새로운 신고 확인</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">보류 신고</span></a>
+                                <a href="../report/doublecheck_report.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">보류 신고</span></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <span class="ms-1 d-none d-sm-inline">제조사 관리</span></a>
                         <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#menu">
@@ -98,25 +98,18 @@ String date = request.getParameter("date");
                                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">제조사 등록</span></a>
                             </li>
                         </ul>
+                    </li> -->
+                    <li>
+                        <a href="../log/report_log.jsp" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">신고 로그</span> </a>
                     </li>
                     <li>
-                        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">로그</span></a>
-                            <ul class="collapse nav flex-column" id="submenu4" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">회원 로그</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">게시물 관리 로그</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">신고 관리 로그</span></a>
-                            </li>                       
-                        </ul>
+                        <a href="../log/contents_log.jsp" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">컨텐츠 활동 로그</span> </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">직원 로그</span> </a>
+                        <a href="../log/member_log.jsp" class="nav-link px-0 align-middle">
+                            <span class="ms-1 d-none d-sm-inline">회원 로그</span> </a>
                     </li>
                 </ul>
             </div>
