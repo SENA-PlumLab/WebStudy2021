@@ -8,9 +8,15 @@ public class Member {
 	private String memgrade;
 	private String joinDate;
 	private String modDate;
+	private String memImg;
+	private String memText;
+	private String memPhone;
+	
 	private String pfNum;
 	private String pfTitle;
 	private String pfStateNum;
+	
+	
 	
 	public Member() {
 		super();
@@ -63,6 +69,43 @@ public class Member {
 	}
 	public String getpfTitle() {
 		return pfTitle;
+	}
+	
+	public String getMemImg() {
+		return memImg;
+	}
+	public String getMemText() {
+		return memText;
+	}
+	public String getMemPhone() {
+		return memPhone;
+	}
+	public String getPfNum() {
+		return pfNum;
+	}
+	public String getPfTitle() {
+		return pfTitle;
+	}
+	public String getPfStateNum() {
+		return pfStateNum;
+	}
+	public void setMemImg(String memImg) {
+		this.memImg = memImg;
+	}
+	public void setMemText(String memText) {
+		this.memText = memText;
+	}
+	public void setMemPhone(String memPhone) {
+		this.memPhone = memPhone;
+	}
+	public void setPfNum(String pfNum) {
+		this.pfNum = pfNum;
+	}
+	public void setPfTitle(String pfTitle) {
+		this.pfTitle = pfTitle;
+	}
+	public void setPfStateNum(String pfStateNum) {
+		this.pfStateNum = pfStateNum;
 	}
 	public void setMemNum(String memNum) {
 		this.memNum = memNum;

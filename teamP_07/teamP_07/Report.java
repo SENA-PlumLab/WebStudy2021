@@ -5,6 +5,7 @@ public class Report {
 	private String memNum;
 	private String memNum2;
 	private int statusNum;
+	private String status_name;
 	private String eeeNum;
 	private String cttnum;
 	
@@ -26,6 +27,20 @@ public class Report {
 		this.memNum2 = memNum2;
 		this.statusNum = statusNum;
 		this.cttnum = cttnum;
+		switch(statusNum) {
+		case 0:
+			status_name="혐의 없음";
+			break;
+		case 1:
+			status_name="승인";
+			break;
+		case 2:
+			status_name="검토";
+			break;
+		case 3:
+			status_name="보류";
+			break;
+		}
 	}
 
 
@@ -37,6 +52,20 @@ public class Report {
 		this.statusNum = statusNum;
 		this.eeeNum = eeeNum;
 		this.cttnum = cttnum;
+		switch(statusNum) {
+		case 0:
+			status_name="혐의 없음";
+			break;
+		case 1:
+			status_name="승인";
+			break;
+		case 2:
+			status_name="검토";
+			break;
+		case 3:
+			status_name="보류";
+			break;
+		}
 	}
 	
 	
@@ -51,9 +80,23 @@ public class Report {
 		this.edit_date = edit_date;
 		this.emp_name = emp_name;
 		this.emp_pos = emp_pos;
+		switch(statusNum) {
+		case 0:
+			status_name="혐의 없음";
+			break;
+		case 1:
+			status_name="승인";
+			break;
+		case 2:
+			status_name="검토";
+			break;
+		case 3:
+			status_name="보류";
+			break;
+		}
 	}
 
-
+	
 	public String getIncome() {
 		return income;
 	}
@@ -122,6 +165,12 @@ public class Report {
 	public String getCttnum() {
 		return cttnum;
 	}
+	
+	
+
+	public String getStatus_name() {
+		return status_name;
+	}
 
 
 	public void setRptNum(String rptNum) {
@@ -141,6 +190,20 @@ public class Report {
 
 	public void setStatusNum(int statusNum) {
 		this.statusNum = statusNum;
+		switch(statusNum) {
+		case 0:
+			status_name="혐의 없음";
+			break;
+		case 1:
+			status_name="승인";
+			break;
+		case 2:
+			status_name="검토";
+			break;
+		case 3:
+			status_name="보류";
+			break;
+		}
 	}
 
 

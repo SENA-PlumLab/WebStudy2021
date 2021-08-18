@@ -62,9 +62,9 @@ if (session.getAttribute("eeenum")==null) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-						<h2>컨텐츠 활동 로그</h2>
+						<h2 class="h3 mb-4 text-gray-800">컨텐츠 활동 로그</h2>
 						<div class="table-responsive">
-							<table class="table table-hover table-sm">
+							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
 										<th scope="col">Log number</th>

@@ -27,7 +27,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <!-- css -->
   <link rel="stylesheet" href="../common/style.css?ver=5">
-  <link rel="stylesheet" href="check_grade.css">
+  <link rel="stylesheet" href="check_grade.css?ver=2">
   
   
   <%
@@ -60,16 +60,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">회원 등급 관리</h1>
-                    </div>
+                    <h3 class="h3 mb-4 text-gray-800">회원 등급 관리</h3>
 						<div class="table-responsive">
 							<form method="post" action="update_grade.jsp">
-							<table class="table table-striped table-sm">
+							<table class="table table-hover table-sm">
 								<thead>
 									<tr>
 										<th scope="col">MemNum</th>
-										<th scope="col">ID</th>
+										<th scope="col">Portfolio</th>
 										<th scope="col">Title</th>
 										<th scope="col">Grade</th>
 										<th scope="col">Check</th>
@@ -78,19 +76,25 @@
 								<tbody>
 								<%	for (Member m : mList) { %>
 									<tr>
-										<td><%=m.getMemNum() %></td>
-										<td><%=m.getmID() %></td>
-										<td><a href="../portfolio/view.jsp?pfnum=<%=m.getpfNum() %>" target="_blank"><%=m.getpfTitle() %></a></td>
+										<td><a href="#" onclick="popUp_mem(this, '<%=m.getMemNum() %>')"><%=m.getMemNum() %></td>
+										<td><%=m.getpfNum() %>
+										<td><a href="#" onclick="popUp(this, '<%=m.getpfNum() %>')"><%=m.getpfTitle() %></a></td>
 										<td><%=m.getMemgrade() %></td>										
-										<td> <input type='checkbox' value='<%=m.getMemNum() %>' name='update' /></td>
+										<td> <input class='check' type='checkbox' value='<%=m.getMemNum() %>' name='update' /></td>
 									</tr>
 								<%} %>
 								</tbody>
 							</table>
-							
+							<div id="btn-holder">
+							<select name="status">
+								<option value=2>크리에이터</option>												
+								<option value=3>우수 크리에이터</option>												
+							</select>
+							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
 							</div>
-							<div><input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
 							</form>
+							</div>
+							
 									<!-- Content Row -->
 						
 						<!-- /.container-fluid -->
@@ -111,23 +115,14 @@
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript">
-/* var checked = new Array();
-var update = function(){
-	var elems = document.querySelectorAll('input');
-    for (var i = 0; i < elems.length; i++) {
-        if (elems[i].checked) {
-            checked.push(elems[i].value);
-        }
-    }
-    
-	var param = checked[0];
-	for (var i=1; i<checked.length; i++){
-		param += ","+checked[i];
-	}
-	console.log(param);
-    //location.href="update_grade.jsp?list="+param;
-} */
-
+$(".check").click(function(){ 
+	var checkBtn = $(this);
+	//checkBtn.parent() : checkBtn의 부모는 <td>이다.
+	// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+	var tr = checkBtn.parent().parent();
+	var td = tr.children();
+	td.eq(1).append("<input type='hidden' value='"+td.eq(1).text()+"' name='pfNum'>");
+});
 
 
 //세션검사, 로그아웃 버튼
@@ -140,6 +135,16 @@ $("#btn_logout").click(function(){
 	  document.location.href="../login/logout.jsp";
 	  
 })
+//멤버 조회 팝업
+function popUp_mem(e, memNum){
+    window.open('visit_member.jsp?memNum='+memNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
+//콘텐츠 내용 조회 팝업
+function popUp(e, pfNum){
+	//var cttNum = e;
+	//console.log(pfNum);
+    window.open('visit_contents.jsp?pfNum='+pfNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
 </script>
   
 </body>

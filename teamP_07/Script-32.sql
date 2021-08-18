@@ -167,7 +167,7 @@ CREATE OR REPLACE TRIGGER fd_trigger
 BEGIN
   -- 삽입할 때
    IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
-      INSERT INTO ctt_log(kind, memo) VALUES ('funding','0000'),'insert');
+      INSERT INTO ctt_log(kind, memo) VALUES ('funding','insert');
   -- 수정할 때
    ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
       INSERT INTO ctt_log(kind, memo) VALUES ('funding', 'update');
@@ -282,17 +282,87 @@ SELECT * FROM CTT_LOG cl ORDER BY INCOME_DATE desc;
 --로그인
 SELECT EEENUM_PK ,EMP_ID , EMP_PW , EMP_NAME, EMP_AUTH , auth_name, pos_name
 FROM EMP_TB et, EMP_AUTH_TB eat, EMP_POS_TB ept
-WHERE et.EMP_AUTH = eat.EMP_AUTH_PK AND et.EMP_POS =ept.EMP_POS_PK
+WHERE et.EMP_AUTH = eat.EMP_AUTH_PK AND et.EMP_POS =ept.EMP_POS_PK;
 AND EMP_ID ='himan';
 
 --정보 조회
 SELECT et.*, auth_name, pos_name
 FROM EMP_TB et, EMP_AUTH_TB eat, EMP_POS_TB ept
-WHERE et.EMP_AUTH = eat.EMP_AUTH_PK AND et.EMP_POS =ept.EMP_POS_PK 
+WHERE et.EMP_AUTH = eat.EMP_AUTH_PK AND et.EMP_POS =ept.EMP_POS_PK; 
+-------------------------------------------------------------------------------
+--신고 처리내역 조회
+SELECT r.RPTNUM, r.MEMNUM2, r.INCOME, r.EDIT_DATE, r.STATUSNUM, et.EMP_NAME, pos_name
+FROM REPORT r, EMP_TB et , EMP_POS_TB ept 
+WHERE STATUSNUM IN (1, 0) AND r.EEENUM = et.EEENUM_PK AND et.EMP_POS = ept.EMP_POS_PK;
+
+SELECT r.rptnum, r.MEMNUM2, r.cttnum, r.INCOME, r.EDIT_DATE, r.STATUSNUM, et.EMP_NAME, pos_name
+				FROM REPORT r, EMP_TB et , EMP_POS_TB ept
+				WHERE STATUSNUM IN (1, 0) AND r.EEENUM = et.EEENUM_PK AND et.EMP_POS = ept.EMP_POS_PK;
+			
+--게시물 내용 조회			
+SELECT * FROM bbs;
+SELECT bbsNum AS cttnum, memnum, bbstitle, bbsContent AS CONTENT, bbsDate AS income, VIEWCNT, status 
+FROM bbs b, STATUS s WHERE bbsnum='bbs-0059' AND b.STATUSNUM = s.STATUSNUM ;
+--게시물 status 3 변경
+UPDATE bbs SET STATUSNUM=3 WHERE bbsnum='bbs-0059';
+UPDATE COMMENTS SET STATUSNUM=3 WHERE cmtnum='cmt-0041';
+UPDATE FUNDING SET STATUSNUM=3 WHERE fdnum='fud-0021';
 
 
+SELECT * FROM comments;
+SELECT cmtnum AS cttnum, memnum, cmtcontent AS CONTENT , cmtdate AS income, bbsnum, STATUSNUM 
+FROM comments c, STATUS s
+WHERE cmtnum='cmt-0041' AND c.STATUSNUM = s.STATUSNUM ;
 
-/*
+SELECT * FROM FUNDING f ;
+
+SELECT fdnum AS cttnum, c.memnum, f.crenum, FDPROJECTNM AS fdtitle ,fdImg, FDREGIDT AS income,
+			FDSTORYIMG, FDSTORYSUM, FDSTORY AS content , STATUS
+FROM FUNDING f , CREATOR c, STATUS s 
+WHERE f.CRENUM =c.CRENUM AND fdnum='fud-0021'  AND f.STATUSNUM = s.STATUSNUM ;
+
+SELECT * FROM CREATOR c; 
+				
+SELECT * FROM STATUS s;
+SELECT * FROM portfolio;
+
+SELECT c.CRENM, s.status, t.FDTHEMENM, ct.FDCATEGORYNM, f.*
+FROM FUNDING f 
+INNER JOIN CREATOR c
+	ON f.CRENUM =c.CRENUM
+INNER JOIN STATUS s
+	ON f.STATUSNUM = s.STATUSNUM
+INNER JOIN FDTHEME t
+	ON f.FDTHEMENUM = t.FDTHEMENUM
+INNER JOIN FDCATEGORY ct
+	ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM ;
+
+SELECT c.CRENM, s.status, t.FDTHEMENM, ct.FDCATEGORYNM, f.*
+FROM FUNDING f 
+INNER JOIN CREATOR c ON f.CRENUM =c.CRENUM
+INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM
+INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM
+INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM
+WHERE f.STATUSNUM=2;
+
+SELECT s.status, t.FDTHEMENM, ct.FDCATEGORYNM, crenum, fdtargetprice, fdingprice, fdnum, fdprojectnm
+FROM FUNDING f
+INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM
+INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM
+INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM
+WHERE f.STATUSNUM =2 ORDER BY f.FDREGIDT DESC;
+
+
+SELECT FDREGIDT, FDEXPDT FROM FUNDING f2 ;
+SELECT * FROM FDTHEME f ;
+SELECT * FROM FDCATEGORY f ;
+SELECT * FROM PORTFOLIO p ;
+
+SELECT p.PFNUM FROM "MEMBER" m , PORTFOLIO p 
+WHERE m.MEMNUM = p.MEMNUM AND m.MEMGRADENUM=1 AND p.PFSTATENUM =1 ;
+
+SELECT * FROM member
+				/*
 CREATE TABLE member_log (
 	memlog_pk varchar2(16) CONSTRAINTS mblog_memlog_pk PRIMARY KEY,
 	eeenum varchar2(9) CONSTRAINTS mblog_eeenum_nn NOT NULL, 

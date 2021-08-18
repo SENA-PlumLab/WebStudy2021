@@ -27,7 +27,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <!-- css -->
   <link rel="stylesheet" href="../common/style.css?ver=5">
-  <link rel="stylesheet" href="check_report.css">
+  <link rel="stylesheet" href="check_report.css?ver=2">
   
   
   <%
@@ -62,12 +62,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신고 관리 (보류 내역)</h1>
-                    </div>
+                        <h1 class="h3 mb-4 text-gray-800">신고 관리 (보류 내역)</h1>
+                    
 						<div class="table-responsive">
 							<form method="post" action="update_report.jsp">
-							<table class="table table-striped table-sm">
+							<table class="table table-hover table-sm">
 								<thead>
 									<tr>
 										<th scope="col">Report Number</th>
@@ -81,23 +80,25 @@
 								<%	for (Report r : rList) { %>
 									<tr>
 										<td><%=r.getRptNum() %></td>
-										<td><%=r.getMemNum2() %></td>
-										<td><a href="" target="_blank"><%=r.getCttnum() %></a></td>
-										<td><%=r.getStatusNum() %></td>										
+										<td><a href="#" onclick="popUp_mem(this, '<%=r.getMemNum2() %>')"><%=r.getMemNum2() %></td>
+										<td><a href="#" onclick="popUp(this, '<%=r.getCttnum() %>')"><%=r.getCttnum() %></a></td>
+										<td><%=r.getStatus_name() %></td>										
 										<td> <input class='check'  type='checkbox' value='<%=r.getRptNum() %>' name='update' /></td>
 									</tr>
 								<%} %>
 								</tbody>
 							</table>
-							
-							</div>
-							<div>
+							<div id="btn-holder">
 							<select name="status">
 								<option value=1>정상 신고 확인</option>
 								<option value=0>혐의 없음</option>														
 							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
+							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
+							</div>
 							</form>
+							
+							</div>
+							
 									<!-- Content Row -->
 						
 						<!-- /.container-fluid -->
@@ -127,21 +128,21 @@ $(".check").click(function(){
 var tr = checkBtn.parent().parent();
 var td = tr.children();
 
-//console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-//console.log("0 : "+td.eq(0).text());
-//console.log("1 : "+td.eq(1).text());
-//console.log("2 : "+td.eq(2).text());
-//$('#'+td.eq(0).text()).val(td.eq(1).text());
 
 td.eq(1).append("<input type='hidden' value='"+td.eq(1).text()+"' name='memnum2'>");
 
-
-/* var rptnum = td.eq(0).text();
-var memnum = td.eq(1).text();
-var cttnum = td.eq(2).text();
-var count = td.eq(3).text(); */
 });
 
+//멤버 조회 팝업
+function popUp_mem(e, memNum){
+    window.open('../member/visit_member.jsp?memNum='+memNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
+//콘텐츠 내용 조회 팝업
+function popUp(e, cttNum){
+	//var cttNum = e;
+	console.log(cttNum);
+    window.open('visit_contents.jsp?cttNum='+cttNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
 
 
 

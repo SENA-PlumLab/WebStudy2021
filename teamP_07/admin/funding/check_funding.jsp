@@ -1,9 +1,9 @@
-<%@page import="teamP_07.Member"%>
+<%@page import="teamP_07.Funding"%>
+<%@page import="teamP_07.FundingDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="teamP_07.MemberDao" %>   
-    
+    pageEncoding="UTF-8"
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,13 +27,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <!-- css -->
   <link rel="stylesheet" href="../common/style.css?ver=5">
-    <link rel="stylesheet" href="check_grade.css?ver=2">
+  <link rel="stylesheet" href="check_funding.css?ver=2">
   
   
   <%
-  MemberDao mDao = new MemberDao();
+	FundingDao fDao = new FundingDao();
 
-	ArrayList<Member> mList = mDao.getmemberDTO();
+	ArrayList<Funding> fList = fDao.getFundingList_check();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
@@ -41,7 +41,6 @@
 		
 	    isLoggedIn=false; //==>js에서 redirect
 	}
-
 
   %>
 <body id="page-top">
@@ -62,59 +61,59 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <!--  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
-                    </div>
-
-						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
- -->
-						<h2 class="h3 mb-4 text-gray-800">전체 회원 조회</h2>
+                    
+                        <h1 class="h3 mb-4 text-gray-800">가등록 펀딩 승인</h1>
+                    
 						<div class="table-responsive">
-							<form method="post" action="update_grade.jsp">
+							<form method="post" action="update_funding.jsp">
 							<table class="table table-hover table-sm">
 								<thead>
 									<tr>
-										<th scope="col">MemNum</th>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Join Date</th>
-										<th scope="col">Grade</th>
-										<th scope="col">Report</th>
+										<th scope="col">Member</th>
+										<th scope="col">Funding</th>
+										<th scope="col">Theme</th>
+										<th scope="col">Category</th>
+										<th scope="col">Title</th>
+										<th scope="col">Target</th>
+										<th scope="col">price</th>
+										<th scope="col">Status</th>
 										<th scope="col">Check</th>
 									</tr>
 								</thead>
 								<tbody>
-								<%	for (Member m : mList) { %>
+								<%	for (Funding f : fList) { %>
 									<tr>
-										<td><a href="#" onclick="popUp_mem(this, '<%=m.getMemNum() %>')"><%=m.getMemNum() %></td>
-										<td><%=m.getmID() %></td>
-										<td><%=m.getmName() %></td>
-										<td><%=m.getJoinDate() %></td>
-										<td><%=m.getMemgrade() %></td>										
-										<td><%=m.getReport() %></td>
-										<td> <input class='check'  type='checkbox' value='<%=m.getMemNum() %>' name='update' /></td>																				
+										<td><%=f.getCreNum() %></td>
+										<td><a href="#" onclick="popUp(this, '<%=f.getFdNum() %>')"><%=f.getFdNum() %></a></td>
+										<td><%=f.getTheme_name() %></td>
+										<td><%=f.getCategory_name() %></td>
+										<td><%=f.getFdtitle() %></td>
+										<td><%=f.getPrice_target() %></td>										
+										<td><%=f.getPrice() %></td>										
+										<td><%=f.getStatus_name() %></td>										
+										<td> <input class='check'  type='checkbox' value='<%=f.getFdNum() %>' name='update' /></td>
 									</tr>
 								<%} %>
-								
-									</tbody>
-									</table>
-									<!-- Content Row -->
+								</tbody>
+							</table>
+							
+							
 							<div id="btn-holder">
 							<select name="status">
-								<option value=0>활동 정지</option>												
-								<option value=1>일반 회원</option>												
+								<option value=1>게시 승인</option>						
+								<option value=3>부적절</option>								
 							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
-							</div>
+							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
 							</form>
-						</div>
+							</div>
+									<!-- Content Row -->
+						
 						<!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            
+            <!-- Footer -->            
             <!-- End of Footer -->
 
         </div>
@@ -124,10 +123,19 @@
     <!-- End of Page Wrapper -->
 
     
- </div>   
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript">
+
+
+
+// 콘텐츠 내용 조회 팝업
+function popUp(e, fdNum){
+    window.open('visit_contents.jsp?fdNum='+fdNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
+
+
+
 
 //세션검사, 로그아웃 버튼
 if(<%=isLoggedIn%>==false){
@@ -140,12 +148,8 @@ $("#btn_logout").click(function(){
 	  
 })
 
-//멤버 조회 팝업
-function popUp_mem(e, memNum){
-    window.open('visit_member.jsp?memNum='+memNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
-}
+
 </script>
-  
   
 </body>
 </html>

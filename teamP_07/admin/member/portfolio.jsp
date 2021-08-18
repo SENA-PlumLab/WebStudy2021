@@ -1,8 +1,8 @@
-<%@page import="teamP_07.Member"%>
+<%@page import="teamP_07.Portfolio"%>
+<%@page import="teamP_07.PortfolioDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="teamP_07.MemberDao" %>   
     
 <!DOCTYPE html>
 <html>
@@ -31,9 +31,9 @@
   
   
   <%
-  MemberDao mDao = new MemberDao();
+  	PortfolioDao pDao = new PortfolioDao();
 
-	ArrayList<Member> mList = mDao.getmemberDTO();
+	ArrayList<Portfolio> pList = pDao.getPortfolioList();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
@@ -62,51 +62,32 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <!--  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
-                    </div>
-
-						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
- -->
-						<h2 class="h3 mb-4 text-gray-800">전체 회원 조회</h2>
+                   
+						<h2 class="h3 mb-4 text-gray-800">전체 포트폴리오 조회</h2>
 						<div class="table-responsive">
-							<form method="post" action="update_grade.jsp">
-							<table class="table table-hover table-sm">
+							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
 										<th scope="col">MemNum</th>
-										<th scope="col">ID</th>
-										<th scope="col">Name</th>
-										<th scope="col">Join Date</th>
-										<th scope="col">Grade</th>
-										<th scope="col">Report</th>
-										<th scope="col">Check</th>
+										<th scope="col">Portfolio</th>
+										<th scope="col">Title</th>
+										<th scope="col">Status</th>
 									</tr>
 								</thead>
 								<tbody>
-								<%	for (Member m : mList) { %>
-									<tr>
-										<td><a href="#" onclick="popUp_mem(this, '<%=m.getMemNum() %>')"><%=m.getMemNum() %></td>
-										<td><%=m.getmID() %></td>
-										<td><%=m.getmName() %></td>
-										<td><%=m.getJoinDate() %></td>
-										<td><%=m.getMemgrade() %></td>										
-										<td><%=m.getReport() %></td>
-										<td> <input class='check'  type='checkbox' value='<%=m.getMemNum() %>' name='update' /></td>																				
+								<%	for (Portfolio p : pList) { %>
+									<tr>			
+										<td><a href="#" onclick="popUp_mem(this, '<%=p.getMemNum() %>')"><%=p.getMemNum() %></td>
+										<td><a href="#" onclick="popUp(this, '<%=p.getPfNum() %>')"><%=p.getPfNum() %></a></td>
+										<td><%=p.getTitle() %></td>
+										<td><%=p.getStatus_name() %></td>
 									</tr>
 								<%} %>
 								
 									</tbody>
 									</table>
 									<!-- Content Row -->
-							<div id="btn-holder">
-							<select name="status">
-								<option value=0>활동 정지</option>												
-								<option value=1>일반 회원</option>												
-							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
-							</div>
-							</form>
+
 						</div>
 						<!-- /.container-fluid -->
 
@@ -139,10 +120,15 @@ $("#btn_logout").click(function(){
 	  document.location.href="../login/logout.jsp";
 	  
 })
-
 //멤버 조회 팝업
 function popUp_mem(e, memNum){
     window.open('visit_member.jsp?memNum='+memNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
+}
+//콘텐츠 내용 조회 팝업
+function popUp(e, pfNum){
+	//var cttNum = e;
+	//console.log(pfNum);
+    window.open('visit_contents.jsp?pfNum='+pfNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
 }
 </script>
   

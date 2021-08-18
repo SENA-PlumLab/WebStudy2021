@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MemberDao {
+public class FundingDao {
 	
-	public Member getmemberDTO_num(String memNum) {
-		Member memberDTO = new Member();
+	public Funding getFunding(String fdNum) {
+		Funding fd = new Funding();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -24,9 +24,13 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT m.*, memgrade "
-				+ "FROM MEMBER m, MEMGRADE m2 "
-				+ "WHERE m.memgradenum = m2.memgradenum and memnum='"+memNum+"'";
+		String SQL = "SELECT c.CRENM, s.status, t.FDTHEMENM, ct.FDCATEGORYNM, f.* "
+				+ "FROM FUNDING f "
+				+ "INNER JOIN CREATOR c ON f.CRENUM =c.CRENUM "
+				+ "INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM "
+				+ "INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM "
+				+ "INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM "
+				+ "where fdnum='"+fdNum+"' ORDER BY f.FDREGIDT DESC";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
@@ -42,16 +46,29 @@ public class MemberDao {
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
 			while (rs.next()) {
-				memberDTO.setMemNum(rs.getString("memnum"));
-				memberDTO.setmID(rs.getString("memid"));
-				memberDTO.setMemImg(rs.getString("memimg"));
-				memberDTO.setmName(rs.getString("memnick"));
-				memberDTO.setMemText(rs.getString("memtext"));
-				memberDTO.setMemPhone(rs.getString("memphone"));
-				memberDTO.setReport(rs.getInt("memreport"));
-				memberDTO.setJoinDate(rs.getString("memjoindate"));
-				memberDTO.setModDate(rs.getString("memmoddate"));
-				memberDTO.setMemgrade(rs.getString("memgrade"));
+				fd.setCreName(rs.getString("crenm"));
+				fd.setCreNum(rs.getString("crenum"));
+				fd.setStatus_name(rs.getString("status"));
+				fd.setStatus(rs.getInt("statusnum"));
+				fd.setTheme_name(rs.getString("fdthemenm"));
+				fd.setTheme(rs.getInt("fdthemenum"));
+				fd.setCategory_name(rs.getString("fdcategorynm"));
+				fd.setCategory(rs.getInt("fdcategorynum"));
+				fd.setPrice_target(rs.getInt("fdtargetprice"));
+				fd.setPrice(rs.getInt("fdingprice"));
+				
+				fd.setFdNum(rs.getString("fdnum"));
+				fd.setFdtitle(rs.getString("fdprojectnm"));
+				fd.setFdImg(rs.getString("fdImg"));
+				fd.setTags(rs.getString("fdtags"));
+				fd.setStoryImg(rs.getString("fdstoryimg"));
+				fd.setStorySum(rs.getString("fdstorysum"));
+				fd.setStory(rs.getString("fdstory"));
+				fd.setRefund(rs.getString("fdrefund"));
+				fd.setPolicy(rs.getString("fdpolicy"));
+				
+				fd.setReg_date(rs.getString("fdregiDT"));
+				fd.setExpire_date(rs.getString("fdexpDT"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -81,11 +98,11 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTO;
+		return fd;
 	}
 	
-	public ArrayList<Member> getmemberDTO() {
-		ArrayList<Member> memberDTOList = new ArrayList<Member>();
+	public ArrayList<Funding> getFundingList() {
+		ArrayList<Funding> fList = new ArrayList<Funding>();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -98,10 +115,13 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT memnum, memid, memnick, memreport, memjoindate, memgrade "
-				+ "FROM MEMBER m, MEMGRADE m2 "
-				+ "WHERE m.memgradenum = m2.memgradenum "
-				+ "order by memjoindate desc";
+		String SQL = "SELECT c.CRENM, s.status, t.FDTHEMENM, ct.FDCATEGORYNM, f.* "
+				+ "FROM FUNDING f "
+				+ "INNER JOIN CREATOR c ON f.CRENUM =c.CRENUM "
+				+ "INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM "
+				+ "INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM "
+				+ "INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM "
+				+ "WHERE f.STATUSNUM !=2 ORDER BY f.FDREGIDT DESC";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
@@ -116,10 +136,17 @@ public class MemberDao {
 			// stmt.excuteUpdate(SQL) : insert, update, delete ..
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
-			while (rs.next()) {
-				memberDTOList.add(new Member(rs.getString("memNum"),rs.getString("memid"), rs.getString("memnick"),
-											rs.getInt("memreport"), rs.getString("memgrade"), rs.getString("memjoindate") )
-						);
+			for(int i=0; rs.next(); i++) {
+				fList.add(new Funding());
+				fList.get(i).setStatus_name(rs.getString("status"));
+				fList.get(i).setTheme_name(rs.getString("fdthemenm"));
+				fList.get(i).setCategory_name(rs.getString("fdcategorynm"));
+				
+				fList.get(i).setCreNum(rs.getString("crenum"));
+				fList.get(i).setPrice_target(rs.getInt("fdtargetprice"));
+				fList.get(i).setPrice(rs.getInt("fdingprice"));
+				fList.get(i).setFdNum(rs.getString("fdnum"));
+				fList.get(i).setFdtitle(rs.getString("fdprojectnm"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -149,11 +176,11 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTOList;
+		return fList;
 	}
 	
-	public ArrayList<Member> getmemberDTO_gradeCheck() {
-		ArrayList<Member> memberDTOList = new ArrayList<Member>();
+	public ArrayList<Funding> getFundingList_check() {
+		ArrayList<Funding> fList = new ArrayList<Funding>();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -166,14 +193,15 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT m.memnum, memid, memgrade, pftitle, pfnum, pfstatenum "
-				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
-				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
+		String SQL = "SELECT s.status, t.FDTHEMENM, ct.FDCATEGORYNM, crenum, fdtargetprice, fdingprice, fdnum, fdprojectnm  "
+				+ "FROM FUNDING f "
+				+ "INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM "
+				+ "INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM "
+				+ "INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM "
+				+ "WHERE f.STATUSNUM =2 ORDER BY f.FDREGIDT DESC";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
-			
 			// 2. Connection 객체 생성
 			con = DriverManager.getConnection(url, user, pwd);
 
@@ -185,11 +213,29 @@ public class MemberDao {
 			// stmt.excuteUpdate(SQL) : insert, update, delete ..
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
-			while (rs.next()) {
-				memberDTOList.add(
-						new Member(rs.getString("memNum"), rs.getString("memid"), rs.getString("memgrade"),
-						rs.getString("pfnum"), rs.getString("pftitle"), rs.getString("pfstatenum"))
-						);
+			for(int i=0; rs.next(); i++) {
+				fList.add(new Funding());
+				fList.get(i).setStatus_name(rs.getString("status"));
+				fList.get(i).setTheme_name(rs.getString("fdthemenm"));
+				fList.get(i).setCategory_name(rs.getString("fdcategorynm"));
+				
+				fList.get(i).setCreNum(rs.getString("crenum"));
+				fList.get(i).setPrice_target(rs.getInt("fdtargetprice"));
+				fList.get(i).setPrice(rs.getInt("fdingprice"));
+				fList.get(i).setFdNum(rs.getString("fdnum"));
+				fList.get(i).setFdtitle(rs.getString("fdprojectnm"));
+				/*
+				fList.get(i).setFdImg(rs.getString("fdImg"));
+				fList.get(i).setTags(rs.getString("fdtags"));
+				fList.get(i).setStoryImg(rs.getString("fdstoryimg"));
+				fList.get(i).setStorySum(rs.getString("fdstorysum"));
+				fList.get(i).setStory(rs.getString("fdstory"));
+				fList.get(i).setRefund(rs.getString("fdrefund"));
+				fList.get(i).setPolicy(rs.getString("fdpolicy"));
+				
+				fList.get(i).setReg_date(rs.getString("fdregDT"));
+				fList.get(i).setExpire_date(rs.getString("fdexpDT"));
+				*/
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -219,10 +265,10 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTOList;
+		return fList;
 	}
-
-	public int getmemberDTO_gradeCheck_cnt() {
+	
+	public int getFundingList_check_cnt() {
 		int cnt=0;
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
@@ -236,14 +282,15 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT count(*) as count "
-				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
-				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
+		String SQL = "SELECT count(*) as count  "
+				+ "FROM FUNDING f "
+				+ "INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM "
+				+ "INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM "
+				+ "INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM "
+				+ "WHERE f.STATUSNUM =2 ORDER BY f.FDREGIDT DESC";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
-			
 			// 2. Connection 객체 생성
 			con = DriverManager.getConnection(url, user, pwd);
 
@@ -255,9 +302,8 @@ public class MemberDao {
 			// stmt.excuteUpdate(SQL) : insert, update, delete ..
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
-			while (rs.next()) {
-				cnt=rs.getInt("count");
-			}
+			rs.next();
+			cnt=rs.getInt("count");
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
 		} catch (ClassNotFoundException e1) {
@@ -289,7 +335,8 @@ public class MemberDao {
 		return cnt;
 	}
 
-	public String updateMemberGrade(String[] memNumList, int grade) {
+
+	public String updateFunding(String[] fdNumList, int status) {
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		PreparedStatement pstmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -301,13 +348,11 @@ public class MemberDao {
 		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
 		String user = "team8th", pwd = "tiger";
 
-		String SQL = "UPDATE MEMBER m SET (memgradenum, memmodDate) "
-				+ "	=(SELECT "+grade+", sysdate FROM dual) "
-				+ " WHERE memnum IN ( ?";
-		for(int i=1; i<memNumList.length; i++) {
-			SQL+=", ? ";
-		}
-		SQL+=")";
+		String SQL = "UPDATE funding SET STATUSNUM="+status+" WHERE fdnum in (?";
+				for(int i=1; i<fdNumList.length; i++) {
+						SQL+=", ? ";
+				}
+				SQL+=")";
 		try {
 
 			// 1. JDBC 드라이버 로딩
@@ -319,9 +364,8 @@ public class MemberDao {
 			// 3. PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
 			pstmt = con.prepareStatement(SQL);
 			// 4. pstmt.set<데이터타입>(? 순서, 값) ex).setString(), .setInt ...
-			
-			for(int j=0; j<memNumList.length; j++) {
-				pstmt.setString(j+1, memNumList[j]);
+			for(int j=0; j<fdNumList.length; j++) {
+				pstmt.setString(j+1, fdNumList[j]);
 			}
 
 			// 5. SQL 문장을 실행하고 결과를 리턴 - SQL 문장 실행 후, 변경된 row 수 int type 리턴
@@ -352,73 +396,9 @@ public class MemberDao {
 				}
 			}
 		}
-		return "회원 등업 성공";
+		return "펀딩 업데이트 성공";
 
 	}
 	
-	public String updatePortfolioConfirm(String[] memNumList, int status) {
-
-		Connection con = null; // 데이터 베이스와 연결을 위한 객체
-		PreparedStatement pstmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
-
-		// 1. JDBC Driver Class
-		String driver = "oracle.jdbc.driver.OracleDriver";
-
-		// 2. 데이터베이스 연결 정보
-		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
-		String user = "team8th", pwd = "tiger";
-
-		String SQL = "UPDATE PORTFOLIO SET PFSTATENUM="+status
-				+ " WHERE memnum IN ( ?";
-		for(int i=1; i<memNumList.length; i++) {
-			SQL+=", ? ";
-		}
-		SQL+=")";
-		try {
-
-			// 1. JDBC 드라이버 로딩
-			Class.forName(driver);
-
-			// 2. Connection 생성
-			con = DriverManager.getConnection(url, user, pwd);
-
-			// 3. PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
-			pstmt = con.prepareStatement(SQL);
-			// 4. pstmt.set<데이터타입>(? 순서, 값) ex).setString(), .setInt ...
-			
-			for(int j=0; j<memNumList.length; j++) {
-				pstmt.setString(j+1, memNumList[j]);
-			}
-
-			// 5. SQL 문장을 실행하고 결과를 리턴 - SQL 문장 실행 후, 변경된 row 수 int type 리턴
-			pstmt.executeUpdate();
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			// 사용순서와 반대로 close 함
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return "포트폴리오 컨펌 성공";
-
-	}
+	
 }

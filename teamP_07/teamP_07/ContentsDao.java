@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MemberDao {
+public class ContentsDao {
 	
-	public Member getmemberDTO_num(String memNum) {
-		Member memberDTO = new Member();
+	public Contents getBBS(String cttNum) {
+		Contents ctt = new Contents();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -24,9 +24,9 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT m.*, memgrade "
-				+ "FROM MEMBER m, MEMGRADE m2 "
-				+ "WHERE m.memgradenum = m2.memgradenum and memnum='"+memNum+"'";
+		String SQL = "SELECT bbsNum AS cttnum, memnum, bbstitle, bbsContent AS CONTENT, bbsDate AS income, VIEWCNT, STATUS "
+				+ "FROM bbs b, STATUS s "
+				+ "WHERE bbsnum='"+cttNum+"' AND b.STATUSNUM = s.STATUSNUM";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
@@ -42,16 +42,15 @@ public class MemberDao {
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
 			while (rs.next()) {
-				memberDTO.setMemNum(rs.getString("memnum"));
-				memberDTO.setmID(rs.getString("memid"));
-				memberDTO.setMemImg(rs.getString("memimg"));
-				memberDTO.setmName(rs.getString("memnick"));
-				memberDTO.setMemText(rs.getString("memtext"));
-				memberDTO.setMemPhone(rs.getString("memphone"));
-				memberDTO.setReport(rs.getInt("memreport"));
-				memberDTO.setJoinDate(rs.getString("memjoindate"));
-				memberDTO.setModDate(rs.getString("memmoddate"));
-				memberDTO.setMemgrade(rs.getString("memgrade"));
+				ctt.setCttNum(rs.getString("cttnum"));
+				ctt.setMemNum(rs.getString("memnum"));
+				ctt.setContents(rs.getString("content"));
+				ctt.setIncome(rs.getString("income"));
+				ctt.setStatus(rs.getString("status"));
+				
+				ctt.setBbsTitle(rs.getString("bbstitle"));
+				ctt.setViewCnt(rs.getInt("viewcnt"));
+				
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -81,11 +80,11 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTO;
+		return ctt;
 	}
 	
-	public ArrayList<Member> getmemberDTO() {
-		ArrayList<Member> memberDTOList = new ArrayList<Member>();
+	public Contents getComment(String cttNum) {
+		Contents ctt = new Contents();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -98,10 +97,9 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT memnum, memid, memnick, memreport, memjoindate, memgrade "
-				+ "FROM MEMBER m, MEMGRADE m2 "
-				+ "WHERE m.memgradenum = m2.memgradenum "
-				+ "order by memjoindate desc";
+		String SQL = "SELECT cmtnum AS cttnum, memnum, cmtcontent AS CONTENT , cmtdate AS income, bbsnum, STATUS "
+				+ "FROM comments c, STATUS s "
+				+ "WHERE cmtnum='"+cttNum+"' AND c.STATUSNUM = s.STATUSNUM";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
@@ -117,9 +115,14 @@ public class MemberDao {
 			rs = stmt.executeQuery(SQL);
 			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
 			while (rs.next()) {
-				memberDTOList.add(new Member(rs.getString("memNum"),rs.getString("memid"), rs.getString("memnick"),
-											rs.getInt("memreport"), rs.getString("memgrade"), rs.getString("memjoindate") )
-						);
+				ctt.setCttNum(rs.getString("cttnum"));
+				ctt.setMemNum(rs.getString("memnum"));
+				ctt.setContents(rs.getString("content"));
+				ctt.setIncome(rs.getString("income"));
+				ctt.setStatus(rs.getString("status"));
+				
+				ctt.setBbsNum(rs.getString("bbsnum"));
+				
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -149,11 +152,11 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTOList;
+		return ctt;
 	}
 	
-	public ArrayList<Member> getmemberDTO_gradeCheck() {
-		ArrayList<Member> memberDTOList = new ArrayList<Member>();
+	public Contents getFunding(String cttNum) {
+		Contents ctt = new Contents();
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -166,30 +169,38 @@ public class MemberDao {
 		String user = "team8th", pwd = "tiger";
 
 		// 데이터베이스 PW
-		String SQL = "SELECT m.memnum, memid, memgrade, pftitle, pfnum, pfstatenum "
-				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
-				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
+		String SQL = "SELECT fdnum AS cttnum, c.memnum, f.crenum, FDPROJECTNM AS fdtitle, fdImg, FDREGIDT AS income, "
+				+ "FDSTORYIMG, FDSTORYSUM, FDSTORY AS content, STATUS "
+				+ "FROM FUNDING f , CREATOR c, STATUS s "
+				+ "WHERE f.CRENUM =c.CRENUM AND f.STATUSNUM = s.STATUSNUM AND fdnum='"+cttNum+"'";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);
+			// 2. Connection 객체 생성
+			con = DriverManager.getConnection(url, user, pwd);
+
+			// DB 연결
+			// 3. Statement 객체 생성
+			stmt = con.createStatement();
+			// 4. SQL 문장을 실행하고 결과를 리턴
+			// stmt.excuteQuery(SQL) : select
+			// stmt.excuteUpdate(SQL) : insert, update, delete ..
+			rs = stmt.executeQuery(SQL);
+			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
 			
-			// 2. Connection 객체 생성
-			con = DriverManager.getConnection(url, user, pwd);
-
-			// DB 연결
-			// 3. Statement 객체 생성
-			stmt = con.createStatement();
-			// 4. SQL 문장을 실행하고 결과를 리턴
-			// stmt.excuteQuery(SQL) : select
-			// stmt.excuteUpdate(SQL) : insert, update, delete ..
-			rs = stmt.executeQuery(SQL);
-			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
 			while (rs.next()) {
-				memberDTOList.add(
-						new Member(rs.getString("memNum"), rs.getString("memid"), rs.getString("memgrade"),
-						rs.getString("pfnum"), rs.getString("pftitle"), rs.getString("pfstatenum"))
-						);
+				ctt.setCttNum(rs.getString("cttnum"));
+				ctt.setMemNum(rs.getString("memnum"));
+				ctt.setContents(rs.getString("content").replace("\r\n", "<br>"));
+				ctt.setIncome(rs.getString("income"));
+				ctt.setStatus(rs.getString("status"));
+				
+				ctt.setCreNum(rs.getString("crenum"));
+				ctt.setFdtitle(rs.getString("fdTitle"));
+				ctt.setFdImg(rs.getString("fdImg"));
+				ctt.setStoryImg(rs.getString("fdStoryImg"));
+				ctt.setStorySum(rs.getString("fdStorySum").replace("\r\n", "<br>"));
+	
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL Error : " + e.getMessage());
@@ -219,77 +230,11 @@ public class MemberDao {
 			}
 		}
 
-		return memberDTOList;
+		return ctt;
 	}
 
-	public int getmemberDTO_gradeCheck_cnt() {
-		int cnt=0;
 
-		Connection con = null; // 데이터 베이스와 연결을 위한 객체
-		Statement stmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
-		ResultSet rs = null; // SQL 질의에 의해 생성된 테이블을 저장하는 객체
-		// 1. JDBC Driver Class
-		String driver = "oracle.jdbc.driver.OracleDriver";
-
-		// 2. 데이터베이스 연결 정보
-		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
-		String user = "team8th", pwd = "tiger";
-
-		// 데이터베이스 PW
-		String SQL = "SELECT count(*) as count "
-				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
-				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
-		try {
-			// 1. JDBC 드라이버 로딩
-			Class.forName(driver);
-			
-			// 2. Connection 객체 생성
-			con = DriverManager.getConnection(url, user, pwd);
-
-			// DB 연결
-			// 3. Statement 객체 생성
-			stmt = con.createStatement();
-			// 4. SQL 문장을 실행하고 결과를 리턴
-			// stmt.excuteQuery(SQL) : select
-			// stmt.excuteUpdate(SQL) : insert, update, delete ..
-			rs = stmt.executeQuery(SQL);
-			// 5. ResultSet에 저장된 데이터 얻기 - 결과가 2개 이상
-			while (rs.next()) {
-				cnt=rs.getInt("count");
-			}
-		} catch (SQLException e) {
-			System.out.println("SQL Error : " + e.getMessage());
-		} catch (ClassNotFoundException e1) {
-			System.out.println("[JDBC Connector Driver 오류 : " + e1.getMessage() + "]");
-		} finally { // 사용순서와 반대로 close 함
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return cnt;
-	}
-
-	public String updateMemberGrade(String[] memNumList, int grade) {
+	public String updateBBS_blind(ArrayList<String> cttNumList, int status) {
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		PreparedStatement pstmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -301,13 +246,11 @@ public class MemberDao {
 		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
 		String user = "team8th", pwd = "tiger";
 
-		String SQL = "UPDATE MEMBER m SET (memgradenum, memmodDate) "
-				+ "	=(SELECT "+grade+", sysdate FROM dual) "
-				+ " WHERE memnum IN ( ?";
-		for(int i=1; i<memNumList.length; i++) {
-			SQL+=", ? ";
-		}
-		SQL+=")";
+		String SQL = "UPDATE bbs SET STATUSNUM="+status+" WHERE bbsnum in (?";
+				for(int i=1; i<cttNumList.size(); i++) {
+						SQL+=", ? ";
+				}
+				SQL+=")";
 		try {
 
 			// 1. JDBC 드라이버 로딩
@@ -319,9 +262,8 @@ public class MemberDao {
 			// 3. PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
 			pstmt = con.prepareStatement(SQL);
 			// 4. pstmt.set<데이터타입>(? 순서, 값) ex).setString(), .setInt ...
-			
-			for(int j=0; j<memNumList.length; j++) {
-				pstmt.setString(j+1, memNumList[j]);
+			for(int j=0; j<cttNumList.size(); j++) {
+				pstmt.setString(j+1, cttNumList.get(j));
 			}
 
 			// 5. SQL 문장을 실행하고 결과를 리턴 - SQL 문장 실행 후, 변경된 row 수 int type 리턴
@@ -352,11 +294,10 @@ public class MemberDao {
 				}
 			}
 		}
-		return "회원 등업 성공";
+		return "게시판 블라인드 성공";
 
 	}
-	
-	public String updatePortfolioConfirm(String[] memNumList, int status) {
+	public String updateComment_blind(ArrayList<String> cttNumList, int status) {
 
 		Connection con = null; // 데이터 베이스와 연결을 위한 객체
 		PreparedStatement pstmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
@@ -368,12 +309,11 @@ public class MemberDao {
 		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
 		String user = "team8th", pwd = "tiger";
 
-		String SQL = "UPDATE PORTFOLIO SET PFSTATENUM="+status
-				+ " WHERE memnum IN ( ?";
-		for(int i=1; i<memNumList.length; i++) {
-			SQL+=", ? ";
-		}
-		SQL+=")";
+		String SQL = "UPDATE comments SET STATUSNUM="+status+" WHERE cmtnum in (?";
+				for(int i=1; i<cttNumList.size(); i++) {
+						SQL+=", ? ";
+				}
+				SQL+=")";
 		try {
 
 			// 1. JDBC 드라이버 로딩
@@ -385,9 +325,8 @@ public class MemberDao {
 			// 3. PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
 			pstmt = con.prepareStatement(SQL);
 			// 4. pstmt.set<데이터타입>(? 순서, 값) ex).setString(), .setInt ...
-			
-			for(int j=0; j<memNumList.length; j++) {
-				pstmt.setString(j+1, memNumList[j]);
+			for(int j=0; j<cttNumList.size(); j++) {
+				pstmt.setString(j+1, cttNumList.get(j));
 			}
 
 			// 5. SQL 문장을 실행하고 결과를 리턴 - SQL 문장 실행 후, 변경된 row 수 int type 리턴
@@ -418,7 +357,103 @@ public class MemberDao {
 				}
 			}
 		}
-		return "포트폴리오 컨펌 성공";
+		return "댓글 블라인드 성공";
 
 	}
+	public String updateFunding_blind(ArrayList<String> cttNumList, int status) {
+
+		Connection con = null; // 데이터 베이스와 연결을 위한 객체
+		PreparedStatement pstmt = null; // SQL 문을 데이터베이스에 보내기위한 객체
+
+		// 1. JDBC Driver Class
+		String driver = "oracle.jdbc.driver.OracleDriver";
+
+		// 2. 데이터베이스 연결 정보
+		String url = "jdbc:oracle:thin:@106.10.104.82:1521:orcl";
+		String user = "team8th", pwd = "tiger";
+
+		String SQL = "UPDATE funding SET STATUSNUM="+status+" WHERE fdnum in (?";
+				for(int i=1; i<cttNumList.size(); i++) {
+						SQL+=", ? ";
+				}
+				SQL+=")";
+		try {
+
+			// 1. JDBC 드라이버 로딩
+			Class.forName(driver);
+
+			// 2. Connection 생성
+			con = DriverManager.getConnection(url, user, pwd);
+
+			// 3. PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
+			pstmt = con.prepareStatement(SQL);
+			// 4. pstmt.set<데이터타입>(? 순서, 값) ex).setString(), .setInt ...
+			for(int j=0; j<cttNumList.size(); j++) {
+				pstmt.setString(j+1, cttNumList.get(j));
+			}
+
+			// 5. SQL 문장을 실행하고 결과를 리턴 - SQL 문장 실행 후, 변경된 row 수 int type 리턴
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			// 사용순서와 반대로 close 함
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return "펀딩 블라인드 성공";
+
+	}
+	
+	public String blindContents(String[] cttNum, int status) {
+		
+		ArrayList<String> bbsNum = new ArrayList<String>();
+		ArrayList<String> cmtNum = new ArrayList<String>();
+		ArrayList<String> fdNum = new ArrayList<String>();
+		
+		
+		for(int i=0; i<cttNum.length; i++) {
+			if(cttNum[i].substring(0, 3).equals("bbs")) {
+				bbsNum.add(cttNum[i]);
+			}
+			else if(cttNum[i].substring(0, 3).equals("cmt")) {
+				cmtNum.add(cttNum[i]);
+			}
+			else if(cttNum[i].substring(0, 3).equals("fud")) {
+				fdNum.add(cttNum[i]);
+			}
+		}
+		
+		if(bbsNum.size()>0) {
+			updateBBS_blind(bbsNum, status);
+		}
+		if(cmtNum.size()>0) {
+			updateComment_blind(cmtNum, status);
+		}
+		if(fdNum.size()>0) {
+			updateFunding_blind(fdNum, status);
+		}
+		
+		return "컨텐츠 블라인드!";
+	}
+	
 }

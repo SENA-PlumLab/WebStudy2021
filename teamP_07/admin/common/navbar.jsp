@@ -54,52 +54,70 @@ String date = (String)session.getAttribute("date");
                     <span class="fs-5 d-none d-sm-inline" id="sidebar-title">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
+                   <!--  <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">회원 관리</span> </a>
+                    	<!-- href="#submenu1"으로 하면 토글 가능! -->
+                        <a href="#submenu1_" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">▶ 회원 관리</span> </a>
                         <ul class="collapse show nav flex-column" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="../member/check_grade.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">크리에이터 등업</span></a>
                             </li>
                             <li>
-                                <a href="../member/entire.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">전체 조회</span></a>
+                                <a href="../member/entire.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">전체 회원 조회</span></a>
+                            </li>
+                            <li>
+                                <a href="../member/portfolio.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">전체 포트폴리오 조회</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#submenu2_" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">▶ 펀딩 관리</span></a>
+                        <ul class="collapse show nav flex-column" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="../funding/check_funding.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">가등록 펀딩 승인</span></a>
+                            </li>
+                            <li>
+                                <a href="../funding/entire.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">전체 펀딩 조회</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">가등록 상품 검토</span></a>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">신고 관리</span></a>
-                        <ul class="collapse nav flex-column" id="submenu2" data-bs-parent="#menu">
+                        <a href="#submenu3_" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">▶ 신고 관리</span></a>
+                        <ul class="collapse show nav flex-column" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="../report/check_report.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">새로운 신고 확인</span></a>
                             </li>
                             <li>
                                 <a href="../report/doublecheck_report.jsp" class="nav-link px-0"> <span class="d-none d-sm-inline">보류 신고</span></a>
                             </li>
+                             <li>		                        
+		                        <a href="../report/report_log.jsp" class="nav-link px-0 align-middle">
+                            	<span class="d-none d-sm-inline">신고 확인 내역</span> </a>
+		                    </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu4_" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                            <span class="ms-1 d-none d-sm-inline">▶ 로그</span></a>
+                        <ul class="collapse show nav flex-column" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="../log/contents_log.jsp" class="nav-link px-0 align-middle">
+		                            <span class="d-none d-sm-inline">컨텐츠 활동 로그</span> </a>
+                            </li>
+                           	<li>
+		                        <a href="../log/member_log.jsp" class="nav-link px-0 align-middle">
+		                            <span class="d-none d-sm-inline">회원 로그</span> </a>
+		                    </li>
                         </ul>
                     </li>
                     <!-- <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <span class="ms-1 d-none d-sm-inline">제조사 관리</span></a>
-                        <ul class="collapse nav flex-column" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">제조사 관리</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">제조사 등록</span></a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    <li>
                         <a href="../log/report_log.jsp" class="nav-link px-0 align-middle">
                             <span class="ms-1 d-none d-sm-inline">신고 로그</span> </a>
                     </li>
@@ -110,7 +128,7 @@ String date = (String)session.getAttribute("date");
                     <li>
                         <a href="../log/member_log.jsp" class="nav-link px-0 align-middle">
                             <span class="ms-1 d-none d-sm-inline">회원 로그</span> </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

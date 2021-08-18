@@ -63,9 +63,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-						<h2>회원 로그 조회</h2>
+						<h2 class="h3 mb-4 text-gray-800">회원 로그 조회</h2>
 						<div class="table-responsive">
-							<table class="table table-hover table-sm">
+							<table class="table table-striped table-sm">
 								<thead>
 									<tr>
 										<th scope="col">Log number</th>
