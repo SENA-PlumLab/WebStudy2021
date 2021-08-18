@@ -1,0 +1,25 @@
+<2021.08.17>
+
+트리거가 생각보다 불편하다
+아래 링크 참조해서 최소한의 값만 넣는 트리거를 만들었다.
+https://glutinousricecookie.tistory.com/59
+insert와 함께 값도 log에 남기고 싶었는데, 그러려면 'of'를 써야했다.
+근데 of는 update와만 쓸 수 있었다. 
+==> 그니까 걍 내 수준에선 불가능.
+==> 차라리 수기로 매번 직접 log 테이블에 insert하는게 더 건설적일듯.
+그래서 그냥.. 깔끔하게 포기하고, 날짜와 insert/update/delete만 표시하게 했다.
+
+<2021.08.18>
+로그인 세션 적용
+
+** 세션 정보가 최초 1회만 유지 됨
+==> 한 페이지 안에 로그아웃 코드를 전부 넣었는지 확인!
+내 경우에 로그인 후 로드되는 페이지에서 index.jsp에서 로그아웃 버튼을 누르면 바로 java코드를 실행하는 jsp페이지를 만들었는데,
+[JSP 화면 호출시 <% %> 이부분은 무조건 동작] 하기 때문에
+페이지 로드와 함께 session.invalidate(); 가 실행되었던 것이 원인이었다!
+
+참고: https://okky.kr/article/818241
+
+sessionCookieName="test_JSESSIONID"
+
+출처: https://fruitdev.tistory.com/124 [과일가게 개발자]
