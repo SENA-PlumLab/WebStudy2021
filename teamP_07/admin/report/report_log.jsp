@@ -30,21 +30,16 @@
   <link rel="stylesheet" href="../common/style.css?ver=5">
   
   
-  <%
-
-  ReportDao rDao = new ReportDao();
-
-	ArrayList<Report> rList = rDao.getReportDTO_entire();
+<%
+ReportDao rDao = new ReportDao();
+ArrayList<Report> rList = rDao.getReportDTO_entire();
 
 boolean isLoggedIn = true;
 // 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-if (session.getAttribute("eeenum")==null) {
-	
+if (session.getAttribute("eeenum")==null) {	
     isLoggedIn=false; //==>js에서 redirect
 }
-
-
-  %>
+%>
 <body id="page-top">
 
 <!-- navbar import -->
@@ -90,11 +85,9 @@ if (session.getAttribute("eeenum")==null) {
 										<td><%=r.getEmp_name() %></td>										
 										<td><%=r.getEmp_pos() %></td>										
 									</tr>
-								<%} %>
-								
-									</tbody>
-									</table>
-									<!-- Content Row -->
+								<%} %>	
+								</tbody>
+							</table>
 						</div>
 						<!-- /.container-fluid -->
 				

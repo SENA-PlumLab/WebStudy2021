@@ -2,28 +2,30 @@ SELECT * FROM MEMBER;
 
 
 
---java에 쓰는 쿼리문
+--등업용 포트폴리오 조회
 SELECT m.memnum, memid, memgrade, pftitle, pfnum, pfstatenum
 FROM MEMBER m, MEMGRADE m2, PORTFOLIO p
 WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum 
-AND m.memgradenum=1 AND pfstatenum=1;
+AND m.memgradenum IN (1,2) AND pfstatenum=1;
 -- 0:등록중, 1: 제출, 2: 통과, 3:반려
 
-SELECT memnum, memid, memnick, memreport, memjoindate, memgrade 
+SELECT m.*, memgrade 
 FROM MEMBER m, MEMGRADE m2 
 WHERE m.memgradenum = m2.memgradenum
 ORDER BY m.memgradenum;
+
 
 UPDATE MEMBER m SET (memgradenum, memmodDate)=(
 				SELECT memgradenum+1, sysdate 
 				FROM MEMBER 
 				WHERE memnum='mem-1022') 
 		WHERE (memnum='mem-1022');
-		
+
+--회원 등급 변경
 UPDATE MEMBER m SET (memgradenum, memmodDate)
 				=(SELECT 1, sysdate FROM dual) 
 		WHERE memnum IN ('mem-0002', 'mem-1005');
-	
+--포트폴리오 상태 변경
 UPDATE PORTFOLIO m SET PFSTATENUM=1
 		WHERE memnum IN ('mem-0002', 'mem-1005');	
 	
@@ -120,13 +122,13 @@ CREATE OR REPLACE TRIGGER member_trigger
    AFTER DELETE OR INSERT OR UPDATE ON member
 BEGIN
   -- 삽입할 때
-   IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
+   IF INSERTING THEN 
       INSERT INTO member_log(memo) VALUES ('insert');
   -- 수정할 때
-   ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
+   ELSIF UPDATING THEN 
       INSERT INTO member_log(memo) VALUES ('update');
   -- 삭제할 때
-   ELSIF DELETING THEN -- 이 트리거를 가진 ExamData에 delete 문장이 실행되면 밑에것(ExamMeno에 delete)도 실행
+   ELSIF DELETING THEN 
       INSERT INTO member_log(memo) VALUES ('delete');
    END IF;
 END;
@@ -166,13 +168,13 @@ CREATE OR REPLACE TRIGGER fd_trigger
    AFTER DELETE OR INSERT OR UPDATE ON funding
 BEGIN
   -- 삽입할 때
-   IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
+   IF INSERTING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('funding','insert');
   -- 수정할 때
-   ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
+   ELSIF UPDATING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('funding', 'update');
   -- 삭제할 때
-   ELSIF DELETING THEN -- 이 트리거를 가진 ExamData에 delete 문장이 실행되면 밑에것(ExamMeno에 delete)도 실행
+   ELSIF DELETING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('funding', 'delete');
    END IF;
 END;
@@ -181,13 +183,13 @@ CREATE OR REPLACE TRIGGER cmt_trigger
    AFTER DELETE OR INSERT OR UPDATE ON COMMENTs
 BEGIN
   -- 삽입할 때
-   IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
-      INSERT INTO ctt_log(kind, memo) VALUES ('funding', 'insert');
+   IF INSERTING THEN 
+      INSERT INTO ctt_log(kind, memo) VALUES ('comment', 'insert');
   -- 수정할 때
-   ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
+   ELSIF UPDATING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('comment', 'update');
   -- 삭제할 때
-   ELSIF DELETING THEN -- 이 트리거를 가진 ExamData에 delete 문장이 실행되면 밑에것(ExamMeno에 delete)도 실행
+   ELSIF DELETING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('comment', 'delete');
    END IF;
 END;
@@ -198,13 +200,13 @@ CREATE OR REPLACE TRIGGER bbs_trigger
    AFTER DELETE OR INSERT OR UPDATE ON bbs
 BEGIN
   -- 삽입할 때
-   IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
+   IF INSERTING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('bbs', 'insert');
   -- 수정할 때
-   ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
+   ELSIF UPDATING THEN 
       INSERT INTO ctt_log(kind, memo) VALUES ('bbs','update');
   -- 삭제할 때
-   ELSIF DELETING THEN -- 이 트리거를 가진 ExamData에 delete 문장이 실행되면 밑에것(ExamMeno에 delete)도 실행
+   ELSIF DELETING THEN
       INSERT INTO ctt_log(kind, memo) VALUES ('bbs','delete');
    END IF;
 END;
@@ -212,8 +214,13 @@ END;
 UPDATE bbs SET bbstitle='수정해보고싶어요' WHERE bbsnum='bbs-0057';
 
 
-SELECT * FROM ctt_log ORDER BY INCOME_DATE desc;
-SELECT * FROM member_log;
+SELECT * 
+FROM ctt_log 
+ORDER BY INCOME_DATE desc;
+
+SELECT * 
+FROM member_log 
+ORDER BY INCOME_DATE desc;
 
 
 
@@ -251,18 +258,22 @@ CREATE OR REPLACE TRIGGER report_trigger
    AFTER DELETE OR INSERT OR UPDATE ON report
 BEGIN
   -- 삽입할 때
-   IF INSERTING THEN -- 이 트리거를 가진 ExamData에 insert 문장이 실행되면 밑에것(ExamMeno에 insert)도 실행
+   IF INSERTING THEN
       INSERT INTO ctt_log(kind, memo) VALUES ('report', 'insert');
   -- 수정할 때
-   ELSIF UPDATING THEN -- 이 트리거를 가진 ExamData에 update 문장이 실행되면 밑에것(ExamMeno에 update)도 실행
+   ELSIF UPDATING THEN
       INSERT INTO ctt_log(kind, memo) VALUES ('report','update');
   -- 삭제할 때
-   ELSIF DELETING THEN -- 이 트리거를 가진 ExamData에 delete 문장이 실행되면 밑에것(ExamMeno에 delete)도 실행
+   ELSIF DELETING THEN
       INSERT INTO ctt_log(kind, memo) VALUES ('report','delete');
    END IF;
 END;
 
 SELECT * FROM CTT_LOG cl ;
+
+--신고 조회
+SELECT rptNum, memnum, memnum2, statusnum, cttnum
+FROM report where statusnum=2 order by income desc ;
 
 --신고접수
 INSERT INTO report(memnum, memnum2, cttnum) VALUES ('mem-0002', 'mem-0003', 'cmt-0041');
@@ -271,7 +282,12 @@ UPDATE report SET (edit_date, statusnum, eeenum)=(
 					SELECT sysdate, 1, 'eee-0005'
 					FROM dual) 
 WHERE rptnum='rpt-0004';
-UPDATE MEMBER SET memreport=memreport+1 WHERE memnum='mem-0003';
+--게시물 status 3(신고로 가려짐 상태) 변경
+UPDATE bbs SET STATUSNUM=3 WHERE bbsnum='bbs-0059';
+UPDATE COMMENTS SET STATUSNUM=3 WHERE cmtnum='cmt-0041';
+UPDATE FUNDING SET STATUSNUM=3 WHERE fdnum='fud-0021';
+
+UPDATE MEMBER SET memreport=1 WHERE memnum='mem-0003';
 --확인
 SELECT * FROM report;
 SELECT * FROM MEMBER;
@@ -291,9 +307,13 @@ FROM EMP_TB et, EMP_AUTH_TB eat, EMP_POS_TB ept
 WHERE et.EMP_AUTH = eat.EMP_AUTH_PK AND et.EMP_POS =ept.EMP_POS_PK; 
 -------------------------------------------------------------------------------
 --신고 처리내역 조회
-SELECT r.RPTNUM, r.MEMNUM2, r.INCOME, r.EDIT_DATE, r.STATUSNUM, et.EMP_NAME, pos_name
+SELECT r.RPTNUM, r.MEMNUM2, r.INCOME, 
+	r.EDIT_DATE, r.STATUSNUM, 
+	et.EMP_NAME, pos_name
 FROM REPORT r, EMP_TB et , EMP_POS_TB ept 
-WHERE STATUSNUM IN (1, 0) AND r.EEENUM = et.EEENUM_PK AND et.EMP_POS = ept.EMP_POS_PK;
+WHERE STATUSNUM IN (1, 0) 
+	AND r.EEENUM = et.EEENUM_PK 
+	AND et.EMP_POS = ept.EMP_POS_PK;
 
 SELECT r.rptnum, r.MEMNUM2, r.cttnum, r.INCOME, r.EDIT_DATE, r.STATUSNUM, et.EMP_NAME, pos_name
 				FROM REPORT r, EMP_TB et , EMP_POS_TB ept
@@ -303,7 +323,7 @@ SELECT r.rptnum, r.MEMNUM2, r.cttnum, r.INCOME, r.EDIT_DATE, r.STATUSNUM, et.EMP
 SELECT * FROM bbs;
 SELECT bbsNum AS cttnum, memnum, bbstitle, bbsContent AS CONTENT, bbsDate AS income, VIEWCNT, status 
 FROM bbs b, STATUS s WHERE bbsnum='bbs-0059' AND b.STATUSNUM = s.STATUSNUM ;
---게시물 status 3 변경
+--게시물 status 3(신고로 가려짐 상태) 변경
 UPDATE bbs SET STATUSNUM=3 WHERE bbsnum='bbs-0059';
 UPDATE COMMENTS SET STATUSNUM=3 WHERE cmtnum='cmt-0041';
 UPDATE FUNDING SET STATUSNUM=3 WHERE fdnum='fud-0021';
@@ -337,13 +357,19 @@ INNER JOIN FDTHEME t
 INNER JOIN FDCATEGORY ct
 	ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM ;
 
+--펀딩 조회 (가등록 제외)
 SELECT c.CRENM, s.status, t.FDTHEMENM, ct.FDCATEGORYNM, f.*
 FROM FUNDING f 
 INNER JOIN CREATOR c ON f.CRENUM =c.CRENUM
 INNER JOIN STATUS s ON f.STATUSNUM = s.STATUSNUM
 INNER JOIN FDTHEME t ON f.FDTHEMENUM = t.FDTHEMENUM
 INNER JOIN FDCATEGORY ct ON f.FDCATEGORYNUM = ct.FDCATEGORYNUM
-WHERE f.STATUSNUM=2;
+WHERE f.STATUSNUM!=2 ORDER BY f.FDREGIDT DESC;
+--펀딩 업데이트
+UPDATE funding 
+	SET STATUSNUM=2 
+WHERE fdnum in ('fud-0001','fud-0002');
+
 
 SELECT s.status, t.FDTHEMENM, ct.FDCATEGORYNM, crenum, fdtargetprice, fdingprice, fdnum, fdprojectnm
 FROM FUNDING f

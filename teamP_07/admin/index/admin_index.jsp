@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

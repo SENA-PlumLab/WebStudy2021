@@ -169,7 +169,7 @@ public class MemberDao {
 		String SQL = "SELECT m.memnum, memid, memgrade, pftitle, pfnum, pfstatenum "
 				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
 				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
+				+ "AND m.memgradenum in (1,2) and pfstatenum=1 order by memjoindate desc";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);

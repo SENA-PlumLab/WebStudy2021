@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,16 +32,13 @@
   
   <%
 	MemberDao mDao = new MemberDao();
-
 	ArrayList<Member> mList = mDao.getmemberDTO_gradeCheck();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
+	if (session.getAttribute("eeenum")==null) {	
 	    isLoggedIn=false; //==>js에서 redirect
 	}
-
   %>
 <body id="page-top">
 
@@ -86,14 +83,14 @@
 								</tbody>
 							</table>
 							<div id="btn-holder">
-							<select name="status">
-								<option value=2>크리에이터</option>												
-								<option value=3>우수 크리에이터</option>												
-							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
+								<select name="status">
+									<option value=2>크리에이터</option>												
+									<option value=3>우수 크리에이터</option>												
+								</select>
+								<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
 							</div>
 							</form>
-							</div>
+						</div>
 							
 									<!-- Content Row -->
 						
@@ -114,17 +111,8 @@
     
 <!-- Bootstrap js script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="check_grade.js" charset="utf-8"></script>
 <script type="text/javascript">
-$(".check").click(function(){ 
-	var checkBtn = $(this);
-	//checkBtn.parent() : checkBtn의 부모는 <td>이다.
-	// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
-	var tr = checkBtn.parent().parent();
-	var td = tr.children();
-	td.eq(1).append("<input type='hidden' value='"+td.eq(1).text()+"' name='pfNum'>");
-});
-
-
 //세션검사, 로그아웃 버튼
 if(<%=isLoggedIn%>==false){
 	  alert('로그인 정보가 없습니다!');
@@ -135,16 +123,6 @@ $("#btn_logout").click(function(){
 	  document.location.href="../login/logout.jsp";
 	  
 })
-//멤버 조회 팝업
-function popUp_mem(e, memNum){
-    window.open('visit_member.jsp?memNum='+memNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
-}
-//콘텐츠 내용 조회 팝업
-function popUp(e, pfNum){
-	//var cttNum = e;
-	//console.log(pfNum);
-    window.open('visit_contents.jsp?pfNum='+pfNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
-}
 </script>
   
 </body>

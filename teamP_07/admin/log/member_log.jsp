@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -29,22 +29,18 @@
   <link rel="stylesheet" href="../common/style.css?ver=5">
   
   
-  <%
-
-  LogDao lDao = new LogDao();
-
-	ArrayList<Log> list = lDao.getLogDTO_member();
+<%
+LogDao lDao = new LogDao();
+ArrayList<Log> list = lDao.getLogDTO_member();
 	
-	
-	boolean isLoggedIn = true;
-	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
+boolean isLoggedIn = true;
+// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
+if (session.getAttribute("eeenum")==null) {
 		
-	    isLoggedIn=false; //==>js에서 redirect
-	}
+    isLoggedIn=false; //==>js에서 redirect
+}
+%>
 
-
-  %>
 <body id="page-top">
 
 <!-- navbar import -->
@@ -81,9 +77,8 @@
 										<td><%=l.getDate() %></td>										
 									</tr>
 								<%} %>
-								
-									</tbody>
-									</table>
+								</tbody>
+							</table>
 									<!-- Content Row -->
 						</div>
 						<!-- /.container-fluid -->

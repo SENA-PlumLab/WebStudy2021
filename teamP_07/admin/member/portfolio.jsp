@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -30,20 +30,16 @@
     <link rel="stylesheet" href="check_grade.css?ver=2">
   
   
-  <%
-  	PortfolioDao pDao = new PortfolioDao();
-
-	ArrayList<Portfolio> pList = pDao.getPortfolioList();
+<%
+PortfolioDao pDao = new PortfolioDao();
+ArrayList<Portfolio> pList = pDao.getPortfolioList();
 	
-	boolean isLoggedIn = true;
-	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
-	    isLoggedIn=false; //==>js에서 redirect
-	}
-
-
-  %>
+boolean isLoggedIn = true;
+// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
+if (session.getAttribute("eeenum")==null) {
+    isLoggedIn=false; //==>js에서 redirect
+}
+ %>
 <body id="page-top">
 
 <!-- navbar import -->
@@ -84,10 +80,8 @@
 									</tr>
 								<%} %>
 								
-									</tbody>
-									</table>
-									<!-- Content Row -->
-
+								</tbody>
+							</table>
 						</div>
 						<!-- /.container-fluid -->
 
@@ -126,8 +120,6 @@ function popUp_mem(e, memNum){
 }
 //콘텐츠 내용 조회 팝업
 function popUp(e, pfNum){
-	//var cttNum = e;
-	//console.log(pfNum);
     window.open('visit_contents.jsp?pfNum='+pfNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
 }
 </script>

@@ -35,21 +35,19 @@
   
   
      
-<main class="form-signin">
-  <form method="post" action="login_verify.jsp">
+<main class="form-login">
+  <form method="post" action="login_verify.jsp" onsubmit="return checkForm();">
     <img src="../common/img/logo.png" alt="" width="200" >
 
     <div class="form-floating">
-      <input type="text" class="form-control" name="id" placeholder="id">
+      <input type="text" class="form-control" id="id" name="id" placeholder="id">
       <label for="floatingInput">ID</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" name="pass" placeholder="Password">
+      <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
-
-    
-    <button class="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
+    <input class="w-100 btn btn-lg btn-dark" type="submit" value="Log in">
     <p class="mt-5 mb-3 text-muted">&copy; My One Pick</p>
   </form>
 </main>
@@ -63,6 +61,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <!-- script -->
   <script type="text/javascript" src="tsParticles.js" charset="utf-8"></script>
+  <script type="text/javascript" src="login_validation.js" charset="utf-8"></script>
 
 </body>
 </html>

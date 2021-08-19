@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,17 +32,13 @@
   
   <%
 	ReportDao rDao = new ReportDao();
-
 	ArrayList<Report> rList = rDao.getReportDTO_hold();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
+	if (session.getAttribute("eeenum")==null) {	
 	    isLoggedIn=false; //==>js에서 redirect
 	}
-
-
   %>
 <body id="page-top">
 
@@ -89,15 +85,14 @@
 								</tbody>
 							</table>
 							<div id="btn-holder">
-							<select name="status">
-								<option value=1>정상 신고 확인</option>
-								<option value=0>혐의 없음</option>														
-							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
+								<select name="status">
+									<option value=1>정상 신고 확인</option>
+									<option value=0>혐의 없음</option>														
+								</select>
+								<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
 							</div>
 							</form>
-							
-							</div>
+						</div>
 							
 									<!-- Content Row -->
 						
@@ -139,8 +134,6 @@ function popUp_mem(e, memNum){
 }
 //콘텐츠 내용 조회 팝업
 function popUp(e, cttNum){
-	//var cttNum = e;
-	console.log(cttNum);
     window.open('visit_contents.jsp?cttNum='+cttNum, '내용 확인', 'width=600px,height=600px,scrollbars=yes');
 }
 

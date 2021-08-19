@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -30,20 +30,16 @@
     <link rel="stylesheet" href="check_grade.css?ver=2">
   
   
-  <%
-  MemberDao mDao = new MemberDao();
-
-	ArrayList<Member> mList = mDao.getmemberDTO();
+<%
+MemberDao mDao = new MemberDao();
+ArrayList<Member> mList = mDao.getmemberDTO();
 	
-	boolean isLoggedIn = true;
-	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
-	    isLoggedIn=false; //==>js에서 redirect
-	}
-
-
-  %>
+boolean isLoggedIn = true;
+// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
+if (session.getAttribute("eeenum")==null) {	
+    isLoggedIn=false; //==>js에서 redirect
+}
+%>
 <body id="page-top">
 
 <!-- navbar import -->
@@ -62,12 +58,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   <!--  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">신규 회원 수</h1>
-                    </div>
-
-						<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
- -->
+                  
 						<h2 class="h3 mb-4 text-gray-800">전체 회원 조회</h2>
 						<div class="table-responsive">
 							<form method="post" action="update_grade.jsp">
@@ -95,16 +86,14 @@
 										<td> <input class='check'  type='checkbox' value='<%=m.getMemNum() %>' name='update' /></td>																				
 									</tr>
 								<%} %>
-								
-									</tbody>
-									</table>
-									<!-- Content Row -->
+								</tbody>
+							</table>	
 							<div id="btn-holder">
-							<select name="status">
-								<option value=0>활동 정지</option>												
-								<option value=1>일반 회원</option>												
-							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
+								<select name="status">
+									<option value=0>활동 정지</option>												
+									<option value=1>일반 회원</option>												
+								</select>
+								<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
 							</div>
 							</form>
 						</div>

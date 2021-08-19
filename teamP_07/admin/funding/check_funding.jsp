@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>This is title</title>
+<title>My One Pick - Admin</title>
 </head>
 	<!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -32,16 +32,13 @@
   
   <%
 	FundingDao fDao = new FundingDao();
-
 	ArrayList<Funding> fList = fDao.getFundingList_check();
 	
 	boolean isLoggedIn = true;
 	// 인증된 세션이 없는경우, 해당페이지를 볼 수 없게 함.
-	if (session.getAttribute("eeenum")==null) {
-		
+	if (session.getAttribute("eeenum")==null) {		
 	    isLoggedIn=false; //==>js에서 redirect
 	}
-
   %>
 <body id="page-top">
 
@@ -96,16 +93,15 @@
 								<%} %>
 								</tbody>
 							</table>
-							
-							
 							<div id="btn-holder">
-							<select name="status">
-								<option value=1>게시 승인</option>						
-								<option value=3>부적절</option>								
-							</select>
-							<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인"></div>
-							</form>
+								<select name="status">
+									<option value=1>게시 승인</option>						
+									<option value=3>부적절</option>								
+								</select>
+								<input type="submit" id="btn-submit" class="btn-outline-primary" value="선택 확인">
 							</div>
+							</form>
+						</div>
 									<!-- Content Row -->
 						
 						<!-- /.container-fluid -->

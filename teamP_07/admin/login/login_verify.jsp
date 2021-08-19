@@ -20,7 +20,6 @@ Boolean isLoggedIn=false;
 AdminDao aDao = new AdminDao();
 Admin a = aDao.getAdminDTO_byID(id);
 
-
 if(a.getId()==null){
 	isLoggedIn=false;
 }else if(id.equals(a.getId()) && pass.equals(a.getPass()) ){
@@ -30,16 +29,11 @@ if(a.getId()==null){
 	session.setAttribute("dept", a.getPos_name());
 	session.setAttribute("date", a.getSysdate());
 }
-
-
 %>
-
 </body>
 
 </body>
-
 <script type="text/javascript">
-
 	if(<%= isLoggedIn %>){
 		alert("<%=session.getAttribute("name")%>님 환영합니다!");
 		document.location.href="../index/admin_index.jsp";		
@@ -47,6 +41,5 @@ if(a.getId()==null){
 		alert("로그인 실패! 아이디와 비밀번호를 확인하세요.");
 		document.location.href="login.jsp";
 	}
-
 </script>
 </html>
