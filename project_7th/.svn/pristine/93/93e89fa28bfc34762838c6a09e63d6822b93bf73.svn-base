@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My One Pick</title>
+<link rel="stylesheet" href="Creator.css" type="text/css">
+<link rel="stylesheet" href="../common/style.css" type="text/css">
+
+</head>
+<body>
+<header>
+
+</header>    
+	<section>
+		<div id="wrap2">
+				<div class="profile">
+				<div class="profileimg">
+				이미지들어가는곳
+				</div>
+				</div>
+				<div class="profileimg_edit">
+				</div>
+		        <ui class="mainMenu">
+		            <li class="subject">
+		                <a href="#account" class="btn">마이페이지</a>
+		                <div class="subMenu">
+		                    <a href="#">구매</a>
+		                    <a href="#">포트폴리오</a>
+		                    <a href="#">팔로잉</a>
+		                </div>
+		            </li>
+		     	</ui>
+		</div>
+	</section>
+<footer>
+
+</footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+#Register_title {
+	font-size: 30px;
+	font-weight: bold;
+	font-family:'Noto Sans KR', sans-serif;	
+	color:#10223b;
+}
+.story {
+	margin-left: 30px;
+	height: 800px;
+}
+#summaryText {
+	width: 500px;
+	height: 100px;
+}
+#contentText {
+	width: 500px;
+	height: 200px;
+}
+.fd_dt_title {
+	font-size: 20px;
+	font-weight: bold;
+	font-family:'Noto Sans KR', sans-serif;		
+	color:#10223b;
+	padding-top: 5px;
+}
+.fd_dt_contents {
+	width: 500px;
+	height: 30px;
+    padding: 5px;
+    background-color: #FDFBFC;
+    border: 2px solid #DDEEEB;
+}
+.warning {
+	font-size: 12px;
+	font-family:'Noto Sans KR', sans-serif;		
+	color: #138396;
+	padding-left: 5px;
+}
+
+.save_choice {
+	position:absolute;
+	margin-bottom:20px;
+	top:680px; 
+	left: 350px;
+	width:200px; 
+	font-family:'Noto Sans KR', sans-serif;
+	font-weight:bold;
+	font-size:20px;
+	height:40px;
+	border: 3px solid #138396;
+	border-radius:10px;
+	background-color: #138396;
+	color: white;
+}
+.save_choice:hover {
+	background-color: white;
+	color: #138396;
+	cursor: pointer;
+}

@@ -1,0 +1,76 @@
+/*
+ 메인컬러
+background-color:#FDFBFC
+background-color:#DDEEEB
+background-color:#07CBE5
+background-color:#138396
+background-color:#10223b
+background-color:#FE0D49
+
+*/
+
+
+
+.btn_cancel {
+    width: 100px;
+    padding: 5px 20px;
+    background-color: #FDFBFC;
+    border: 1px solid #10223b;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn_default{
+    width: 100px;
+    padding: 5px 20px;
+    color: #FDFBFC;
+    background-color: #10223b;
+    border: none;
+    border: 1px solid #10223b;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.portfolio_main {
+    margin: 15px 100px;
+    padding: 15px;
+    background-color: #ffffff;
+}
+.portfolio_main .portfolio_top {
+    text-align: center;
+}
+.portfolio_main .portfolio_top h2 {
+    padding: 10px 0px;
+}
+.portfolio_main .portfolio_top p {
+    font-size: 13px;
+    color: #07CBE5;
+}
+.portfolio_main div {
+    padding: 15px;
+    padding-bottom: 30px;
+    border-top : 2px solid #07CBE5;
+}
+.portfolio_main div:first-child {
+    border-top : none;
+}
+.portfolio_main div h3 {
+    padding: 10px 5px;
+}
+.portfolio_main div > input[type=text] {
+    width: 100%;
+    padding: 5px;
+    background-color: #FDFBFC;
+    border: 2px solid #DDEEEB;
+}
+.portfolio_main div > [name=portContent]{
+    padding: 15px;
+    background-color: #FDFBFC;
+    border: 2px solid #DDEEEB;
+    
+}
+
+
+.portfolio_footer{
+    text-align: center;
+}

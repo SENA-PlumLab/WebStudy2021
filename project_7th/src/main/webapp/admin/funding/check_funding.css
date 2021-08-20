@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+#btn-holder {
+	float: right;
+}
+select {
+	margin: 0 5px 0;
+}

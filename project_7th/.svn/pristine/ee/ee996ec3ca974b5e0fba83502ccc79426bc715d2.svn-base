@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="javaexp.z01_database.*"
+    import="javaexp.z02_vo.*"
+    import="java.util.ArrayList"
+    %>
+ <%
+	request.setCharacterEncoding("utf-8");
+	String path = request.getContextPath();
+%>     
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>As I dreamed</title>
+<style>
+	
+</style>
+<link rel="stylesheet" href="Funding_Register.css" type="text/css">
+<link rel="stylesheet" href="../common/style.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+<script src="jquery-3.6.0.js" 
+	type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".choice").click( function(){
+			$(this).val('선택완료');
+		});
+	});
+</script>
+</head>
+<%-- 
+# 
+
+--%>
+<%
+
+%>
+<body>
+	<h2 align="center"></h2>
+	<form id="frm01">
+	<table>
+		<tr>
+			<td>
+				<div class="theme">
+					<img src="image/frame.png">
+					<ul>
+						<li><img src="image/check.png" class="check">My One Pick 티칭</li> 
+						<li><img src="image/check.png" class="check">스토리 디벨롭 지원</li>
+						<li><img src="image/check.png" class="check">새소식 알림</li> 
+						<li><img src="image/check.png" class="check">펀딩 인증마크</li> 
+					</ul>
+				<input type="button" value="선택" class="choice">
+				</div>
+								<div class="theme">
+					<img src="image/frame2.png" style="width:360px; height:350px;">
+					<ul style="top:310px;">
+						<li><img src="image/check.png" class="check">My One Pick 티칭</li> 
+						<li><img src="image/check.png" class="check">스토리 디벨롭 지원</li>
+						<li><img src="image/check.png" class="check">새소식 알림</li> 
+						<li><img src="image/check.png" class="check">펀딩 인증마크</li> 
+						<li><img src="image/check.png" class="check">컨텐츠 제작 도우미</li> 
+						<li><img src="image/check.png" class="check">리스트 상위노출</li> 
+						<li><img src="image/check.png" class="check">컨텐츠 광고제작</li> 
+					</ul>
+					<input type="button" value="선택" class="choice" style="top:267px;">
+				</div>
+				<div class="theme">
+					<img src="image/frame3.png" style="width:350px; height:420px;">
+					<ul style="top:670px;">
+						<li><img src="image/check.png" class="check">My One Pick 티칭</li> 
+						<li><img src="image/check.png" class="check">스토리 디벨롭 지원</li>
+						<li><img src="image/check.png" class="check">새소식 알림</li> 
+						<li><img src="image/check.png" class="check">펀딩 인증마크</li> 
+						<li><img src="image/check.png" class="check">컨텐츠 제작 도우미</li> 
+						<li><img src="image/check.png" class="check">리스트 상위노출</li> 
+						<li><img src="image/check.png" class="check">컨텐츠 광고제작</li>
+						<li><img src="image/check.png" class="check">온·오프라인 펀딩</li>
+						<li><img src="image/check.png" class="check">제조사 물품 할인</li>
+					</ul>
+					<input type="button" value="선택" class="choice" style="top:630px;">	
+				</div>
+			<td>
+		</tr>
+
+	</table>	
+	</form>
+	
+</body>
+</html>

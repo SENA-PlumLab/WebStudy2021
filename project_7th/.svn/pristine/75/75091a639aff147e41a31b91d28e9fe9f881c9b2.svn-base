@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My One Pick</title>
+<link rel="stylesheet" href="Creator.css" type="text/css">
+<link rel="stylesheet" href="../common/style.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+
+</header>    
+	<section style="border;">
+		<div id="wrap2" style="border-right: 0.2px solid #DDEEEB; ">
+				<div class="profile">
+				<div class="profileimg" >
+				</div>
+				</div>
+				<div class="profileimg_edit">
+				</div>
+				<div class="profile_title">Rose under the light　<img src="image/to.png" style="width:15px; height:15px"></div>
+				<br>
+		        <ui class="mainMenu">
+		            <li class="subject">
+		                <a href="#account" class="Menu">크리에이터페이지</a>
+		                	<%-- Btn ==> Menu로 변경했음 --%>
+		                <div class="subMenu">
+		                    <a href="Funding_Register.jsp" target="_parent">펀딩등록</a>
+		                    <a href="Funding_Manage.jsp">펀딩관리</a>
+		                    <a href="#">커뮤니티관리</a>
+		                </div>
+		            </li>
+		     	</ui>
+		</div>
+		<div id="wrap3">
+			<h3 class="funing_list">진행중인 펀딩 (2)</h3>
+			<div class="funding">
+				<img src="image/clothes.png" class="funding_img">
+				<div class="funding_title">트리플에이 AFA 트릿 티셔츠</div>
+				<div class="funding_detail">
+					CLOTHES<span class="line"> I </span> 
+							<span class="cre_name">Rose under the light</span>
+				</div>
+				<div id="percent_num" style="width: 190px"></div>
+				<div id="percent"></div>
+				<br>
+				<h3>
+					75%<span style="color: #D5D5D5; font-size: 14px"> 
+						1,200,000원　　　　　마감59일전</span>
+				</h3>
+			</div>
+			<div class="funding">
+				<img src="image/clothes2.jpg" class="funding_img">
+				<div class="funding_title">더블시프트 133 스트리트 탑</div>
+				<div class="funding_detail">
+					CLOTHES<span class="line"> I </span> 
+							<span class="cre_name">Rose under the light</span>
+				</div>
+				<div id="percent_num"></div>
+				<div id="percent"></div>
+				<br>
+				<h3>
+					451%<span style="color: #D5D5D5; font-size: 14px">
+						5,140,000원　　　　　 마감109일전</span>
+				</h3>
+			</div>
+			<div id="funding_register">
+				<input type="button" value="새로운 펀딩 신청" id="funding_register_button" />
+			</div>
+			<hr id="inside_line">
+			<div id="liner">
+				<div id="liner_img">
+					<img src="image/community.png">
+				</div>
+				<div id="liner_text">　커뮤니티</div>
+				<div id="liner_img">
+					<img src="image/guide.png">
+				</div>
+				<div id="liner_text">　이용가이드</div>
+			</div>
+			<hr id="inside_line">
+			<div class="event_banner">
+				<img src="image/event.png" class="event_banner_img"> 
+				<img src="image/event2.png" class="event_banner_img">
+			</div>
+		</div>
+	</section>
+<footer>
+
+</footer>
+</body>
+</html>

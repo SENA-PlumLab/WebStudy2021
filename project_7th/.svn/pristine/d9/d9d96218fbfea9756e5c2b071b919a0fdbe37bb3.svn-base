@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+String path = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My One Pick</title>
+<link rel="stylesheet" href="CreatorShop.css" type="text/css">
+<link rel="stylesheet" href="../common/style.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+	<%@include file="../common/header.jsp"%>
+	<div id="title">
+		<input type="button" id="following" value="FOLLOWING 131">
+		<img src="image/creator_logo.png" id="title_img">
+	</div>
+		<div id="menubar">
+			<ul>
+				<li>ALL</li>
+				<li>CLOTHES</li>
+				<li>ACCESSORIES</li>
+				<li>OFFICE SUPPLIES</li>
+				<li>　　</li>
+				<li>　　</li>
+				<li>　　</li>
+				<li>ABOUT</li>
+				<li>　　</li>
+			</ul>
+		</div>
+	<section>
+		<div class="wrap">
+			<article>
+				<!-- article에 man-writh:1100px; -->
+				<input type="button" id="fielter" value="최신순">
+				<input type="button" id="fielter" value="인기순">
+				<br>
+				<br>
+				<br>
+				<br>
+				<h3 style="position:relative"> 상품 (2) </h3>
+				<div id="fund_detail">
+				<img src="image/clothes.png" id="fund_img">
+				<h3>트리플에이 AFA 트릿 티셔츠</h3>
+				<h3>CLOTHES<span style="font-weight:bold; color: #138396; font-size:23px;"> I </span>
+				<span style=" color: #138396; font-size:15px;">Rose under the light</span></h3>
+				<br>
+				<div id="percent_num">
+				</div>
+				<div id="percent">
+				</div>
+				<h3 style="font-weight:bold; color: #138396; font-size:23px">75%
+				<span style=" color: #D5D5D5; font-size:15px;">  1,200,000원　　　　　　마감59일전</span></h3>
+				</div>
+				<div id="fund_detail">
+				<img src="image/clothes2.jpg" id="fund_img">
+				<h3>더블시프트 133 스트리트 탑</h3>
+				<h3>CLOTHES<span style="font-weight:bold; color: #138396; font-size:23px;"> I </span>
+				<span style=" color: #138396; font-size:15px;">Rose under the light</span></h3>
+				<br>
+				<div id="percent_num" style="width:300px;">
+				</div>
+				<div id="percent">
+				</div>
+				<h3 style="font-weight:bold; color: #138396; font-size:23px">451%
+				<span style=" color: #D5D5D5; font-size:15px;">5,140,000원　　　　　　마감109일전</span></h3>
+				</div>
+				
+				
+				
+			</article>
+		</div>
+	</section>
+	<%@include file="../common/footer.jsp" %>
+</body>
+</html>

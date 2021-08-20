@@ -1,0 +1,183 @@
+section {
+	background-color:white;
+	height: 800px;
+	overflow: hidden;
+}
+section .wrap>article {
+	background-color:white;
+	margin: 0;
+	padding: 0px;
+	max-width: 1300px;
+	height: 800px;
+	overflow: hidden;
+	text-align: center;
+}
+#title {
+	text-align: center;
+}
+#title_logo {
+	width: 130px;
+	height: 40px;
+}
+.profile {
+	background-color:white;
+	position:relative;
+	width: 200px;
+	height: 200px;
+	text-align:center;
+	font-family:'Noto Sans KR', sans-serif;
+	padding-top: 20px;
+	font-weight: bold;
+	color: #138396;
+}
+.profile_title {
+	color: #138396;
+	font-size:15px;
+	font-weight:bold;
+	text-align:center;
+	padding: 10px;
+}
+#welcome {
+	font-size: 15px;
+	color: #353535;
+	font-weight: bold;
+
+}
+.mainMenu{
+    width: 200px;
+    display: block;
+
+}
+.subject{
+	border-bottom:1px solid #07CBE5;
+}
+.Menu{
+    display: block;
+    padding: 10px 10px;
+    background-color: #07CBE5;
+    color: #FFFFFF;
+}
+.subMenu{
+    background: #FDFBFC;
+    transition: max-height 0.7s;
+    max-height: 0;
+}
+.subMenu a{
+    display: block;
+    padding: 10px 10px;
+    color: #07CBE5;
+    font-size: 14px;
+    border-bottom: 1px solid #07CBE5;
+    position: relative;
+}
+.subMenu a:hover{
+    background: #f1fefe;
+    border-bottom: 1px solid #07CBE5;
+}
+.profileimg_edit:hover {
+	cursor:pointer;
+}
+
+.profile_title {
+	color: #07CBE5;
+	font-size:15px;
+	font-weight:bold;
+	text-align:center;
+	padding: 10px;
+}
+
+.profile_title>img:hover {
+	cursor:pointer;
+}
+[name=frame01] {
+	background-color:white;
+	position:absolute;
+	top:90px;
+	left:200px;
+	border:none;
+	width:1350px;
+	height:750px;
+}
+
+.theme {
+	background-color:white;
+	font-family:'Noto Sans KR', sans-serif;
+}
+#Register_title {
+	margin:20px;
+	font-size: 30px;
+	font-weight: bold;
+	font-family:'Noto Sans KR', sans-serif;	
+	color:#10223b;
+}
+.theme>img {
+	width:350px;
+	height:250px;
+	overflow:hidden;
+}
+.theme>ul {
+	position:absolute;
+	top: 140px;
+	left:20px;
+	font-size:20px;
+}
+.theme>ul>li {
+	margin:10px;
+}
+.check {
+	width:17px;
+	height:17px;
+}
+.choice {
+	position:absolute;
+	top: 100px;
+	left: 230px;
+	font-family:'Noto Sans KR', sans-serif;
+	font-weight:bold;
+	width:80px;
+	height:30px;
+	border: 3px solid #138396;
+	color: #138396;
+	border-radius:5px;
+}
+.choice:hover {
+	background-color:#138396;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.choice:active {
+	background-color:#138396;
+	color: #FFFFFF;
+}
+
+.choice2 {
+	position:absolute;
+	top: 15px;
+	left: 350px;
+	font-family:'Noto Sans KR', sans-serif;
+	font-weight:bold;
+	width:80px;
+	height:30px;
+	border: 3px solid #138396;
+	color: #138396;
+	border-radius:5px;
+}
+.save_choice {
+	position:absolute;
+	top:1050px; 
+	left: 550px;
+	width:200px; 
+	font-family:'Noto Sans KR', sans-serif;
+	font-weight:bold;
+	font-size:20px;
+	height:40px;
+	border: 3px solid #138396;
+	border-radius:10px;
+	background-color: #138396;
+	color: white;
+}
+.save_choice:hover {
+	background-color: white;
+	color: #138396;
+	cursor: pointer;
+}
