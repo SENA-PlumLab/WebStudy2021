@@ -239,7 +239,7 @@ public class MemberDao {
 		String SQL = "SELECT count(*) as count "
 				+ "FROM MEMBER m, MEMGRADE m2, PORTFOLIO p "
 				+ "WHERE m.memnum=p.memnum AND m.memgradenum = m2.memgradenum "
-				+ "AND m.memgradenum=1 and pfstatenum=1 order by memjoindate desc";
+				+ "AND m.memgradenum=1 and pfstatenum in (1,2) order by memjoindate desc";
 		try {
 			// 1. JDBC 드라이버 로딩
 			Class.forName(driver);

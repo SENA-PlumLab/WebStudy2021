@@ -48,7 +48,7 @@
       <label for="floatingPassword">Password</label>
     </div>
     <input class="w-100 btn btn-lg btn-dark" type="submit" value="Log in">
-    <p class="mt-5 mb-3 text-muted">&copy; My One Pick</p>
+    <p class="mt-5 mb-3 text-muted">문의: IT관리팀 (02-1111-2222)</p>
   </form>
 </main>
   

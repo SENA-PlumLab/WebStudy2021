@@ -19,7 +19,7 @@ int status= Integer.parseInt(request.getParameter("status"));
 MemberDao mDao = new MemberDao();
 PortfolioDao pDao = new PortfolioDao();
 
-if (status == 2){
+if (status == 2 || status == 3){
 	mDao.updateMemberGrade(checked, status);
 	mDao.updatePortfolioConfirm(checked, status);
 	pDao.updatePortfolio(pfNumList, status);
