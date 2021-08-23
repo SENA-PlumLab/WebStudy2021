@@ -1,0 +1,24 @@
+자동로그인
+https://rongscodinghistory.tistory.com/3
+
+네이버 아이디로 로그인
+https://developers.naver.com/docs/login/overview/overview.md
+내 어플리케이션 - 맛집리뷰 - api 에서 추가하고 링크 넣고 하면 될듯 
+
+useBean 
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=heartflow89&logNo=221006593791
+
+
+
+
+<회원>
+고유번호, 아이디, 패스워드, 이름, 생년월일, 연령대, 연락처, 이메일, 
+프로필이미지, 닉네임, 등급(? 쉐프..)
+가입일자, 수정일자,
+
+<유저로그>
+고유번호, 로그인 날짜, 로그인 상태
+
+<SNS 가입 회원>
+고유번호, sns아이디, sns타입, 닉네임, 연동 날짜
+
