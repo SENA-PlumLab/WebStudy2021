@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- react -->
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<!-- Load Babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+	<div id="root"> <!-- 예상 결과: <div id="root"><button>Like</button></div> -->
+	<script type="text/babel">
+		const e = React.createElement;
+		
+		//컴포넌트
+		class LikeButton extends React.Component {
+			constructor(props){
+				super(props);
+				this.state = {
+					Liked: false,
+				};
+			}
+			// 화면에 어떻게 할지
+			render(){
+				return <button onClick={  () => { this.setState({Liked:true}) }  } type='submit'>
+					{this.state.Liked === true ? 'Liked' : 'Like'}
+				</button>;
+				// JSX (JS + XML)				
+
+				/* return e('button', {onClick: () => { this.setState({Liked:true})}, type:'submit'}, 
+						this.state.Liked === true ? 'Liked':'Like');  */
+				// 를 만들 '겠다'
+			}
+		}
+	</script>
+	<script type="text/babel">
+		//위에서 정한 것을 ReactDOM이 실제로 화면에 반영해준다.
+		ReactDOM.render(  <div> <LikeButton /><LikeButton /><LikeButton /> </div>, document.querySelector("#root")); //#root에 실제로 LikeButton 컴포넌트를 그린다.
+
+		/* 	ReactDOM.render(e(LikeButton), document.querySelector("#root")); //#root에 실제로 LikeButton 컴포넌트를 그린다. */
+	</script>
+	</div>
+</body>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</html>

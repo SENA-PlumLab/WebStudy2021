@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/*
+
+*/
+
+
+</script>
+</head>
+<body>
+	국어 점수
+	<br>
+	<h3></h3>
+	<h4></h4>
+	<h5></h5>
+</body>
+<script type="text/javascript">
+var student = [];
+var h3Obj = document.querySelector("h3");
+var h4Obj = document.querySelector("h4");
+var h5Obj = document.querySelector("h5");
+//1
+for (var i=0; i<5; i++){
+	student.push(Math.floor(Math.random() * 101));
+}
+h3Obj.innerText = student.sort(function(left, right){
+	return right-left;
+});
+//2
+student.reverse();
+h4Obj.innerText = student.slice(1,4);
+
+//3
+for (var i=0; i<5; i++){
+	student.push(Math.floor(Math.random() * 101));
+}
+student.sort(function(left, right){
+	return right-left;
+});
+student.reverse();
+h5Obj.innerText = student.slice(1,4);
+
+
+console.log(student);
+</script>
+</html>
