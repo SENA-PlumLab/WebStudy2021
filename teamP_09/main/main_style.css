@@ -1,0 +1,171 @@
+* {margin: 0 auto; padding: 0; box-sizing: border-box;}
+a {text-decoration: none; color: #000000;}
+ul, li {list-style: none;}
+.wrap {width: 1100px; margin: 0 auto;}
+/*
+    9차 - 메인컬러
+    흰 : #FFFFFF
+    노 : #F8E620
+    초 : #689D79
+    주 : #F29228
+    녹 : #689D79
+
+*/
+
+
+.btn_default {
+    padding: 10px 15px;
+    background-color: #ffffff;
+    color : #689D79;
+    border: 0px;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+
+
+header {
+    width: 1100px;
+    height: 250px;
+    background-color: #ffffff;
+    position: relative;
+}
+.main_top {
+    padding: 10px;
+    float: right;
+    text-align: center;
+}
+.main_top a{
+    color: #689D79;
+    font-size: bold;
+    display: block;
+}
+
+.main_top a img{
+    border-radius: 50%;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+
+.main_title {
+    text-align: center;
+    position: relative;
+}
+.main_title h1 {
+    position: absolute;
+    text-align: center;
+    top : 50px;
+    left : 480px;
+}
+.main_title h1 img {
+    width : 150px;
+}
+.main_title .main_search {
+    position: absolute;
+    top: 180px;
+    left :405px;
+    width: 300px;
+    height: 40px;
+    border: 2px solid #689D79;
+    border-radius: 5px;
+    padding-top : 6px;
+    overflow: hidden;
+}
+.main_title .main_search .main_search_input{
+    width: 250px;
+    padding : 5px;
+    padding-left: 10px;
+    float: left;
+    border: none;
+}
+.main_title .main_search .main_search_input:focus{
+    outline: none;
+}
+.main_title .main_search i {
+    color : #F29228;
+    cursor: pointer;
+}
+
+/* nav */
+nav {
+    width: 1100px;
+    background-color: #A9CF33;
+    height: 65px;
+}
+.main_category {
+
+}
+
+.main_category ul li{
+    width: 25%;
+    float: left;
+    text-align: center;
+    padding: 21.8px 0px;
+}
+.main_category ul a {
+    color: #ffffff;
+}
+
+.main_category ul li:hover{
+    background-color: #F8E620;
+    animation: fadein 0.5s;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+section {
+    width: 1100px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+section .wrap article {
+    width: 100%;
+}
+
+
+
+footer {
+    width: 1100px;
+    background-color: #689D79;
+    height: 200px;
+    color: #ffffff;
+}
+footer .wrap div {
+    padding: 20px;
+    width: 50%;
+    height: 200px;
+    float: left;
+}
+
+.footer_left h4 {
+    padding: 5px;
+}
+.footer_left h5 {
+    padding: 5px;
+}
+
+.footer_right {
+    text-align: right;
+}
+.footer_right h4{
+    padding: 5px;
+}
+.footer_right h5{
+    padding: 2px 5px;
+}
+.footer_right .btn_default{
+    margin: 25px 5px;
+}
