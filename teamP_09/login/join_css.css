@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+/* span 설정 */
+.necessary{
+	color:red;
+	font-weight:900;
+}
+.note{
+	color:#F29228;
+	font-size:13px;
+}
+
+/* button 설정 */
+.btn-custom {
+	background-color: #A9CF33;
+    padding: 5px 10px 5px;
+    border-radius: 10px;
+    border: 0;
+    color: #FFF;
+    cursor: pointer;
+}
+.btn-custom:hover{
+	background-color: #689D79;
+	color:#FFF;
+}
+.btn-custom:active{
+	transform: translateY(2px);
+}
+.btn-submit{
+	padding: 5px;
+	width:120px;
+	font-size:15px;
+	font-weight:900;
+	background-color: #F8E620;
+	color:#000;	
+}
+.btn-submit:hover {
+	background-color:#F29228;
+	color:#FFF;
+}
+.fa-check-circle {
+	color:#097de8;
+}
+
+/* table 간격 설정 */
+table {
+	width: 500px;
+	margin:5px auto;
+}
+
+table h2{
+	color:#689D79;
+	font-weight:900;
+}
+th {
+	padding: 15px 5px 15px;
+}
+
+tr td:first-child{
+	text-align:center;
+}
+
+td{
+	padding: 5px 0px 5px;
+}
+input {
+	padding: 2px 5px 2px;
+    margin: 2px;
+}
+.pw-holder td{
+	padding:5px 0px 0px;
+}
+.notice-holder td {
+	padding:0px 0px 5px;
+}
+.check-holder {
+	    padding-top: 20px;
+}
+.btn-holder{
+	padding: 15px 5px 15px;
+}
+
+
+/* modal */
+  /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 10px 20px 10px;
+            border: 1px solid #888;
+            border-radius:15px;
+            width: 500px; /* Could be more or less, depending on screen size */                          
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+.modal h3 {
+	margin-top: 10px;
+	color:#689D79;
+	font-weight: 900;
+}
+.modal-div {
+	margin:20px auto;
+}
+.modal-div input[type="text"] {
+	padding:5px;
+}

@@ -17,6 +17,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"> </script>
 <script type="text/javascript"></script>
 
+<!-- 네이버로 로그인 하기 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <!-- Bootstrap Scripts -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- form css --> 
@@ -29,9 +31,10 @@
 <body>
 
 <main class="form-login">
-  						<form method="post" action="login_verify.jsp" onsubmit="return checkForm();">
-    <a href="../main/mainPage.jsp"><img src="../image/logo.png" alt="" width="200" class="mb-3 img-logo"></a>
-
+  	<form method="post" action="login_verify.jsp" onsubmit="return checkForm();">
+    <a href="../main/mainPage.jsp">
+    	<img src="../image/logo_.png" alt="" width="200" class="mt-3 mb-3 img-logo">
+    </a>
     <div class="form-floating">
       <input type="text" class="form-control custom-input mb-1" id="id" name="id" placeholder="id">
       <label for="floatingInput">ID</label>
@@ -48,10 +51,12 @@
     <div class="mt-5 text-muted row">
 		<p class="col-auto"><a href="#" data-bs-toggle="modal" data-bs-target="#find_id">아이디 찾기</a></p>
 		<p class="col-auto"><a href="#" data-bs-toggle="modal" data-bs-target="#find_pw">비밀번호 찾기</a></p>
-		<p class="col-auto" ><a href="#">회원가입</a></p>
+		<p class="col-auto" ><a href="../login/join.jsp">회원가입</a></p>
 	</div>
 	<p class="mt-3 mb-3">
-	<a href="#"><img src="image/btnG.png" alt="" width="80%" class="img-naver"></a>
+	<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+	<div id="naver_id_login" class="img-naver"></div>
+	<!-- //네이버아이디로로그인 버튼 노출 영역 -->
 	</p>
   </form>
 </main>
@@ -71,18 +76,19 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Find user ID</h5>
+                        <h5 class="modal-title">ID 찾기</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email-forID" name="email" placeholder="Email" />
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email-forID" name="email" 
+                                										placeholder="Example@naver.com" />
                             </div>
                             <div class="modal-footer d-block">
-                            	<p class="float-start">Not yet account <a href="#">Sign Up</a></p>
-                                <button type="submit" class="btn btn-warning float-end">Submit</button>
+                            	<p class="float-start">ID가 없으신가요? <a href="../login/join.jsp">회원가입</a></p>
+                                <button type="submit" class="btn btn-warning float-end">확인</button>
                             </div>
                         </form>
                     </div>
@@ -95,22 +101,22 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Find user Password</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">비밀번호 찾기</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
+                                <label class="form-label">ID</label>
                                 <input type="text" class="form-control" id="id-forPW" name="id" placeholder="ID" />
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email-forPW" name="email" placeholder="Email" />
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email-forPW" name="email" placeholder="Example@naver.com"/>
                             </div>
                             <div class="modal-footer d-block">
-                            	<p class="float-start">Not yet account <a href="#">Sign Up</a></p>
-                                <button type="submit" class="btn btn-warning float-end">Submit</button>
+                            	<p class="float-start">ID가 없으신가요? <a href="../login/join.jsp">회원가입</a></p>
+                                <button type="submit" class="btn btn-warning float-end">확인</button>
                             </div>
                         </form>
                     </div>
@@ -122,5 +128,13 @@
 </body>
 <!-- Bootstrap JS -->
         <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+        var naver_id_login = new naver_id_login("3eVzkEaSUIXcPlc6Ru1B", 
+        										"http://localhost:7080/jspexp/teamP_09/login/callback.jsp");
+    	naver_id_login.setButton("green", 3, 50); //네이버 아이디로 로그인 버튼 설정
+    	naver_id_login.setPopup(); //Popup형태의 인증 진행
+    	naver_id_login.init_naver_id_login(); 
+</script>
 
 </html>

@@ -8,9 +8,20 @@ body {
 	  align-items: center;
 	  padding-top: 40px;
 	  padding-bottom: 40px;
-	  background-color:#FFF;
-	 /*  background-image: url('image/background.jpg');
-	  background-size:1200px; */
+}
+body::before { 
+	position: fixed; 
+	top: 0; left: 0; right: 0; bottom: 0; 
+	background-image: url('image/background.jpg');
+	background-size: cover; 
+	-webkit-filter: blur(5px); 
+	-moz-filter: blur(5px); 
+	-o-filter: blur(5px); 
+	-ms-filter: blur(5px); 
+	filter: blur(5px); 
+	transform: scale(1.02); 
+	z-index: -1; 
+	content: ""; 
 }
 
 /*  최소 가로길이 640px  */
@@ -86,4 +97,22 @@ a:hover { color: #689D79; text-decoration: underline;}
 /* 네이버 이미지 hover */
 .img-naver {
 	cursor: pointer;
+}
+
+
+/* 회원가입 form */
+.form-join {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  text-align:center;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px
+}
+.form-id {
+	display:inline-block;
+	width:70%;
+	padding-left: 5px;
+    padding-right: 0px;
 }
