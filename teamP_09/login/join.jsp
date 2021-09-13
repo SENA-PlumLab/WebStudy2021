@@ -32,8 +32,7 @@ String id = request.getParameter("id");
 	<section>
 		<div class="wrap">
 			<article>
-				<form method="post" action="join_verify.jsp"
-					onsubmit="return checkForm();">
+				<form method="post" action="${path}/JoinProc.do" onsubmit="return checkForm();">
 					<table>
 						<tr>
 							<th colspan="2"><h2>회원가입</h2></th>

@@ -22,7 +22,7 @@
 <!-- Bootstrap Scripts -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- form css --> 
-<link href="login_css.css" rel="stylesheet">
+<link href="${path }/teamP_09/login/login_css.css" rel="stylesheet">
 
 
 <%
@@ -31,9 +31,9 @@
 <body>
 
 <main class="form-login">
-  	<form method="post" action="login_verify.jsp" onsubmit="return checkForm();">
-    <a href="../main/mainPage.jsp">
-    	<img src="../image/logo_.png" alt="" width="200" class="mt-3 mb-3 img-logo">
+  	<form method="post" action="${path }/LoginProc.do" onsubmit="return checkForm();">
+    <a href="${path }/teamP_09/main/mainPage.jsp">
+    	<img src="${path }/teamP_09/image/logo_.png" alt="" width="200" class="mt-3 mb-3 img-logo">
     </a>
     <div class="form-floating">
       <input type="text" class="form-control custom-input mb-1" id="id" name="id" placeholder="id">

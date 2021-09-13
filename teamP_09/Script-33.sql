@@ -91,7 +91,7 @@ ALTER TABLE sys_sns_tb ADD CONSTRAINT sys_sns_user_CD_FK FOREIGN KEY(user_cd) RE
 
 
 
-
+SELECT * FROM sys_user_tb WHERE user_id = 'himan';
 
 
 

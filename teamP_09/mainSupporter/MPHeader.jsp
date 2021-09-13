@@ -12,7 +12,7 @@
 	Object loginId = session.getAttribute("");
 
 %>
-<header>
+<header class="Row">
        <div class="wrap">
            <div class="main_top">
            	<%if(loginId==null||loginId.equals("")) { %>
@@ -31,7 +31,7 @@
            </div>
        </div>
    </header>
-   <nav>
+   <nav class="row">
        <div class="wrap">
            <div class="main_category">
                <ul>
