@@ -22,7 +22,8 @@ public interface TodoRepository extends JpaRepository<TodoEntity, String> {
 	//JpaRepository가 기본 제공하는 쿼리가 아닌 것은 따로 구현해야 한다.
 	
 	List<TodoEntity> findByUserId(String userId);
-	//이 메소드를 작성하면... 스프링 데이터 JPA가 메서드 이름을 파싱해서, 'SELECT * from TodoRepository WHERE userId= '{userId}' '와 같은 쿼리를 작성해 실행한다.
+	//이 메소드를 작성하면... 스프링 데이터 JPA가 메서드 이름을 파싱해서, 
+	//'SELECT * from TodoRepository WHERE userId= '{userId}' '와 같은 쿼리를 작성해 실행한다.
 	//메소드 이름: 쿼리에 들어갈 것
 	//매개변수: where문에 들어갈 값
 	
