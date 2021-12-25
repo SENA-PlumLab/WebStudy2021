@@ -35,8 +35,10 @@ public class UserService {
 		
 		final UserEntity originalUser = userRepository.findByEmail(email);
 		
+		//System.out.println("password와 origin암호화"+encoder.matches(password, encoder.encode(originalUser.getPassword())));
+		
 		//matches 메소드를 통해 패스워드가 같은지 확인 
-		if(originalUser != null && encoder.matches(password, originalUser.getPassword())) {
+		if(originalUser != null && encoder.matches(password, encoder.encode(originalUser.getPassword()))) {
 			return originalUser;
 		}
 		

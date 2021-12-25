@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeRequests() // /와 /auth/** 경로는 인증하지 않아도 됨
-				.antMatchers("/", "/auth/**").permitAll()
+				.antMatchers("/", "/auth/**", "/error").permitAll()
 			.anyRequest() // /와 /auth/** 이외의 모든 경로는 인증해야 함
 				.authenticated();
 		
