@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
 import Todo from './Todo';
-import {Paper, List, Container} from '@material-ui/core';
+import {AppBar, Grid, Toolbar, Typography, Button, Paper, List, Container} from '@material-ui/core';
 import AddTodo from './AddTodo.js';
-import { call } from './ApiService';
+import { signout, call } from './ApiService';
 
 
 class App extends React.Component {
@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     //1. item -> items 배열로
     this.state = {
-      items:[  ]
+      items:[  ],
+      loading: true,
     };
   }
   /*
@@ -28,7 +29,7 @@ class App extends React.Component {
 
  componentDidMount(){
    call("/todo", "GET", null).then((response) => 
-      this.setState({items:response.data})
+      this.setState({items:response.data, loading:false})
     );
 
  }
@@ -91,12 +92,50 @@ delete = (item) => {
     </Paper>
    );
 
+  
+   // navigationBar 추가
+   var navigationBar = (
+     <AppBar position="static">
+       <Toolbar>
+         <Grid jusrify="space-between" container>
+           <Grid item>
+             <Typography varient="h6">오늘의 할 일</Typography>
+           </Grid>
+           <Grid>
+             <Button color="inherit" onClick={signout}>
+               로그아웃
+             </Button>
+           </Grid>
+         </Grid>
+       </Toolbar>
+     </AppBar>
+   );
+   
+   // 로딩중이 아닐 때 렌더링할 부분
+   var todoListPage = (
+     <div>
+       {navigationBar} {/* 내비게이션 바 렌더링*/}
+    <Container maxWidth="md">
+      <AddTodo add={this.add}/>
+      <div className="TodoList">{todoItems}</div>
+    </Container>
+     </div>
+   );
+
+   //로딩 중일 때 렌더링 할 부분
+   var loadingPage = (
+     <h1> 로딩 중...</h1>
+   );
+
+   var content = loadingPage;
+   if (!this.state.loading){
+     content = todoListPage;
+   }
+
+    // props로 넘겨주기
    return (
     <div className="App">
-      <Container maxWidth="md">
-        <AddTodo add={this.add}/>
-        <div className="TodoList">{todoItems}</div>
-      </Container>
+      {content}
     </div>
    )
  }
