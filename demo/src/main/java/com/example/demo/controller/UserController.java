@@ -41,6 +41,7 @@ public class UserController {
 								.build();
 			//서비스를 이용해 리포지터리에 사용자 저장
 			UserEntity registeredUser = userService.create(user);
+			//System.out.println("registeredUser: "+registeredUser);
 			UserDTO responseUserDTO = UserDTO.builder()
 										.email(registeredUser.getEmail())
 										.id(registeredUser.getId())

@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id "com.moowork.node" version "1.3.1"
 }
 
 group = 'com.example'
@@ -35,6 +36,49 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	
 }
+
+
+// -- front build code
+def webappDir = "$projectDir/frontend"
+
+sourceSets {
+	main {
+		resource {
+			srcDirs = {"$webappDir/uild", "$projectDir/src/main/resources"}
+		}
+	}
+}
+
+processResources {
+	dependsOn "buildReact"
+}
+
+task buildReact(type: Exec) {
+	dependsOn "installReact"
+	workingDir "$webappDir"
+	input.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if ( System.getProperty('os.name').toLowerCase(Loval.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run-script", "build"
+	} else {
+		commandLine "npm", "run-script", "build"
+	}
+}
+
+task installReact(type:Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if ( System.getProperty('os.name').toLowerCase(Loval.ROOT).contains('windows')) {
+		commandLine "yarn.cmd", "audit", "fix"
+		commandLine "npm", "install"
+	} else {
+		commandLine "npm", "audit", "fix"
+		commandLine "npm", "install"
+	}
+}
+
+// -- front build ends
 
 test {
 	useJUnitPlatform()
